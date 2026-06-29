@@ -1,3 +1,6 @@
 title: Katherine Jackson
 description: Electrical and Computer Engineer
 theme: minima 
+header_pages:
+  - about.md
+  - projects.md
