@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Katherine Jackson</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F6F2;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #2B5F75;
+    --accent-light: #E3EFF3;
+    --border: #DDDBD4;
+    --card: #FFFFFF;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+  /* SECTIONS */
+  section { display: none; padding: 4rem 2.5rem; max-width: 860px; margin: 0 auto; }
+  section.active { display: block; }
+
+  /* HOME */
+  .home-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .home-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+  .home-title span { color: var(--accent); }
+  .home-bio {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 620px;
+    margin-bottom: 2.5rem;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  .contact-chip {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    text-decoration: none;
+  }
+  .contact-chip:hover { background: var(--accent); color: white; transition: 0.2s; }
+
+  /* ABOUT */
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text);
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .skill-card h4 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .skill-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+  .about-text { font-size: 1rem; line-height: 1.8; color: var(--muted); margin-bottom: 1rem; }
+
+  /* PROJECTS */
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+    transition: box-shadow 0.2s;
+  }
+  .project-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .project-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .project-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Katherine Jackson</span>
+  <ul class="nav-links">
+    <li><a href="#" class="active" onclick="show('home', this)">Home</a></li>
+    <li><a href="#" onclick="show('about', this)">About</a></li>
+    <li><a href="#" onclick="show('projects', this)">Projects</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <p class="home-eyebrow">Machine Learning Engineer</p>
+  <h1 class="home-title">Hi, I'm <span>Katherine Jackson</span>.</h1>
+  <p class="home-bio">
+    I build end-to-end machine learning systems at the intersection of AI and healthcare — from messy data pipelines to validated clinical models. I care about fairness, rigor, and responsible AI deployment.
+  </p>
+  <div class="contact-row">
+    <a class="contact-chip" href="mailto:kejackso@alumni.cmu.edu">kejackso@alumni.cmu.edu</a>
+    <a class="contact-chip" href="tel:9547071626">954-707-1626</a>
+    <a class="contact-chip" href="#">GitHub</a>
+    <a class="contact-chip" href="#">LinkedIn</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <p class="about-text">
+    I'm a machine learning engineer with deep experience building technical scaffolding for model prototyping, benchmarking, and clinical validation. My background spans the full ML lifecycle — from ingesting messy datasets to deploying production-ready models.
+  </p>
+  <p class="about-text">
+    I'm passionate about applying AI responsibly in healthcare settings, with a focus on bias evaluation, drift detection, and adherence to data privacy standards.
+  </p>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h4>Languages & Libraries</h4>
+      <p>Python, SQL, Pandas, NumPy, Scikit-learn</p>
+    </div>
+    <div class="skill-card">
+      <h4>Deep Learning</h4>
+      <p>PyTorch, model training, evaluation, deployment</p>
+    </div>
+    <div class="skill-card">
+      <h4>MLOps</h4>
+      <p>Pipeline automation, benchmarking suites, performance monitoring</p>
+    </div>
+    <div class="skill-card">
+      <h4>Responsible AI</h4>
+      <p>Fairness, drift detection, data privacy, clinical standards</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+
+  <div class="project-card">
+    <h3>Clinical ML Pipeline</h3>
+    <p>End-to-end pipeline for ingesting and transforming raw clinical datasets into analysis-ready repositories, with automated benchmarking and bias evaluation against clinical standards.</p>
+    <div class="tag-row">
+      <span class="tag">Python</span>
+      <span class="tag">SQL</span>
+      <span class="tag">Scikit-learn</span>
+      <span class="tag">Healthcare AI</span>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <h3>Deep Learning Model Deployment</h3>
+    <p>Prototyped, benchmarked, and validated deep learning models using PyTorch, with full production deployment and monitoring for safety and performance drift.</p>
+    <div class="tag-row">
+      <span class="tag">PyTorch</span>
+      <span class="tag">MLOps</span>
+      <span class="tag">Model Validation</span>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <h3>Add your own project</h3>
+    <p>Edit this file to add your real projects here — research, side projects, coursework, or open source contributions.</p>
+    <div class="tag-row">
+      <span class="tag">Coming Soon</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  function show(id, el) {
+    event.preventDefault();
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+  }
+</script>
+</body>
+</html>
