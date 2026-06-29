@@ -1,4 +1,5 @@
 ---
 layout: home
+title: Home
 ---
-Welcome to my site! Here you'll find my projects and writing on ML.
+Brief intro line here — who you are and what you do.
