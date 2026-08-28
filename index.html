@@ -20,6 +20,8 @@
     --cyan: #147E71;
     --cyan-dim: rgba(20, 126, 113, 0.12);
     --border: #E1E7E9;
+    --pink: #E090AD;
+    --pink-dim: rgba(224, 144, 173, 0.12);
   }
 
   html { scroll-behavior: smooth; }
@@ -82,7 +84,7 @@
   .nav-links a::after { content: "]"; opacity: 0.5; margin-left: 2px; }
   .nav-links a:hover { color: var(--ink); }
   .nav-links a.active {
-    color: var(--copper);
+    color: var(--pink);
     border-color: var(--border);
     background: var(--bg-panel);
   }
@@ -113,7 +115,7 @@
     margin-bottom: 1.5rem;
     color: var(--ink);
   }
-  .home-title span { color: var(--copper); }
+  .home-title span { color: var(--pink); }
   .home-bio {
     font-size: 1.05rem;
     line-height: 1.75;
@@ -136,14 +138,14 @@
     position: absolute;
     left: 1.25rem; right: 1.25rem; top: 1.9rem;
     height: 1px;
-    background: linear-gradient(to right, var(--copper), var(--cyan));
+    background: linear-gradient(to right, var(--pink), var(--cyan));
     opacity: 0.35;
   }
   .trace-node { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
   .trace-dot {
     width: 10px; height: 10px; border-radius: 50%;
-    background: var(--copper);
-    box-shadow: 0 0 0 5px var(--copper-dim);
+    background: var(--pink);
+    box-shadow: 0 0 0 5px var(--pink-dim);
     animation: pulse-node 2.8s ease-in-out infinite;
   }
   .trace-node:nth-child(2) .trace-dot { background: var(--cyan); box-shadow: 0 0 0 5px var(--cyan-dim); animation-delay: 0.5s; }
@@ -158,7 +160,7 @@
     white-space: nowrap;
   }
   @keyframes pulse-node {
-    0%, 100% { box-shadow: 0 0 0 5px var(--copper-dim); }
+    0%, 100% { box-shadow: 0 0 0 5px var(--pink-dim); }
     50% { box-shadow: 0 0 0 9px transparent; }
   }
   @keyframes blink {
@@ -184,9 +186,9 @@
     text-decoration: none;
     transition: 0.2s;
   }
-  .contact-chip:hover { border-color: var(--copper); color: var(--copper); }
-  .contact-chip.download { color: var(--copper); border-color: var(--copper); }
-  .contact-chip.download:hover { background: var(--copper); color: var(--bg); }
+  .contact-chip:hover { border-color: var(--pink); color: var(--pink); }
+  .contact-chip.download { color: var(--pink); border-color: var(--pink); }
+  .contact-chip.download:hover { background: var(--pink); color: var(--bg); }
 
   /* SECTION TITLES */
   .section-title {
@@ -201,7 +203,7 @@
   }
   .section-title::before {
     content: "§";
-    color: var(--copper);
+    color: var(--pink);
     font-weight: 600;
   }
 
@@ -221,13 +223,13 @@
     padding: 1.5rem 1.25rem;
     transition: border-color 0.2s, transform 0.2s;
   }
-  .skill-card:hover { border-color: var(--copper); transform: translateY(-2px); }
+  .skill-card:hover { border-color: var(--pink); transform: translateY(-2px); }
   .skill-card::before, .skill-card::after {
     content: "";
     position: absolute;
     left: 14px; right: 14px;
     height: 5px;
-    background-image: repeating-linear-gradient(to right, var(--copper) 0 3px, transparent 3px 9px);
+    background-image: repeating-linear-gradient(to right, var(--pink) 0 3px, transparent 3px 9px);
     opacity: 0.55;
   }
   .skill-card::before { top: -3px; }
@@ -252,7 +254,7 @@
     overflow: hidden;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .project-card:hover { border-color: var(--copper); box-shadow: 0 8px 30px rgba(20,38,47,0.1); }
+  .project-card:hover { border-color: var(--pink); box-shadow: 0 8px 30px rgba(20,38,47,0.1); }
 
   .project-image {
     position: relative;
@@ -300,7 +302,7 @@
     font-family: 'JetBrains Mono', monospace;
     background: rgba(227,168,87,0.1);
     border: 1px solid rgba(227,168,87,0.25);
-    color: var(--copper);
+    color: var(--pink);
     font-size: 0.72rem;
     font-weight: 500;
     padding: 0.28rem 0.65rem;
