@@ -124,7 +124,7 @@
     margin-bottom: 2rem;
   }
 
-  /* SIGNAL TRACE — signature element: her four domains as nodes on a live signal path */
+  /* SIGNAL TRACE — signature element */
   .signal-trace {
     position: relative;
     display: flex;
@@ -173,6 +173,7 @@
     flex-wrap: wrap;
     gap: 0.75rem;
     align-items: center;
+    margin-bottom: 3.5rem;
   }
   .contact-chip {
     font-family: 'JetBrains Mono', monospace;
@@ -189,6 +190,59 @@
   .contact-chip:hover { border-color: var(--pink); color: var(--pink); }
   .contact-chip.download { color: var(--pink); border-color: var(--pink); }
   .contact-chip.download:hover { background: var(--pink); color: var(--bg); }
+
+  /* HORIZONTAL SCROLLER */
+  .carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+  }
+  .carousel-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .carousel-controls {
+    display: flex;
+    gap: 0.4rem;
+  }
+  .scroll-btn {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+  .scroll-btn:hover {
+    border-color: var(--pink);
+    color: var(--pink);
+  }
+  .project-carousel {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .project-carousel::-webkit-scrollbar { display: none; }
+  .project-carousel .project-card {
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+    margin-bottom: 0;
+  }
 
   /* SECTION TITLES */
   .section-title {
@@ -328,6 +382,7 @@
     section { padding: 3rem 1.25rem 4rem; }
     .signal-trace { padding: 1.25rem 0 0.5rem; }
     .trace-label { font-size: 0.58rem; }
+    .project-carousel .project-card { flex: 0 0 260px; }
   }
 </style>
 </head>
@@ -338,11 +393,10 @@
   <ul class="nav-links">
     <li><a href="#" class="active" onclick="show('home', this)">Home</a></li>
     <li><a href="#" onclick="show('about', this)">About</a></li>
-    <li><a href="#" onclick="show('projects', this)">Projects</a></li>
+    <li><a href="#" id="nav-projects-link" onclick="show('projects', this)">Projects</a></li>
   </ul>
 </nav>
 
-<!-- HOME -->
 <section id="home" class="active">
   <p class="home-eyebrow">// electrical &amp; computer engineer</p>
   <h1 class="home-title">Hi, I'm <span>Katherine Jackson</span>.</h1>
@@ -364,9 +418,18 @@
     <a class="contact-chip" href="https://www.linkedin.com/in/katherineejackson14">[in] LinkedIn</a>
     <a class="contact-chip download" href="Katherine_Jackson_Resume.pdf" download="Katherine_Jackson_Resume.pdf">↓ Resume (PDF)</a>
   </div>
+
+  <div class="carousel-header">
+    <span class="carousel-title">Featured Projects</span>
+    <div class="carousel-controls">
+      <button class="scroll-btn" onclick="manualScroll(-1)" aria-label="Scroll left">&lt;</button>
+      <button class="scroll-btn" onclick="manualScroll(1)" aria-label="Scroll right">&gt;</button>
+    </div>
+  </div>
+  <div class="project-carousel" id="carousel">
+    </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <h2 class="section-title">About</h2>
   <p class="about-text">
@@ -392,7 +455,6 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <h2 class="section-title">Projects</h2>
 
@@ -449,12 +511,59 @@
 
 <script>
   function show(id, el) {
-    event.preventDefault();
+    if (event) event.preventDefault();
     document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    el.classList.add('active');
+    if (el) el.classList.add('active');
   }
+
+  // Populate Home Carousel from Projects section automatically
+  function initCarousel() {
+    const carousel = document.getElementById('carousel');
+    const projectCards = document.querySelectorAll('#projects .project-card');
+    
+    projectCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      // Make whole cloned card clickable to jump to projects section
+      clone.style.cursor = 'pointer';
+      clone.onclick = () => show('projects', document.getElementById('nav-projects-link'));
+      carousel.appendChild(clone);
+    });
+
+    startAutoScroll();
+  }
+
+  // Auto-scrolling logic
+  let scrollInterval;
+  const carousel = document.getElementById('carousel');
+
+  function startAutoScroll() {
+    scrollInterval = setInterval(() => {
+      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5) {
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        carousel.scrollBy({ left: 336, behavior: 'smooth' });
+      }
+    }, 3500);
+  }
+
+  function stopAutoScroll() {
+    clearInterval(scrollInterval);
+  }
+
+  function manualScroll(direction) {
+    stopAutoScroll();
+    carousel.scrollBy({ left: direction * 336, behavior: 'smooth' });
+    startAutoScroll();
+  }
+
+  // Pause scrolling on mouse hover or touch interaction
+  carousel.addEventListener('mouseenter', stopAutoScroll);
+  carousel.addEventListener('mouseleave', startAutoScroll);
+  carousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
+
+  window.addEventListener('DOMContentLoaded', initCarousel);
 </script>
 </body>
 </html>
