@@ -124,49 +124,19 @@
     margin-bottom: 2rem;
   }
 
-  /* SIGNAL TRACE — signature element */
   .signal-trace {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin: 0 0 2.5rem;
-    padding: 1.5rem 1rem 0.75rem;
+    padding: 0;
   }
   .signal-trace::before {
     content: "";
-    position: absolute;
-    left: 1.25rem; right: 1.25rem; top: 1.9rem;
+    display: block;
+    width: 100%;
     height: 1px;
-    background: linear-gradient(to right, var(--pink), var(--cyan));
-    opacity: 0.35;
+    background: var(--border);
   }
-  .trace-node { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
-  .trace-dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--pink);
-    box-shadow: 0 0 0 5px var(--pink-dim);
-    animation: pulse-node 2.8s ease-in-out infinite;
-  }
-  .trace-node:nth-child(2) .trace-dot { background: var(--cyan); box-shadow: 0 0 0 5px var(--cyan-dim); animation-delay: 0.5s; }
-  .trace-node:nth-child(3) .trace-dot { animation-delay: 1s; }
-  .trace-node:nth-child(4) .trace-dot { background: var(--cyan); box-shadow: 0 0 0 5px var(--cyan-dim); animation-delay: 1.5s; }
-  .trace-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted-dim);
-    white-space: nowrap;
-  }
-  @keyframes pulse-node {
-    0%, 100% { box-shadow: 0 0 0 5px var(--pink-dim); }
-    50% { box-shadow: 0 0 0 9px transparent; }
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
-  }
+  .trace-node { display: none; }
 
   .contact-row {
     display: flex;
