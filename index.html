@@ -4,26 +4,37 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Katherine Jackson</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #F7F6F2;
-    --text: #1A1A1A;
-    --muted: #6B6B6B;
-    --accent: #2B5F75;
-    --accent-light: #E3EFF3;
-    --border: #DDDBD4;
-    --card: #FFFFFF;
+    --bg: #FFFFFF;
+    --bg-panel: #F6F8F9;
+    --bg-panel-2: #EFF3F4;
+    --ink: #14262F;
+    --muted: #4E6870;
+    --muted-dim: #8398A0;
+    --copper: #B9752A;
+    --copper-dim: rgba(185, 117, 42, 0.12);
+    --cyan: #147E71;
+    --cyan-dim: rgba(20, 126, 113, 0.12);
+    --border: #E1E7E9;
   }
+
+  html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    background:
+      radial-gradient(circle at 15% 0%, rgba(20,126,113,0.04), transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(185,117,42,0.05), transparent 45%),
+      var(--bg);
+    color: var(--ink);
     min-height: 100vh;
   }
+
+  .mono { font-family: 'JetBrains Mono', monospace; }
 
   /* NAV */
   nav {
@@ -32,134 +43,296 @@
     align-items: center;
     padding: 1.25rem 2.5rem;
     border-bottom: 1px solid var(--border);
-    background: var(--bg);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
     position: sticky;
     top: 0;
     z-index: 100;
   }
   .nav-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem;
-    color: var(--accent);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink);
     letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-name .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+    animation: blink 2.6s ease-in-out infinite;
+  }
+  .nav-links { display: flex; gap: 0.5rem; list-style: none; }
   .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 0.78rem;
     font-weight: 500;
+    letter-spacing: 0.04em;
     color: var(--muted);
-    transition: color 0.2s;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
   }
-  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+  .nav-links a::before { content: "["; opacity: 0.5; margin-right: 2px; }
+  .nav-links a::after { content: "]"; opacity: 0.5; margin-left: 2px; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active {
+    color: var(--copper);
+    border-color: var(--border);
+    background: var(--bg-panel);
+  }
 
   /* SECTIONS */
-  section { display: none; padding: 4rem 2.5rem; max-width: 860px; margin: 0 auto; }
-  section.active { display: block; }
+  section { display: none; padding: 4.5rem 2.5rem 6rem; max-width: 860px; margin: 0 auto; }
+  section.active { display: block; animation: fadeIn 0.5s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   /* HOME */
   .home-eyebrow {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--cyan);
+    margin-bottom: 1.25rem;
   }
   .home-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
     line-height: 1.15;
     margin-bottom: 1.5rem;
-    color: var(--text);
+    color: var(--ink);
   }
-  .home-title span { color: var(--accent); }
+  .home-title span { color: var(--copper); }
   .home-bio {
     font-size: 1.05rem;
     line-height: 1.75;
     color: var(--muted);
     max-width: 620px;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
+
+  /* SIGNAL TRACE — signature element: her four domains as nodes on a live signal path */
+  .signal-trace {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 2.5rem;
+    padding: 1.5rem 1rem 0.75rem;
+  }
+  .signal-trace::before {
+    content: "";
+    position: absolute;
+    left: 1.25rem; right: 1.25rem; top: 1.9rem;
+    height: 1px;
+    background: linear-gradient(to right, var(--copper), var(--cyan));
+    opacity: 0.35;
+  }
+  .trace-node { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+  .trace-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--copper);
+    box-shadow: 0 0 0 5px var(--copper-dim);
+    animation: pulse-node 2.8s ease-in-out infinite;
+  }
+  .trace-node:nth-child(2) .trace-dot { background: var(--cyan); box-shadow: 0 0 0 5px var(--cyan-dim); animation-delay: 0.5s; }
+  .trace-node:nth-child(3) .trace-dot { animation-delay: 1s; }
+  .trace-node:nth-child(4) .trace-dot { background: var(--cyan); box-shadow: 0 0 0 5px var(--cyan-dim); animation-delay: 1.5s; }
+  .trace-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-dim);
+    white-space: nowrap;
+  }
+  @keyframes pulse-node {
+    0%, 100% { box-shadow: 0 0 0 5px var(--copper-dim); }
+    50% { box-shadow: 0 0 0 9px transparent; }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
   .contact-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.75rem;
     align-items: center;
   }
   .contact-chip {
-    background: var(--accent-light);
-    color: var(--accent);
-    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.78rem;
     font-weight: 500;
-    padding: 0.4rem 0.9rem;
-    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
     text-decoration: none;
+    transition: 0.2s;
   }
-  .contact-chip:hover { background: var(--accent); color: white; transition: 0.2s; }
+  .contact-chip:hover { border-color: var(--copper); color: var(--copper); }
+  .contact-chip.download { color: var(--copper); border-color: var(--copper); }
+  .contact-chip.download:hover { background: var(--copper); color: var(--bg); }
+
+  /* SECTION TITLES */
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    margin-bottom: 2rem;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .section-title::before {
+    content: "§";
+    color: var(--copper);
+    font-weight: 600;
+  }
 
   /* ABOUT */
-  .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--text);
-  }
+  .about-text { font-size: 1rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.25rem; max-width: 640px; }
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
   }
   .skill-card {
-    background: var(--card);
+    position: relative;
+    background: var(--bg-panel);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.25rem;
+    border-radius: 8px;
+    padding: 1.5rem 1.25rem;
+    transition: border-color 0.2s, transform 0.2s;
   }
+  .skill-card:hover { border-color: var(--copper); transform: translateY(-2px); }
+  .skill-card::before, .skill-card::after {
+    content: "";
+    position: absolute;
+    left: 14px; right: 14px;
+    height: 5px;
+    background-image: repeating-linear-gradient(to right, var(--copper) 0 3px, transparent 3px 9px);
+    opacity: 0.55;
+  }
+  .skill-card::before { top: -3px; }
+  .skill-card::after { bottom: -3px; }
   .skill-card h4 {
-    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.6rem;
+    color: var(--cyan);
+    margin-bottom: 0.7rem;
   }
   .skill-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
-  .about-text { font-size: 1rem; line-height: 1.8; color: var(--muted); margin-bottom: 1rem; }
 
   /* PROJECTS */
   .project-card {
-    background: var(--card);
+    background: var(--bg-panel);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 1.75rem;
-    margin-bottom: 1.25rem;
-    transition: box-shadow 0.2s;
+    margin-bottom: 1.75rem;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .project-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .project-card:hover { border-color: var(--copper); box-shadow: 0 8px 30px rgba(20,38,47,0.1); }
+
+  .project-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 21 / 8;
+    background:
+      repeating-linear-gradient(115deg, rgba(227,168,87,0.07) 0 2px, transparent 2px 26px),
+      repeating-linear-gradient(25deg, rgba(95,214,198,0.06) 0 2px, transparent 2px 34px),
+      var(--bg-panel-2);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .project-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .image-placeholder {
+    display: none;
+    position: absolute; inset: 0;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  .project-image.no-image .image-placeholder { display: flex; }
+  .image-placeholder span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--muted-dim);
+    text-transform: uppercase;
+  }
+
+  .project-body { padding: 1.5rem 1.75rem 1.75rem; }
   .project-card h3 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.25rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: var(--text);
+    color: var(--ink);
   }
-  .project-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+  .project-card p.desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.1rem; }
   .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .tag {
-    background: var(--accent-light);
-    color: var(--accent);
-    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(227,168,87,0.1);
+    border: 1px solid rgba(227,168,87,0.25);
+    color: var(--copper);
+    font-size: 0.72rem;
     font-weight: 500;
-    padding: 0.25rem 0.65rem;
-    border-radius: 999px;
+    padding: 0.28rem 0.65rem;
+    border-radius: 5px;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    section { padding: 3rem 1.25rem 4rem; }
+    .signal-trace { padding: 1.25rem 0 0.5rem; }
+    .trace-label { font-size: 0.58rem; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <span class="nav-name">Katherine Jackson</span>
+  <span class="nav-name"><span class="dot"></span>Katherine Jackson</span>
   <ul class="nav-links">
     <li><a href="#" class="active" onclick="show('home', this)">Home</a></li>
     <li><a href="#" onclick="show('about', this)">About</a></li>
@@ -169,80 +342,105 @@
 
 <!-- HOME -->
 <section id="home" class="active">
-  <p class="home-eyebrow">Electrical and Computer Engineer </p>
+  <p class="home-eyebrow">// electrical &amp; computer engineer</p>
   <h1 class="home-title">Hi, I'm <span>Katherine Jackson</span>.</h1>
   <p class="home-bio">
-     I am a Carnegie Mellon Electrical and Computer Engineer graduate, speciallizing in machine learning and embedded systems.
+    I am a Carnegie Mellon Electrical and Computer Engineer graduate, specializing in machine learning and embedded systems.
   </p>
-  <div class="contact-row">
-    <a class="contact-chip" href="mailto:kejackso@alumni.cmu.edu">kejackso@alumni.cmu.edu</a>
-    <a class="contact-chip" href="tel:9547071626">954-707-1626</a>
-    <a class="contact-chip" href="https://github.com/katherine-e-jackson">GitHub</a>
-    <a class="contact-chip" href="www.linkedin.com/in/katherineejackson14">LinkedIn</a>
-    <a href="Katherine_Jackson_Resume.pdf" download="Katherine_Jackson_Resume.pdf" style="font-weight: bold; margin-left: 5px;">📥 Download PDF Resume</a>
-  </div> 
 
+  <div class="signal-trace" aria-hidden="true">
+    <div class="trace-node"><span class="trace-dot"></span><span class="trace-label">Hardware</span></div>
+    <div class="trace-node"><span class="trace-dot"></span><span class="trace-label">Embedded</span></div>
+    <div class="trace-node"><span class="trace-dot"></span><span class="trace-label">Vision</span></div>
+    <div class="trace-node"><span class="trace-dot"></span><span class="trace-label">Machine Learning</span></div>
+  </div>
+
+  <div class="contact-row">
+    <a class="contact-chip" href="mailto:kejackso@alumni.cmu.edu">[email] kejackso@alumni.cmu.edu</a>
+    <a class="contact-chip" href="tel:9547071626">[tel] 954-707-1626</a>
+    <a class="contact-chip" href="https://github.com/katherine-e-jackson">[git] GitHub</a>
+    <a class="contact-chip" href="https://www.linkedin.com/in/katherineejackson14">[in] LinkedIn</a>
+    <a class="contact-chip download" href="Katherine_Jackson_Resume.pdf" download="Katherine_Jackson_Resume.pdf">↓ Resume (PDF)</a>
+  </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <h2 class="section-title">About Me</h2>
+  <h2 class="section-title">About</h2>
   <p class="about-text">
     I'm a machine learning engineer with deep experience building technical scaffolding for model prototyping, benchmarking, and clinical validation. My background spans the full ML lifecycle — from ingesting messy datasets to deploying production-ready models.
   </p>
-  <p class="about-text">
-    
-  </p>
   <div class="skills-grid">
     <div class="skill-card">
-      <h4>Languages & Tools</h4>
+      <h4>Languages &amp; Tools</h4>
       <p>Python, C/C++, JavaScript, MATLAB, SQL, SystemVerilog</p>
     </div>
     <div class="skill-card">
-      <h4>Hardware & Embedded</h4>
+      <h4>Hardware &amp; Embedded</h4>
       <p>RTOS, STM32 (ARM Cortex-M4), I2C, UART, ADC Sampling, FSMs, PID Controls</p>
     </div>
     <div class="skill-card">
-      <h4>Machine Learning & Vision</h4>
+      <h4>Machine Learning &amp; Vision</h4>
       <p>PyTorch, Scikit-learn, Computer Vision, Neural Networks, KNN, Random Forest</p>
     </div>
     <div class="skill-card">
       <h4>Engineering Frameworks</h4>
       <p>Git, Linux, NumPy, MATLAB Simulink, AutoDesk Fusion</p>
     </div>
-</div>
-
+  </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
   <h2 class="section-title">Projects</h2>
+
   <div class="project-card">
-    <h3> ASL Reader Glove </h3>
-    <p>End-to-end pipeline for ingesting and transforming raw sensor data into a predicted American Sign Language Character. </p>
-    <div class="tag-row">
-      <span class="tag">Python</span>
-      <span class="tag">SQL</span>
-      <span class="tag">Scikit-learn</span>
-      <span class="tag">Healthcare AI</span>
+    <div class="project-image">
+      <img src="asl-reader-glove.jpg" alt="ASL Reader Glove"
+           onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+      <div class="image-placeholder"><span>ASL Reader Glove — add asl-reader-glove.jpg</span></div>
+    </div>
+    <div class="project-body">
+      <h3>ASL Reader Glove</h3>
+      <p class="desc">End-to-end pipeline for ingesting and transforming raw sensor data into a predicted American Sign Language character.</p>
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Healthcare AI</span>
+      </div>
     </div>
   </div>
 
   <div class="project-card">
-    <h3>Deep Learning Model Deployment</h3>
-    <p>Prototyped, benchmarked, and validated deep learning models using PyTorch, with full production deployment and monitoring for safety and performance drift.</p>
-    <div class="tag-row">
-      <span class="tag">PyTorch</span>
-      <span class="tag">MLOps</span>
-      <span class="tag">Model Validation</span>
+    <div class="project-image">
+      <img src="deep-learning-deployment.jpg" alt="Deep Learning Model Deployment"
+           onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+      <div class="image-placeholder"><span>Deep Learning Model Deployment — add deep-learning-deployment.jpg</span></div>
+    </div>
+    <div class="project-body">
+      <h3>Deep Learning Model Deployment</h3>
+      <p class="desc">Prototyped, benchmarked, and validated deep learning models using PyTorch, with full production deployment and monitoring for safety and performance drift.</p>
+      <div class="tag-row">
+        <span class="tag">PyTorch</span>
+        <span class="tag">MLOps</span>
+        <span class="tag">Model Validation</span>
+      </div>
     </div>
   </div>
 
   <div class="project-card">
-    <h3>Add your own project</h3>
-    <p>Edit this file to add your real projects here — research, side projects, coursework, or open source contributions.</p>
-    <div class="tag-row">
-      <span class="tag">Coming Soon</span>
+    <div class="project-image">
+      <img src="your-project.jpg" alt="Add your own project"
+           onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+      <div class="image-placeholder"><span>Add your-project.jpg</span></div>
+    </div>
+    <div class="project-body">
+      <h3>Add your own project</h3>
+      <p class="desc">Edit this file to add your real projects here — research, side projects, coursework, or open source contributions.</p>
+      <div class="tag-row">
+        <span class="tag">Coming Soon</span>
+      </div>
     </div>
   </div>
 </section>
