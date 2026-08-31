@@ -497,7 +497,7 @@
   // Auto-scrolling logic — continuous smooth glide instead of periodic jumps
   let scrollRAF;
   const carousel = document.getElementById('carousel');
-  const AUTO_SCROLL_SPEED = 0.4; // pixels per frame
+  const AUTO_SCROLL_SPEED = 0.5; // pixels per frame — raise for faster, lower for slower
 
   function startAutoScroll() {
     function step() {
