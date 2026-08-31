@@ -64,32 +64,6 @@
   .nav-links a:hover { color: var(--ink); }
   .nav-links a.active { color: var(--ink); border-color: var(--accent); }
 
-  /* TICKER */
-  .ticker {
-    overflow: hidden;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 0.85rem 0;
-  }
-  .ticker-track {
-    display: flex;
-    width: max-content;
-    gap: 3rem;
-    animation: marquee 26s linear infinite;
-  }
-  .ticker:hover .ticker-track { animation-play-state: paused; }
-  .ticker-track span {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: var(--muted-2);
-    white-space: nowrap;
-  }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
   /* SECTIONS */
   section { display: none; padding: 4.5rem 2.5rem 5rem; max-width: 880px; margin: 0 auto; }
   section.active { display: block; animation: fadeIn 0.4s ease; }
@@ -225,8 +199,7 @@
     display: flex;
     gap: 1.5rem;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    scroll-snap-type: none;
     padding-bottom: 1rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -386,21 +359,6 @@
   </ul>
 </nav>
 
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span>./asl-reader-glove</span>
-    <span>./deep-learning-deployment</span>
-    <span>./github</span>
-    <span>./linkedin</span>
-    <span>./resume</span>
-    <span>./asl-reader-glove</span>
-    <span>./deep-learning-deployment</span>
-    <span>./github</span>
-    <span>./linkedin</span>
-    <span>./resume</span>
-  </div>
-</div>
-
 <section id="home" class="active">
   <div class="hero-top">
     <div class="hero-intro">
@@ -536,22 +494,25 @@
     startAutoScroll();
   }
 
-  // Auto-scrolling logic
-  let scrollInterval;
+  // Auto-scrolling logic — continuous smooth glide instead of periodic jumps
+  let scrollRAF;
   const carousel = document.getElementById('carousel');
+  const AUTO_SCROLL_SPEED = 0.4; // pixels per frame
 
   function startAutoScroll() {
-    scrollInterval = setInterval(() => {
-      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5) {
-        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+    function step() {
+      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1) {
+        carousel.scrollLeft = 0;
       } else {
-        carousel.scrollBy({ left: 336, behavior: 'smooth' });
+        carousel.scrollLeft += AUTO_SCROLL_SPEED;
       }
-    }, 3500);
+      scrollRAF = requestAnimationFrame(step);
+    }
+    scrollRAF = requestAnimationFrame(step);
   }
 
   function stopAutoScroll() {
-    clearInterval(scrollInterval);
+    cancelAnimationFrame(scrollRAF);
   }
 
   function manualScroll(direction) {
