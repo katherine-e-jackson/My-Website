@@ -4,94 +4,95 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Katherine Jackson</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #FFFFFF;
-    --bg-panel: #F6F8F9;
-    --bg-panel-2: #EFF3F4;
-    --ink: #14262F;
-    --muted: #4E6870;
-    --muted-dim: #8398A0;
-    --copper: #B9752A;
-    --copper-dim: rgba(185, 117, 42, 0.12);
-    --cyan: #147E71;
-    --cyan-dim: rgba(20, 126, 113, 0.12);
-    --border: #E1E7E9;
-    --pink: #E090AD;
-    --pink-dim: rgba(224, 144, 173, 0.12);
+    --bg: #FAF9F6;
+    --ink: #151515;
+    --muted: #6E6E6C;
+    --muted-2: #A6A49E;
+    --line: #E7E5DF;
+    --accent: #1F9E9E;
+    --accent-dim: #E4F5F4;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Inter', sans-serif;
-    background:
-      radial-gradient(circle at 15% 0%, rgba(20,126,113,0.04), transparent 40%),
-      radial-gradient(circle at 85% 20%, rgba(185,117,42,0.05), transparent 45%),
-      var(--bg);
+    background: var(--bg);
     color: var(--ink);
     min-height: 100vh;
   }
 
-  .mono { font-family: 'JetBrains Mono', monospace; }
+  .display { font-family: 'Plus Jakarta Sans', sans-serif; }
 
   /* NAV */
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 2.5rem;
-    border-bottom: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(6px);
+    padding: 1.6rem 2.5rem;
     position: sticky;
     top: 0;
     z-index: 100;
+    background: rgba(250, 249, 246, 0.85);
+    backdrop-filter: blur(8px);
   }
   .nav-name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    font-size: 1.05rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
     color: var(--ink);
-    letter-spacing: 0.01em;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    text-transform: lowercase;
   }
-  .nav-name .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-    animation: blink 2.6s ease-in-out infinite;
-  }
-  .nav-links { display: flex; gap: 0.5rem; list-style: none; }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
   .nav-links a {
-    font-family: 'JetBrains Mono', monospace;
     text-decoration: none;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
     color: var(--muted);
-    padding: 0.4rem 0.75rem;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    text-transform: lowercase;
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
   }
-  .nav-links a::before { content: "["; opacity: 0.5; margin-right: 2px; }
-  .nav-links a::after { content: "]"; opacity: 0.5; margin-left: 2px; }
   .nav-links a:hover { color: var(--ink); }
-  .nav-links a.active {
-    color: var(--pink);
-    border-color: var(--border);
-    background: var(--bg-panel);
+  .nav-links a.active { color: var(--ink); border-color: var(--accent); }
+
+  /* TICKER */
+  .ticker {
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 0.85rem 0;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    gap: 3rem;
+    animation: marquee 26s linear infinite;
+  }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  .ticker-track span {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--muted-2);
+    white-space: nowrap;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
   /* SECTIONS */
-  section { display: none; padding: 4.5rem 2.5rem 6rem; max-width: 860px; margin: 0 auto; }
-  section.active { display: block; animation: fadeIn 0.5s ease; }
+  section { display: none; padding: 4.5rem 2.5rem 5rem; max-width: 880px; margin: 0 auto; }
+  section.active { display: block; animation: fadeIn 0.4s ease; }
 
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(6px); }
@@ -99,107 +100,130 @@
   }
 
   /* HOME */
-  .home-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--cyan);
-    margin-bottom: 1.25rem;
+  .hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
   }
+  .hero-intro { flex: 1 1 360px; min-width: 0; }
   .home-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: 1.05;
+    text-transform: lowercase;
     color: var(--ink);
+    margin-bottom: 1.1rem;
   }
-  .home-title span { color: var(--pink); }
-  .home-bio {
-    font-size: 1.05rem;
-    line-height: 1.75;
+  .home-title span { color: var(--accent); }
+  .home-role {
+    font-size: 1.08rem;
     color: var(--muted);
-    max-width: 620px;
-    margin-bottom: 2rem;
+    max-width: 480px;
+    line-height: 1.6;
   }
 
-  .signal-trace {
+  .hero-photo { flex: 0 0 auto; }
+  .photo-frame {
+    width: 190px;
+    height: 190px;
+    border-radius: 20px;
+    background: var(--accent-dim);
     position: relative;
-    margin: 0 0 2.5rem;
-    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 18px 34px rgba(21,21,21,0.08);
   }
-  .signal-trace::before {
-    content: "";
+  .photo-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
     display: block;
-    width: 100%;
-    height: 1px;
-    background: var(--border);
   }
-  .trace-node { display: none; }
+  .photo-placeholder {
+    display: none;
+    position: absolute; inset: 0;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 0.75rem;
+  }
+  .photo-frame.no-image .photo-placeholder { display: flex; }
+  .photo-placeholder span {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1.4;
+  }
+
+  .home-bio {
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
 
   .contact-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 1.6rem;
     align-items: center;
     margin-bottom: 3.5rem;
   }
-  .contact-chip {
-    font-family: 'JetBrains Mono', monospace;
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.78rem;
-    font-weight: 500;
-    padding: 0.45rem 0.9rem;
-    border-radius: 6px;
+  .contact-row a {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--ink);
     text-decoration: none;
-    transition: 0.2s;
+    border-bottom: 1.5px solid var(--line);
+    padding-bottom: 2px;
+    transition: border-color 0.2s, color 0.2s;
   }
-  .contact-chip:hover { border-color: var(--pink); color: var(--pink); }
-  .contact-chip.download { color: var(--pink); border-color: var(--pink); }
-  .contact-chip.download:hover { background: var(--pink); color: var(--bg); }
+  .contact-row a:hover { color: var(--accent); border-color: var(--accent); }
+  .contact-row a.resume {
+    background: var(--ink);
+    color: #fff;
+    padding: 0.6rem 1.15rem;
+    border-radius: 999px;
+    border-bottom: none;
+  }
+  .contact-row a.resume:hover { background: var(--accent); color: #fff; }
 
-  /* HORIZONTAL SCROLLER */
   .carousel-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 1rem;
+    margin-bottom: 1.3rem;
   }
   .carousel-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
     color: var(--ink);
+    text-transform: lowercase;
   }
-  .carousel-controls {
-    display: flex;
-    gap: 0.4rem;
-  }
+  .carousel-controls { display: flex; gap: 0.5rem; }
   .scroll-btn {
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
+    background: transparent;
+    border: 1.5px solid var(--line);
     color: var(--muted);
-    border-radius: 6px;
+    border-radius: 50%;
     width: 32px;
     height: 32px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 600;
+    font-weight: 700;
     transition: 0.2s;
   }
-  .scroll-btn:hover {
-    border-color: var(--pink);
-    color: var(--pink);
-  }
+  .scroll-btn:hover { border-color: var(--accent); color: var(--accent); }
   .project-carousel {
     display: flex;
-    gap: 1.25rem;
+    gap: 1.5rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
@@ -216,80 +240,49 @@
 
   /* SECTION TITLES */
   .section-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 1.9rem;
-    margin-bottom: 2rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 2.2rem;
     color: var(--ink);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .section-title::before {
-    content: "§";
-    color: var(--pink);
-    font-weight: 600;
+    text-transform: lowercase;
   }
 
   /* ABOUT */
-  .about-text { font-size: 1rem; line-height: 1.8; color: var(--muted); margin-bottom: 1.25rem; max-width: 640px; }
-  .skills-grid {
+  .about-text { font-size: 1.03rem; line-height: 1.85; color: var(--muted); margin-bottom: 2.5rem; max-width: 640px; }
+  .stat-list { border-top: 1px solid var(--line); }
+  .stat-row {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2.5rem;
+    grid-template-columns: 220px 1fr;
+    gap: 1rem;
+    padding: 1.3rem 0;
+    border-bottom: 1px solid var(--line);
   }
-  .skill-card {
-    position: relative;
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem 1.25rem;
-    transition: border-color 0.2s, transform 0.2s;
+  .stat-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--ink);
   }
-  .skill-card:hover { border-color: var(--pink); transform: translateY(-2px); }
-  .skill-card::before, .skill-card::after {
-    content: "";
-    position: absolute;
-    left: 14px; right: 14px;
-    height: 5px;
-    background-image: repeating-linear-gradient(to right, var(--pink) 0 3px, transparent 3px 9px);
-    opacity: 0.55;
-  }
-  .skill-card::before { top: -3px; }
-  .skill-card::after { bottom: -3px; }
-  .skill-card h4 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    margin-bottom: 0.7rem;
-  }
-  .skill-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+  .stat-values { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
 
   /* PROJECTS */
   .project-card {
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 1.75rem;
-    overflow: hidden;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    background: transparent;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2.25rem;
+    margin-bottom: 2.25rem;
   }
-  .project-card:hover { border-color: var(--pink); box-shadow: 0 8px 30px rgba(20,38,47,0.1); }
+  .project-card:last-child { border-bottom: none; }
 
   .project-image {
     position: relative;
     width: 100%;
-    aspect-ratio: 21 / 8;
-    background:
-      repeating-linear-gradient(115deg, rgba(227,168,87,0.07) 0 2px, transparent 2px 26px),
-      repeating-linear-gradient(25deg, rgba(95,214,198,0.06) 0 2px, transparent 2px 34px),
-      var(--bg-panel-2);
-    border-bottom: 1px solid var(--border);
+    aspect-ratio: 21 / 9;
+    background: var(--accent-dim);
+    border-radius: 16px;
     overflow: hidden;
+    margin-bottom: 1.4rem;
   }
   .project-image img {
     width: 100%; height: 100%;
@@ -305,36 +298,60 @@
   }
   .project-image.no-image .image-placeholder { display: flex; }
   .image-placeholder span {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--muted-dim);
-    text-transform: uppercase;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
   }
 
-  .project-body { padding: 1.5rem 1.75rem 1.75rem; }
   .project-card h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    font-size: 1.2rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
     margin-bottom: 0.5rem;
     color: var(--ink);
+    text-transform: lowercase;
   }
-  .project-card p.desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.1rem; }
-  .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .tag {
-    font-family: 'JetBrains Mono', monospace;
-    background: rgba(227,168,87,0.1);
-    border: 1px solid rgba(227,168,87,0.25);
-    color: var(--pink);
-    font-size: 0.72rem;
+  .project-card p.desc { font-size: 0.98rem; color: var(--muted); line-height: 1.75; margin-bottom: 0.7rem; max-width: 640px; }
+  .project-card p.category {
+    font-size: 0.85rem;
+    color: var(--muted-2);
     font-weight: 500;
-    padding: 0.28rem 0.65rem;
-    border-radius: 5px;
   }
 
+  /* FOOTER CTA — persistent across sections */
+  .cta-footer {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 3.5rem 2.5rem 4rem;
+    border-top: 1px solid var(--line);
+    text-align: left;
+  }
+  .cta-footer h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    text-transform: lowercase;
+    margin-bottom: 0.7rem;
+    color: var(--ink);
+  }
+  .cta-footer p.lead { color: var(--muted); font-size: 1rem; margin-bottom: 1.5rem; max-width: 480px; }
+  .cta-links { display: flex; flex-wrap: wrap; gap: 1.6rem; margin-bottom: 2.5rem; }
+  .cta-links a {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--line);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .cta-links a:hover { color: var(--accent); border-color: var(--accent); }
+  .copyright { font-size: 0.82rem; color: var(--muted-2); }
+
   a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--cyan);
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
 
@@ -348,49 +365,71 @@
   }
 
   @media (max-width: 640px) {
-    nav { padding: 1rem 1.25rem; }
+    nav { padding: 1.1rem 1.25rem; }
+    .nav-links { gap: 1rem; }
     section { padding: 3rem 1.25rem 4rem; }
-    .signal-trace { padding: 1.25rem 0 0.5rem; }
-    .trace-label { font-size: 0.58rem; }
+    .hero-top { flex-direction: column-reverse; align-items: flex-start; }
+    .stat-row { grid-template-columns: 1fr; gap: 0.4rem; }
     .project-carousel .project-card { flex: 0 0 260px; }
+    .cta-footer { padding: 3rem 1.25rem 3.5rem; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <span class="nav-name"><span class="dot"></span>Katherine Jackson</span>
+  <span class="nav-name">katherine jackson</span>
   <ul class="nav-links">
-    <li><a href="#" class="active" onclick="show('home', this)">Home</a></li>
-    <li><a href="#" onclick="show('about', this)">About</a></li>
-    <li><a href="#" id="nav-projects-link" onclick="show('projects', this)">Projects</a></li>
+    <li><a href="#" class="active" onclick="show('home', this)">home</a></li>
+    <li><a href="#" onclick="show('about', this)">about</a></li>
+    <li><a href="#" id="nav-projects-link" onclick="show('projects', this)">projects</a></li>
   </ul>
 </nav>
 
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>./asl-reader-glove</span>
+    <span>./deep-learning-deployment</span>
+    <span>./github</span>
+    <span>./linkedin</span>
+    <span>./resume</span>
+    <span>./asl-reader-glove</span>
+    <span>./deep-learning-deployment</span>
+    <span>./github</span>
+    <span>./linkedin</span>
+    <span>./resume</span>
+  </div>
+</div>
+
 <section id="home" class="active">
-  <p class="home-eyebrow">// electrical &amp; computer engineer</p>
-  <h1 class="home-title">Hi, I'm <span>Katherine Jackson</span>.</h1>
+  <div class="hero-top">
+    <div class="hero-intro">
+      <h1 class="home-title">hi, i'm <span>katherine</span></h1>
+      <p class="home-role">Electrical &amp; Computer Engineer building machine learning and embedded systems.</p>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <img src="katherine-photo.jpg" alt="Katherine Jackson"
+             onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+        <div class="photo-placeholder"><span>Add katherine-photo.jpg</span></div>
+      </div>
+    </div>
+  </div>
+
   <p class="home-bio">
     I am a Carnegie Mellon Electrical and Computer Engineer graduate, specializing in machine learning and embedded systems.
   </p>
 
-  <div class="signal-trace" aria-hidden="true">
-    <div class="trace-node"><span class="trace-dot"></span><span class="trace-label">Hardware</span></div>
-    <div class="trace-node"><span class="trace-dot"></span><span class="trace-label">Embedded</span></div>
-    <div class="trace-node"><span class="trace-dot"></span><span class="trace-label">Vision</span></div>
-    <div class="trace-node"><span class="trace-dot"></span><span class="trace-label">Machine Learning</span></div>
-  </div>
-
   <div class="contact-row">
-    <a class="contact-chip" href="mailto:kejackso@alumni.cmu.edu">[email] kejackso@alumni.cmu.edu</a>
-    <a class="contact-chip" href="tel:9547071626">[tel] 954-707-1626</a>
-    <a class="contact-chip" href="https://github.com/katherine-e-jackson">[git] GitHub</a>
-    <a class="contact-chip" href="https://www.linkedin.com/in/katherineejackson14">[in] LinkedIn</a>
-    <a class="contact-chip download" href="Katherine_Jackson_Resume.pdf" download="Katherine_Jackson_Resume.pdf">↓ Resume (PDF)</a>
+    <a href="mailto:kejackso@alumni.cmu.edu">kejackso@alumni.cmu.edu</a>
+    <a href="tel:9547071626">954-707-1626</a>
+    <a href="https://github.com/katherine-e-jackson">github</a>
+    <a href="https://www.linkedin.com/in/katherineejackson14">linkedin</a>
+    <a class="resume" href="Katherine_Jackson_Resume.pdf" download="Katherine_Jackson_Resume.pdf">resume (pdf)</a>
   </div>
 
   <div class="carousel-header">
-    <span class="carousel-title">Featured Projects</span>
+    <span class="carousel-title">featured projects</span>
     <div class="carousel-controls">
       <button class="scroll-btn" onclick="manualScroll(-1)" aria-label="Scroll left">&lt;</button>
       <button class="scroll-btn" onclick="manualScroll(1)" aria-label="Scroll right">&gt;</button>
@@ -401,32 +440,32 @@
 </section>
 
 <section id="about">
-  <h2 class="section-title">About</h2>
+  <h2 class="section-title">about</h2>
   <p class="about-text">
     I'm a machine learning engineer with deep experience building technical scaffolding for model prototyping, benchmarking, and clinical validation. My background spans the full ML lifecycle — from ingesting messy datasets to deploying production-ready models.
   </p>
-  <div class="skills-grid">
-    <div class="skill-card">
-      <h4>Languages &amp; Tools</h4>
-      <p>Python, C/C++, JavaScript, MATLAB, SQL, SystemVerilog</p>
+  <div class="stat-list">
+    <div class="stat-row">
+      <div class="stat-label">Languages &amp; Tools</div>
+      <div class="stat-values">Python, C/C++, JavaScript, MATLAB, SQL, SystemVerilog</div>
     </div>
-    <div class="skill-card">
-      <h4>Hardware &amp; Embedded</h4>
-      <p>RTOS, STM32 (ARM Cortex-M4), I2C, UART, ADC Sampling, FSMs, PID Controls</p>
+    <div class="stat-row">
+      <div class="stat-label">Hardware &amp; Embedded</div>
+      <div class="stat-values">RTOS, STM32 (ARM Cortex-M4), I2C, UART, ADC Sampling, FSMs, PID Controls</div>
     </div>
-    <div class="skill-card">
-      <h4>Machine Learning &amp; Vision</h4>
-      <p>PyTorch, Scikit-learn, Computer Vision, Neural Networks, KNN, Random Forest</p>
+    <div class="stat-row">
+      <div class="stat-label">Machine Learning &amp; Vision</div>
+      <div class="stat-values">PyTorch, Scikit-learn, Computer Vision, Neural Networks, KNN, Random Forest</div>
     </div>
-    <div class="skill-card">
-      <h4>Engineering Frameworks</h4>
-      <p>Git, Linux, NumPy, MATLAB Simulink, AutoDesk Fusion</p>
+    <div class="stat-row">
+      <div class="stat-label">Engineering Frameworks</div>
+      <div class="stat-values">Git, Linux, NumPy, MATLAB Simulink, AutoDesk Fusion</div>
     </div>
   </div>
 </section>
 
 <section id="projects">
-  <h2 class="section-title">Projects</h2>
+  <h2 class="section-title">projects</h2>
 
   <div class="project-card">
     <div class="project-image">
@@ -434,16 +473,9 @@
            onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
       <div class="image-placeholder"><span>ASL Reader Glove — add asl-reader-glove.jpg</span></div>
     </div>
-    <div class="project-body">
-      <h3>ASL Reader Glove</h3>
-      <p class="desc">End-to-end pipeline for ingesting and transforming raw sensor data into a predicted American Sign Language character.</p>
-      <div class="tag-row">
-        <span class="tag">Python</span>
-        <span class="tag">SQL</span>
-        <span class="tag">Scikit-learn</span>
-        <span class="tag">Healthcare AI</span>
-      </div>
-    </div>
+    <h3>ASL Reader Glove</h3>
+    <p class="desc">End-to-end pipeline for ingesting and transforming raw sensor data into a predicted American Sign Language character.</p>
+    <p class="category">Python / SQL / Scikit-learn / Healthcare AI</p>
   </div>
 
   <div class="project-card">
@@ -452,15 +484,9 @@
            onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
       <div class="image-placeholder"><span>Deep Learning Model Deployment — add deep-learning-deployment.jpg</span></div>
     </div>
-    <div class="project-body">
-      <h3>Deep Learning Model Deployment</h3>
-      <p class="desc">Prototyped, benchmarked, and validated deep learning models using PyTorch, with full production deployment and monitoring for safety and performance drift.</p>
-      <div class="tag-row">
-        <span class="tag">PyTorch</span>
-        <span class="tag">MLOps</span>
-        <span class="tag">Model Validation</span>
-      </div>
-    </div>
+    <h3>Deep Learning Model Deployment</h3>
+    <p class="desc">Prototyped, benchmarked, and validated deep learning models using PyTorch, with full production deployment and monitoring for safety and performance drift.</p>
+    <p class="category">PyTorch / MLOps / Model Validation</p>
   </div>
 
   <div class="project-card">
@@ -469,15 +495,21 @@
            onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
       <div class="image-placeholder"><span>Add your-project.jpg</span></div>
     </div>
-    <div class="project-body">
-      <h3>Add your own project</h3>
-      <p class="desc">Edit this file to add your real projects here — research, side projects, coursework, or open source contributions.</p>
-      <div class="tag-row">
-        <span class="tag">Coming Soon</span>
-      </div>
-    </div>
+    <h3>Add your own project</h3>
+    <p class="desc">Edit this file to add your real projects here — research, side projects, coursework, or open source contributions.</p>
+    <p class="category">Coming Soon</p>
   </div>
 </section>
+
+<footer class="cta-footer">
+  <h2>like what you see?</h2>
+  <p class="lead">Let's talk research, robotics, or anything machine learning.</p>
+  <div class="cta-links">
+    <a href="mailto:kejackso@alumni.cmu.edu">kejackso@alumni.cmu.edu</a>
+    <a href="https://www.linkedin.com/in/katherineejackson14">LinkedIn</a>
+  </div>
+  <p class="copyright">© 2026 Katherine Jackson. All rights reserved.</p>
+</footer>
 
 <script>
   function show(id, el) {
@@ -492,7 +524,7 @@
   function initCarousel() {
     const carousel = document.getElementById('carousel');
     const projectCards = document.querySelectorAll('#projects .project-card');
-    
+
     projectCards.forEach(card => {
       const clone = card.cloneNode(true);
       // Make whole cloned card clickable to jump to projects section
