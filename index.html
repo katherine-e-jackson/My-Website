@@ -547,6 +547,17 @@
     <p class="category">Python / SQL / Scikit-learn / Healthcare AI</p>
   </div>
 
+  <div class="project-card" onclick="openProject('rtos-motor-control')">
+    <div class="project-image">
+      <img src="rtos-motor-control.jpg" alt="RTOS Motor Control"
+           onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+     <div class="image-placeholder"><span>RTOS Motor Control — add rtos-motor-control.jpg</span></div>
+    </div>
+    <h3>RTOS Motor Control</h3>
+    <p class="desc"> Multi-threaded application on an STM32 (ARM Cortex-M4) using RTOS to manage PID motor control, UART communication, and real-time LCD visualization. </p>
+    <p class="category">C / RTOS / UART / PID </p>
+  </div>
+
   <div class="project-card" onclick="openProject('dl-deployment')">
     <div class="project-image">
       <img src="deep-learning-deployment.jpg" alt="Deep Learning Model Deployment"
@@ -628,6 +639,23 @@
           <li><strong>Hardware Integration:</strong> Embedded 6-DOF IMU sensors and flex sensors calibrated across fingers to capture spatial rotation and bending moments.</li>
           <li><strong>Signal Processing Pipeline:</strong> Designed digital low-pass filtering and normalization pipelines in C/Python to clean noisy sensor readings.</li>
           <li><strong>ML Classification:</strong> Trained Random Forest and K-Nearest Neighbors (KNN) classifiers achieving >94% accuracy across the ASL alphabet.</li>
+        </ul>
+      `,
+      links: [
+        { label: 'github repository', url: 'https://github.com/katherine-e-jackson' }
+      ]
+    },
+    'rtos-motor-control': {
+      title: 'RTOS Motor Control',
+      tags: 'PyTorch / MLOps / Model Validation',
+      img: 'rtos-motor-control.jpg',
+      placeholder: 'RTOS Motor Control — add rtos-motor-control.jpg',
+      body: `
+        <p>A full-stack machine learning pipeline for deploying, monitoring, and validating deep learning models targeted for real-world computer vision tasks.</p>
+        <h4>Key Technical Highlights</h4>
+        <ul>
+          <li><strong>Model Architecture:</strong> Custom PyTorch CNNs benchmarked against lightweight backbones for low-latency edge deployment.</li>
+          <li><strong>Validation & Drift Monitoring:</strong> Automated testing routines to evaluate model safety, edge case degradation, and performance drift under environmental noise.</li>
         </ul>
       `,
       links: [
