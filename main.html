@@ -66,6 +66,23 @@
   <p class="about-text">
     Outside of engineering, I served as a four-year student-athlete and captain on Carnegie Mellon’s Varsity Volleyball Team—a sport I continue to play and coach today. I'm also currently training for the Pittsburgh Marathon, and when I'm not running, you can usually find me reading.
   </p>
+
+  <!-- PERSONAL PHOTO CAROUSEL -->
+  <div class="about-photo-carousel" id="aboutPhotoCarousel">
+    <div class="about-photo-frame">
+      <img id="aboutSlideImg" src="about-1.jpg" alt="Katherine Jackson Personal Photo"
+           onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+      <div class="about-photo-placeholder">
+        <span id="aboutSlidePlaceholder">Add about-1.jpg</span>
+      </div>
+    </div>
+    <div class="about-carousel-controls">
+      <button class="scroll-btn" onclick="changeAboutPhoto(-1)" aria-label="Previous photo">&lt;</button>
+      <span class="about-slide-counter" id="aboutSlideCounter">1 / 3</span>
+      <button class="scroll-btn" onclick="changeAboutPhoto(1)" aria-label="Next photo">&gt;</button>
+    </div>
+  </div>
+
   <div class="stat-list">
     <div class="stat-row">
       <div class="stat-label">Languages &amp; Tools</div>
@@ -311,7 +328,48 @@
     show('project-detail');
   }
 
-  // Infinite Seamless Carousel Setup
+  // Personal Photo Carousel Logic (About Page)
+  const aboutPhotos = [
+    { src: 'about-1.jpg', label: 'Volleyball Coaching & Playing' },
+    { src: 'about-2.jpg', label: 'Pittsburgh Marathon Training' },
+    { src: 'about-3.jpg', label: 'Carnegie Mellon Campus & Reading' }
+  ];
+  let currentAboutPhotoIndex = 0;
+  let aboutPhotoTimer;
+
+  function updateAboutPhoto() {
+    const photo = aboutPhotos[currentAboutPhotoIndex];
+    const imgEl = document.getElementById('aboutSlideImg');
+    const frameEl = imgEl.parentElement;
+    const placeholderEl = document.getElementById('aboutSlidePlaceholder');
+    const counterEl = document.getElementById('aboutSlideCounter');
+
+    frameEl.classList.remove('no-image');
+    imgEl.style.display = 'block';
+    imgEl.src = photo.src;
+    placeholderEl.innerText = `Add ${photo.src} (${photo.label})`;
+    counterEl.innerText = `${currentAboutPhotoIndex + 1} / ${aboutPhotos.length}`;
+  }
+
+  function changeAboutPhoto(direction) {
+    currentAboutPhotoIndex = (currentAboutPhotoIndex + direction + aboutPhotos.length) % aboutPhotos.length;
+    updateAboutPhoto();
+    resetAboutPhotoAutoSlide();
+  }
+
+  function startAboutPhotoAutoSlide() {
+    aboutPhotoTimer = setInterval(() => {
+      currentAboutPhotoIndex = (currentAboutPhotoIndex + 1) % aboutPhotos.length;
+      updateAboutPhoto();
+    }, 4000);
+  }
+
+  function resetAboutPhotoAutoSlide() {
+    clearInterval(aboutPhotoTimer);
+    startAboutPhotoAutoSlide();
+  }
+
+  // Infinite Seamless Carousel Setup (Home Page)
   let scrollRAF;
   const carousel = document.getElementById('carousel');
   const AUTO_SCROLL_SPEED = 0.8;
@@ -371,6 +429,15 @@
 
   window.addEventListener('DOMContentLoaded', () => {
     initCarousel();
+    updateAboutPhoto();
+    startAboutPhotoAutoSlide();
+
+    // Pause photo carousel when hovering over it
+    const aboutCarouselEl = document.getElementById('aboutPhotoCarousel');
+    if (aboutCarouselEl) {
+      aboutCarouselEl.addEventListener('mouseenter', () => clearInterval(aboutPhotoTimer));
+      aboutCarouselEl.addEventListener('mouseleave', () => startAboutPhotoAutoSlide());
+    }
   });
 </script>
 </body>
