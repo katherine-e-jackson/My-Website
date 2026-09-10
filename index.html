@@ -196,11 +196,13 @@
     transition: 0.2s;
   }
   .scroll-btn:hover { border-color: var(--accent); color: var(--accent); }
+  
+  /* Seamless Infinite Carousel Settings */
   .project-carousel {
     display: flex;
     gap: 1.5rem;
     overflow-x: auto;
-    scroll-snap-type: none;
+    scroll-behavior: auto;
     padding-bottom: 1rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -564,17 +566,16 @@
     <p class="category">C / micro-ROS / RP2350 / RTOS</p>
   </div>
 
- <div class="project-card" onclick="openProject('add project')">
+  <div class="project-card" onclick="openProject('my-new-project')">
     <div class="project-image">
-      <img src="photo.jpg" alt="project"
+      <img src="my-project-photo.jpg" alt="My New Project"
            onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-      <div class="image-placeholder"><span>Add Project</span></div>
+      <div class="image-placeholder"><span>My New Project — add my-project-photo.jpg</span></div>
     </div>
-    <h3> Add Project</h3>
-    <p class="desc">Project Coming Soon</p>
-    <p class="category">Skills</p>
+    <h3>My New Project Title</h3>
+    <p class="desc">A short 1-2 sentence overview of what this project does.</p>
+    <p class="category">Technology / Framework / Domain</p>
   </div>
-</section>
 </section>
 
 <!-- PROJECT DETAIL PAGE SECTION -->
@@ -663,6 +664,23 @@
       links: [
         { label: 'github repository', url: 'https://github.com/katherine-e-jackson' }
       ]
+    },
+    'my-new-project': {
+      title: 'My New Project Title',
+      tags: 'Python / C++ / Microcontrollers / RTOS',
+      img: 'my-project-photo.jpg',
+      placeholder: 'My New Project Title — add my-project-photo.jpg',
+      body: `
+        <p>A detailed narrative description of the project goes here.</p>
+        <h4>Key Technical Highlights</h4>
+        <ul>
+          <li><strong>Architecture:</strong> Description of design choices and technical execution.</li>
+          <li><strong>Implementation:</strong> Key tools, algorithms, or hardware interfaces used.</li>
+        </ul>
+      `,
+      links: [
+        { label: 'github repository', url: 'https://github.com/katherine-e-jackson' }
+      ]
     }
   };
 
@@ -711,50 +729,67 @@
     show('project-detail');
   }
 
-  // Populate Home Carousel from Projects section
-  function initCarousel() {
-    const carousel = document.getElementById('carousel');
-    const projectCards = document.querySelectorAll('#projects .project-card');
+  // Infinite Seamless Carousel Setup
+  let scrollRAF;
+  const carousel = document.getElementById('carousel');
+  const AUTO_SCROLL_SPEED = 0.8; // Adjust auto-scroll speed here
+  let isHoveredOrTouched = false;
 
+  function initCarousel() {
+    const originalCards = Array.from(document.querySelectorAll('#projects .project-card'));
     carousel.innerHTML = '';
-    projectCards.forEach(card => {
-      const clone = card.cloneNode(true);
-      carousel.appendChild(clone);
+
+    // Append original set
+    originalCards.forEach(card => {
+      carousel.appendChild(card.cloneNode(true));
+    });
+
+    // Append duplicate set to create seamless looping track
+    originalCards.forEach(card => {
+      carousel.appendChild(card.cloneNode(true));
     });
 
     startAutoScroll();
   }
 
-  // Auto-scrolling Carousel Logic
-  let scrollRAF;
-  const carousel = document.getElementById('carousel');
-  const AUTO_SCROLL_SPEED = 0.5;
-
   function startAutoScroll() {
+    cancelAnimationFrame(scrollRAF);
+
     function step() {
-      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1) {
-        carousel.scrollLeft = 0;
-      } else {
-        carousel.scrollLeft += AUTO_SCROLL_SPEED;
+      if (!isHoveredOrTouched) {
+        const halfScrollWidth = carousel.scrollWidth / 2;
+
+        // When reaching midpoint, reset scroll position seamlessly
+        if (carousel.scrollLeft >= halfScrollWidth) {
+          carousel.scrollLeft -= halfScrollWidth;
+        } else {
+          carousel.scrollLeft += AUTO_SCROLL_SPEED;
+        }
       }
       scrollRAF = requestAnimationFrame(step);
     }
+
     scrollRAF = requestAnimationFrame(step);
   }
 
-  function stopAutoScroll() {
-    cancelAnimationFrame(scrollRAF);
-  }
-
   function manualScroll(direction) {
-    stopAutoScroll();
+    isHoveredOrTouched = true;
     carousel.scrollBy({ left: direction * 336, behavior: 'smooth' });
-    startAutoScroll();
+    
+    clearTimeout(carousel._resumeTimer);
+    carousel._resumeTimer = setTimeout(() => {
+      isHoveredOrTouched = false;
+    }, 2000);
   }
 
-  carousel.addEventListener('mouseenter', stopAutoScroll);
-  carousel.addEventListener('mouseleave', startAutoScroll);
-  carousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
+  // Pause on hover or touch interactions
+  carousel.addEventListener('mouseenter', () => { isHoveredOrTouched = true; });
+  carousel.addEventListener('mouseleave', () => { isHoveredOrTouched = false; });
+  carousel.addEventListener('touchstart', () => { isHoveredOrTouched = true; }, { passive: true });
+  carousel.addEventListener('touchend', () => { 
+    clearTimeout(carousel._resumeTimer);
+    carousel._resumeTimer = setTimeout(() => { isHoveredOrTouched = false; }, 2000);
+  });
 
   window.addEventListener('DOMContentLoaded', () => {
     initCarousel();
