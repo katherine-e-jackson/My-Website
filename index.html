@@ -200,14 +200,21 @@
       placeholder: 'ASL Reader Glove — add asl-reader-glove.jpg',
       body: `
         <p>This project features a wearable smart glove system engineered to translate American Sign Language (ASL) flex and spatial movement gestures into text and speech outputs in real-time.</p>
+        
         <h4>Key Technical Highlights</h4>
         <ul>
-          <li><strong>Hardware Integration:</strong> Embedded 6-DOF IMU sensors and flex sensors calibrated across fingers to capture spatial rotation and bending moments.</li>
-          <li><strong>Signal Processing Pipeline:</strong> Designed digital low-pass filtering and normalization pipelines in C/Python to clean noisy sensor readings.</li>
-          <li><strong>ML Classification:</strong> Trained Random Forest and K-Nearest Neighbors (KNN) classifiers achieving >94% accuracy across the ASL alphabet.</li>
+          <li><strong>Hardware Integration:</strong> Embedded 9-DOF IMU sensor and 5 analog flex sensors calibrated across fingers to capture spatial rotation and bending moments.</li>
+          <li><strong>Signal Processing Pipeline:</strong> Designed digital low-pass filtering and normalization pipelines in Python to clean noisy sensor readings and send to web app via bluetooth.</li>
+          <li><strong>ML Classification:</strong> Convolutional Neural Network (CNN) and K-Nearest Neighbors (KNN) classifiers achieving >92% accuracy across the ASL alphabet.</li>
+        </ul>
+    
+        <h4>Materials</h4>
+        <ul>
+          <li><strong>Microcontroller & Hardware:</strong> Raspberry Pi Pico 2W, 9-DOF IMU, Analog-to-Digital Converter Extender, 5x Analog Flex Sensors, Voltage Dividers, Custom made circuit board, LiPo Battery Pack.</li>
+          <li><strong>Software & Firmware:</strong> Embedded Micro Python, Python (NumPy, PyTorch, Scikit-Learn), I2C and ADC Communication Protocols, Wireless Communication.</li>
         </ul>
       `,
-      links: [{ label: 'github repository', url: 'https://github.com/katherine-e-jackson' }]
+      links: [{ label: 'github repository', url: 'https://github.com/katherine-e-jackson/ASL-Reader' }]
     },
     'rtos-motor-control': {
       title: 'RTOS Motor Control',
@@ -222,8 +229,7 @@
           <li><strong>Closed-Loop Control:</strong> Implemented discrete PID algorithms with anti-windup protection for precise motor speed and position tracking.</li>
           <li><strong>Peripheral Communication:</strong> Utilized DMA-backed UART for non-blocking telemetry transmission and SPI for real-time LCD updates.</li>
         </ul>
-      `,
-      links: [{ label: 'github repository', url: 'https://github.com/katherine-e-jackson' }]
+      `
     },
     'dl-deployment': {
       title: 'Deep Learning Model Deployment',
