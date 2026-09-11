@@ -150,7 +150,8 @@ section.active {
   padding: 0.75rem;
 }
 
-.photo-frame.no-image .photo-placeholder { display: flex; }
+.photo-frame.no-image img { display: none !important; }
+.photo-frame.no-image .photo-placeholder { display: flex !important; }
 
 .photo-placeholder span {
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -250,6 +251,12 @@ section.active {
   flex: 0 0 320px;
   scroll-snap-align: start;
   margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.project-carousel .project-card .project-image {
+  aspect-ratio: 16 / 9;
 }
 
 /* SECTION TITLES */
@@ -305,9 +312,8 @@ section.active {
   padding: 1rem;
 }
 
-.about-photo-frame.no-image .about-photo-placeholder {
-  display: flex;
-}
+.about-photo-frame.no-image img { display: none !important; }
+.about-photo-frame.no-image .about-photo-placeholder { display: flex !important; }
 
 .about-photo-placeholder span {
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -389,7 +395,8 @@ section.active {
   padding: 0 1rem;
 }
 
-.project-image.no-image .image-placeholder { display: flex; }
+.project-image.no-image img { display: none !important; }
+.project-image.no-image .image-placeholder { display: flex !important; }
 
 .image-placeholder span {
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -464,6 +471,9 @@ section.active {
   overflow: hidden;
   margin-bottom: 2rem;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .project-detail-hero img {
@@ -471,6 +481,27 @@ section.active {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.project-detail-hero.no-image img { display: none !important; }
+
+.project-detail-hero .image-placeholder {
+  display: none;
+  position: absolute; 
+  inset: 0;
+  align-items: center; 
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.project-detail-hero.no-image .image-placeholder { display: flex !important; }
+
+.project-detail-hero .image-placeholder span {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
 }
 
 .project-detail-title {
