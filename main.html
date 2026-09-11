@@ -195,8 +195,9 @@
   <p class="copyright">© 2026 Katherine Jackson. All rights reserved.</p>
 </footer>
 
+<!-- CONSOLIDATED JAVASCRIPT -->
 <script>
-  // Project Database containing content for each dynamic sub-page
+  // 1. PROJECT DATABASE
   const projectData = {
     'asl-glove': {
       title: 'ASL Reader Glove',
@@ -287,7 +288,7 @@
     }
   };
 
-  // Section Switching Function
+  // 2. SECTION SWITCHING
   function show(id, el) {
     if (window.event) window.event.preventDefault();
     document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
@@ -306,7 +307,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Open Project Detail View
+  // 3. PROJECT DETAIL PAGE VIEW
   function openProject(projectId) {
     const data = projectData[projectId];
     if (!data) return;
@@ -328,7 +329,7 @@
     show('project-detail');
   }
 
-  // Personal Photo Carousel Logic (About Page)
+  // 4. ABOUT SECTION PHOTO CAROUSEL
   const aboutPhotos = [
     { src: 'about-1.jpg', label: 'Volleyball Coaching & Playing' },
     { src: 'about-2.jpg', label: 'Pittsburgh Marathon Training' },
@@ -369,32 +370,39 @@
     startAboutPhotoAutoSlide();
   }
 
-  // Infinite Seamless Carousel Setup (Home Page)
+  // 5. FEATURED PROJECTS INFINITE CAROUSEL (HOME PAGE)
   let scrollRAF;
-  const carousel = document.getElementById('carousel');
-  const AUTO_SCROLL_SPEED = 0.8;
   let isHoveredOrTouched = false;
+  const AUTO_SCROLL_SPEED = 0.8;
 
   function initCarousel() {
+    const carousel = document.getElementById('carousel');
     const originalCards = Array.from(document.querySelectorAll('#projects .project-card'));
+    if (!carousel || originalCards.length === 0) return;
+
     carousel.innerHTML = '';
 
-    originalCards.forEach(card => {
-      carousel.appendChild(card.cloneNode(true));
-    });
-
-    originalCards.forEach(card => {
-      carousel.appendChild(card.cloneNode(true));
-    });
+    // Clone cards twice for smooth continuous scrolling
+    originalCards.forEach(card => carousel.appendChild(card.cloneNode(true)));
+    originalCards.forEach(card => carousel.appendChild(card.cloneNode(true)));
 
     startAutoScroll();
+
+    carousel.addEventListener('mouseenter', () => { isHoveredOrTouched = true; });
+    carousel.addEventListener('mouseleave', () => { isHoveredOrTouched = false; });
+    carousel.addEventListener('touchstart', () => { isHoveredOrTouched = true; }, { passive: true });
+    carousel.addEventListener('touchend', () => { 
+      clearTimeout(carousel._resumeTimer);
+      carousel._resumeTimer = setTimeout(() => { isHoveredOrTouched = false; }, 2000);
+    });
   }
 
   function startAutoScroll() {
+    const carousel = document.getElementById('carousel');
     cancelAnimationFrame(scrollRAF);
 
     function step() {
-      if (!isHoveredOrTouched) {
+      if (!isHoveredOrTouched && carousel) {
         const halfScrollWidth = carousel.scrollWidth / 2;
 
         if (carousel.scrollLeft >= halfScrollWidth) {
@@ -410,6 +418,9 @@
   }
 
   function manualScroll(direction) {
+    const carousel = document.getElementById('carousel');
+    if (!carousel) return;
+
     isHoveredOrTouched = true;
     carousel.scrollBy({ left: direction * 336, behavior: 'smooth' });
     
@@ -419,20 +430,12 @@
     }, 2000);
   }
 
-  carousel.addEventListener('mouseenter', () => { isHoveredOrTouched = true; });
-  carousel.addEventListener('mouseleave', () => { isHoveredOrTouched = false; });
-  carousel.addEventListener('touchstart', () => { isHoveredOrTouched = true; }, { passive: true });
-  carousel.addEventListener('touchend', () => { 
-    clearTimeout(carousel._resumeTimer);
-    carousel._resumeTimer = setTimeout(() => { isHoveredOrTouched = false; }, 2000);
-  });
-
+  // 6. INITIALIZATION ON DOM READY
   window.addEventListener('DOMContentLoaded', () => {
     initCarousel();
     updateAboutPhoto();
     startAboutPhotoAutoSlide();
 
-    // Pause photo carousel when hovering over it
     const aboutCarouselEl = document.getElementById('aboutPhotoCarousel');
     if (aboutCarouselEl) {
       aboutCarouselEl.addEventListener('mouseenter', () => clearInterval(aboutPhotoTimer));
