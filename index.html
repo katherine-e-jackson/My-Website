@@ -148,7 +148,7 @@
     </div>
     <h3>Micro-ROS Teleoperation Glove</h3>
     <p class="desc">Embedded micro-ROS C firmware on RP2350 (Pico 2W) for real-time robotic glove teleoperation over Wi-Fi and XR serial.</p>
-    <p class="category">C / micro-ROS / RP2350 / RTOS</p>
+    <p class="category">C / micro-ROS / RP2350 / ROS</p>
   </div>
 
   <div class="project-card" data-project="my-new-project">
@@ -218,16 +218,16 @@
     },
     'rtos-motor-control': {
       title: 'RTOS Motor Control',
-      tags: 'C / FreeRTOS / STM32 (ARM Cortex-M4) / PID / UART / SPI',
+      tags: 'C / RTOS / UART / PID / STM32',
       img: 'rtos-motor-control.jpg',
       placeholder: 'RTOS Motor Control — add rtos-motor-control.jpg',
       body: `
-        <p>A multi-threaded real-time system built on an STM32 ARM Cortex-M4 microcontroller running FreeRTOS to handle high-frequency motor control, asynchronous communication, and live user feedback simultaneously.</p>
+        <p>A multi-threaded real-time system built on an STM32 ARM Cortex-M4 microcontroller running RTOS to handle high-frequency motor control, asynchronous communication, and live user feedback simultaneously.</p>
         <h4>Key Technical Highlights</h4>
         <ul>
-          <li><strong>Real-Time Execution:</strong> Architected FreeRTOS tasks with strict priority scheduling to guarantee deterministic execution of the PID feedback loop.</li>
-          <li><strong>Closed-Loop Control:</strong> Implemented discrete PID algorithms with anti-windup protection for precise motor speed and position tracking.</li>
-          <li><strong>Peripheral Communication:</strong> Utilized DMA-backed UART for non-blocking telemetry transmission and SPI for real-time LCD updates.</li>
+          <li><strong>Real-Time Execution:</strong> Architected RTOS tasks with strict priority scheduling to guarantee execution of PID feedback loop.</li>
+          <li><strong>Closed-Loop Control:</strong> Implemented PID algorithms with anti-windup protection for precise motor speed and position tracking.</li>
+          <li><strong>Peripheral Communication:</strong> Utilized UART for transmission and real-time LCD updates.</li>
         </ul>
       `
     },
