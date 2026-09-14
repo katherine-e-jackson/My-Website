@@ -102,19 +102,6 @@ section.active {
 
 .hero-intro { flex: 1 1 360px; min-width: 0; }
 
-.field-divider {
-  width: 100%;
-  max-width: 280px;
-  margin: 10px 0 18px 0;
-  color: var(--accent-color, #2563eb);
-}
-
-.field-divider svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 .home-title {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 800;
