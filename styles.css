@@ -189,6 +189,78 @@ section.active {
   font-size: 0.8rem;
   color: #a1a1aa;
 }
+/* Side-by-Side Layout Container */
+.demo-side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal 2-column layout */
+  gap: 1.5rem;
+  align-items: center;
+  margin: 1.25rem 0;
+}
+
+/* Image Column Styling */
+.demo-image-col {
+  background: #141416;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.demo-image-col img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.demo-caption {
+  display: block;
+  padding: 8px;
+  font-size: 0.8rem;
+  color: #a1a1aa;
+}
+
+/* Pipeline Step Styling */
+.pipeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.pipeline-step:last-child {
+  margin-bottom: 0;
+}
+
+.step-num {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  font-weight: 800;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+.pipeline-step p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #d4d4d8;
+}
+
+/* Mobile Responsiveness (Stack vertically on phone screens) */
+@media (max-width: 640px) {
+  .demo-side-by-side {
+    grid-template-columns: 1fr;
+  }
+}
 
 .home-bio {
   font-size: 1.02rem;
