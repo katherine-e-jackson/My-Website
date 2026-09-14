@@ -161,6 +161,35 @@ section.active {
   line-height: 1.4;
 }
 
+.demo-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.5rem 0;
+}
+
+.demo-card {
+  background: #141416;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.demo-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.demo-card span {
+  display: block;
+  padding: 8px;
+  font-size: 0.8rem;
+  color: #a1a1aa;
+}
+
 .home-bio {
   font-size: 1.02rem;
   line-height: 1.75;
