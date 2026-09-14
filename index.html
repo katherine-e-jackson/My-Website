@@ -194,32 +194,50 @@
 <script>
   const projectData = {
     'asl-glove': {
-      title: 'ASL Reader Glove',
-      tags: 'Python / ML / I2C / Raspberry Pi',
-      img: 'asl-reader-glove.jpg',
-      placeholder: 'ASL Reader Glove — add asl-reader-glove.jpg',
-      body: `
-        <p>This project features a wearable smart glove system engineered to translate American Sign Language (ASL) flex and spatial movement gestures into text and speech outputs in real-time.</p>
-        
-        <h4>Key Technical Highlights</h4>
-        <ul>
-          <li><strong>Hardware Integration:</strong> Embedded 9-DOF IMU sensor and 5 analog flex sensors calibrated across fingers to capture spatial rotation and bending moments.</li>
-          <li><strong>Signal Processing Pipeline:</strong> Designed digital low-pass filtering and normalization pipelines in Python to clean noisy sensor readings and send to web app via bluetooth.</li>
-          <li><strong>ML Classification:</strong> Convolutional Neural Network (CNN) and K-Nearest Neighbors (KNN) classifiers achieving >92% accuracy across the ASL alphabet.</li>
-        </ul>
+  title: 'ASL Reader Glove',
+  tags: 'Python / ML / I2C / Raspberry Pi',
+  img: 'asl-reader-glove.jpg',
+  placeholder: 'ASL Reader Glove — add asl-reader-glove.jpg',
+  body: `
+    <p>This project features a wearable smart glove system engineered to translate American Sign Language (ASL) flex and spatial movement gestures into text and speech outputs in real-time.</p>
     
-        <h4>Materials</h4>
-        <ul>
-          <li><strong>Microcontroller & Hardware:</strong> Raspberry Pi Pico 2W, 9-DOF IMU, Analog-to-Digital Converter Extender, 5x Analog Flex Sensors, Voltage Dividers, Custom made circuit board, LiPo Battery Pack.</li>
-          <li><strong>Software & Firmware:</strong> Embedded MicroPython, Python (NumPy, PyTorch, Scikit-Learn), I2C and ADC Communication Protocols, Wireless Communication.</li>
+    <h4>Key Technical Highlights</h4>
+    <ul>
+      <li><strong>Hardware Integration:</strong> Embedded 9-DOF IMU sensor and 5 analog flex sensors calibrated across fingers to capture spatial rotation and bending moments.</li>
+      <li><strong>Signal Processing Pipeline:</strong> Designed digital low-pass filtering and normalization pipelines in Python to clean noisy sensor readings and transmit data to a web application via Bluetooth.</li>
+      <li><strong>ML Classification:</strong> Convolutional Neural Network (CNN) and K-Nearest Neighbors (KNN) classifiers achieving >92% accuracy across the ASL alphabet.</li>
+    </ul>
+
+    <h4>Software & Hardware Materials</h4>
+    <div class="materials-grid">
+      <div class="material-card">
+        <div class="material-title">⚡ Hardware & Electronics</div>
+        <ul class="material-list">
+          <li><strong>Microcontroller:</strong> Raspberry Pi Pico 2W</li>
+          <li><strong>Sensors:</strong> 9-DOF IMU, 5x Analog Flex Sensors</li>
+          <li><strong>Circuitry:</strong> Custom PCB, ADC Extender, Voltage Dividers</li>
+          <li><strong>Power:</strong> LiPo Battery Pack</li>
         </ul>
-        <ul>
-        <h4>Design & Goals</h4>
-          <li>During the initial design phase, my team and I aimed to build a system focused on medical innovation and assistive technology. After landing on the ASL Reader, I took ownership of the embedded systems and machine learning pipelines. To meet our fixed project deadline, we scoped the initial build to classify the core ASL alphabet and numerical digits (0–9). Future iterations will include constructing a second glove for dual-hand signs and expanding our dataset collection directly on hardware.</li>
+      </div>
+
+      <div class="material-card">
+        <div class="material-title">💻 Software & Protocols</div>
+        <ul class="material-list">
+          <li><strong>Firmware & Langs:</strong> MicroPython, Python 3</li>
+          <li><strong>ML & Math:</strong> PyTorch, Scikit-Learn, NumPy</li>
+          <li><strong>Protocols:</strong> I2C, ADC, Wireless / Bluetooth</li>
         </ul>
-      `,
-      links: [{ label: 'github repository', url: 'https://github.com/katherine-e-jackson/ASL-Reader' }]
-    },
+      </div>
+    </div>
+
+    <h4>Design Motivation & Scope</h4>
+    <p>During the initial design phase, my team and I aimed to build a system focused on medical innovation and assistive technology. After landing on the ASL Reader, I took ownership of the embedded systems and machine learning pipelines. To meet our fixed project deadline, we scoped the initial build to classify the core ASL alphabet and numerical digits (0–9).</p>
+
+    <h4>Future Work</h4>
+    <p>Future iterations will include constructing a second glove for dual-hand signs and expanding our dataset collection directly on hardware.</p>
+  `,
+  links: [{ label: 'github repository', url: 'https://github.com/katherine-e-jackson/ASL-Reader' }]
+},
     'rtos-motor-control': {
       title: 'RTOS Motor Control',
       tags: 'C / RTOS / UART / PID / STM32',
