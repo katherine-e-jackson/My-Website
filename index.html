@@ -380,7 +380,15 @@
     imgEl.src = data.img;
 
     const linksEl = document.getElementById('detail-links');
-    linksEl.innerHTML = data.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label} →</a>`).join('');
+    
+    // SAFE ACCESS: Check if data.links exists before mapping
+    if (data.links && data.links.length > 0) {
+      linksEl.innerHTML = data.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label} →</a>`).join('');
+      linksEl.style.display = 'flex';
+    } else {
+      linksEl.innerHTML = '';
+      linksEl.style.display = 'none';
+    }
 
     showSection('project-detail');
   }
