@@ -205,29 +205,30 @@
       <li><strong>Signal Processing Pipeline:</strong> Designed digital low-pass filtering and normalization pipelines in Python to clean noisy sensor readings and transmit data to a web application via Bluetooth.</li>
       <li><strong>ML Classification:</strong> Convolutional Neural Network (CNN) and K-Nearest Neighbors (KNN) classifiers achieving >92% accuracy across the ASL alphabet.</li>
     </ul>
-
-    <h4>Software & Hardware Materials</h4>
-    <div class="materials-grid">
-      <div class="material-card">
-        <div class="material-title">⚡ Hardware & Electronics</div>
-        <ul class="material-list">
-          <li><strong>Microcontroller:</strong> Raspberry Pi Pico 2W</li>
-          <li><strong>Sensors:</strong> 9-DOF IMU, 5x Analog Flex Sensors</li>
-          <li><strong>Circuitry:</strong> Custom PCB, ADC Extender, Voltage Dividers</li>
-          <li><strong>Power:</strong> LiPo Battery Pack</li>
-        </ul>
+    <h4>System in Action</h4>
+    <div class="demo-side-by-side">
+      <!-- Left Column: Demo Image -->
+      <div class="demo-image-col">
+        <img src="asl-demo.jpg" alt="Demonstrating ASL Glove" onerror="this.parentElement.classList.add('no-image');">
+        <span class="demo-caption">Live gesture capture demonstration</span>
       </div>
-
-      <div class="material-card">
-        <div class="material-title">💻 Software & Protocols</div>
-        <ul class="material-list">
-          <li><strong>Firmware & Langs:</strong> MicroPython, Python 3</li>
-          <li><strong>ML & Math:</strong> PyTorch, Scikit-Learn, NumPy</li>
-          <li><strong>Protocols:</strong> I2C, ADC, Wireless / Bluetooth</li>
-        </ul>
+    
+      <!-- Right Column: Step-by-Step Flow -->
+      <div class="demo-steps-col">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <p><strong>Gesture Capture:</strong> Flex sensors record finger deflection while the 9-DOF IMU captures wrist spatial orientation.</p>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <p><strong>Edge Processing:</strong> Raspberry Pi Pico 2W filters noise and normalizes sensor values in MicroPython.</p>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <p><strong>Wireless Transmission:</strong> Cleaned feature vectors stream over Bluetooth to the web interface for instant translation.</p>
+        </div>
       </div>
     </div>
-
     <h4>Design Motivation & Scope</h4>
     <p>During the initial design phase, my team and I aimed to build a system focused on medical innovation and assistive technology. After landing on the ASL Reader, I took ownership of the embedded systems and machine learning pipelines. To meet our fixed project deadline, we scoped the initial build to classify the core ASL alphabet and numerical digits (0–9).</p>
 
