@@ -114,7 +114,7 @@
       <div class="image-placeholder"><span>ASL Reader Glove — add asl-reader-glove.jpg</span></div>
     </div>
     <h3>ASL Reader Glove</h3>
-    <p class="desc">End-to-end pipeline for ingesting and transforming raw sensor data into a predicted American Sign Language characters.</p>
+    <p class="desc">End-to-end pipeline for ingesting and transforming raw sensor data into predicted American Sign Language characters.</p>
     <p class="category">Python / k-NN / I2C / Raspberry Pi</p>
   </div>
 
@@ -124,9 +124,9 @@
            onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
       <div class="image-placeholder"><span>RTOS Motor Control — add rtos-motor-control.jpg</span></div>
     </div>
-    <h3>RTOS Motor Control</h3>
-    <p class="desc">Multi-threaded application on an STM32 (ARM Cortex-M4) using RTOS to manage PID motor control, UART communication, and real-time LCD visualization.</p>
-    <p class="category">ARM Assembly / C / STM32 / RTOS / PID / Hardware Drivers</p>
+    <h3>Bare-Metal RTOS &amp; PID Motor Control System</h3>
+    <p class="desc">Multi-threaded RTOS executing Rate-Monotonic Scheduling on Cortex-M4 for hardware PWM motor control, UART telemetry, and LCD management.</p>
+    <p class="category">ARM Assembly / Bare-Metal C / STM32 / RTOS</p>
   </div>
 
   <div class="project-card" data-project="ros2-autonomous-robot">
@@ -221,12 +221,10 @@
     
         <h4>System in Action</h4>
         <div class="demo-section-container">
-          <!-- Left Column: Tall Demo Image -->
           <div class="demo-media-col">
             <img src="asl-demo.jpg" alt="Demonstrating ASL Glove" onerror="this.parentElement.classList.add('no-image');">
           </div>
     
-          <!-- Right Column: Step-by-Step Flow -->
           <div class="demo-steps-col">
             <div class="pipeline-step">
               <div class="step-num">1</div>
@@ -264,18 +262,18 @@
       img: 'rtos-motor-control.jpg',
       placeholder: 'RTOS Motor Control — add rtos-motor-control.jpg',
       body: `
-        <p>A multi-threaded real-time system executing Rate-Monotonic Scheduling (RMS) on an STM32 ARM Cortex-M4 microcontroller without vendor HAL overhead. The custom RTOS concurrently manages high-frequency closed-loop motor control, real-time UART telemetry, and user displays under strict deadlines.</p>
+        <p>A multi-threaded real-time system executing Rate-Monotonic Scheduling (RMS) on an STM32 ARM Cortex-M4 microcontroller without vendor HAL overhead[cite: 11]. The custom RTOS concurrently manages high-frequency closed-loop motor control, real-time UART telemetry, and interactive user displays under strict deadlines[cite: 11].</p>
         
         <h4>Key Technical Highlights</h4>
         <ul>
-          <li><strong>RMS Task Scheduling:</strong> Architected periodic threads using Rate-Monotonic Scheduling with harmonic periods to maximize CPU utilization. Configured execution budgets and deadlines across the PID controller, string-processing UART service (2-second deadline), and LCD task.</li>
-          <li><strong>Hardware-Driven PWM & Closed-Loop PID:</strong> Developed timer hardware PWM drivers driving an H-bridge motor driver. Integrated closed-loop PID control with duty-cycle limits that allow the controller to correct speed drops while preventing motor overload. </li>
-          <li><strong>Quadrature Encoder & EXTI Callbacks:</strong> Implemented external interrupt drivers reading dual-channel encoder signals. Decoded state machine transitions through non-blocking interrupt callbacks to compute real-time wheel velocity feedback.</li>
+          <li><strong>RMS Task Scheduling:</strong> Architected periodic threads using Rate-Monotonic Scheduling with harmonic periods to maximize CPU utilization up to 100%[cite: 11]. Configured execution budgets and deadlines across the PID controller, string-processing UART service (2-second deadline), and LCD task[cite: 11].</li>
+          <li><strong>Hardware-Driven PWM & Closed-Loop PID:</strong> Developed timer hardware PWM drivers driving an H-bridge motor driver[cite: 11]. Integrated closed-loop PID control with speed saturation bounds to ensure rapid deviation recovery under variable load[cite: 11].</li>
+          <li><strong>Quadrature Encoder & EXTI Callbacks:</strong> Implemented external interrupt drivers reading dual-channel encoder signals[cite: 11]. Decoded state machine transitions through non-blocking interrupt callbacks to compute real-time wheel velocity feedback[cite: 11].</li>
           <li><strong>System Subsystems & Telemetry:</strong>
             <ul>
-              <li><strong>Real-Time UART & Visualizer:</strong> Transmitted motor performance metrics over serial communication to a custom Python plotting script rendering a 500-sample sliding window.</li>
-              <li><strong>Interactive LCD & Buttons:</strong> Mapped push-button interrupts to dynamically adjust target motor speeds and implemented an LCD thread displaying active speed errors alongside real-time P, I, and D parameters.</li>
-              <li><strong>System Call Architecture:</strong> Extended system calls and low-level assembly stubs to show hardware PWM, motor control, and encoder callbacks.</li>
+              <li><strong>Real-Time UART & Visualizer:</strong> Transmitted motor performance metrics over serial communication to a custom Python plotting script rendering a 500-sample sliding window[cite: 11].</li>
+              <li><strong>Interactive LCD & Buttons:</strong> Mapped push-button interrupts to dynamically adjust target motor speeds and implemented an LCD thread displaying active speed errors alongside real-time P, I, and D parameters[cite: 11].</li>
+              <li><strong>System Call Architecture:</strong> Extended system calls and low-level assembly stubs to expose hardware PWM, motor control, and encoder callbacks securely to user space[cite: 11].</li>
             </ul>
           </li>
         </ul>
@@ -298,7 +296,6 @@
         </ul>
       `
     },
-    
     'diffusion-trajectory-planner': {
       title: 'Diffusion-Based Trajectory Planner',
       tags: 'PyTorch / Diffusion Models / D4RL / DPM-Solver / Robotics / Trajectory Optimization',
@@ -315,6 +312,7 @@
           <li><strong>Multi-Modal Path Generation:</strong> Leveraged generative probability distributions over classic pathfinders to seamlessly resolve complex navigation scenarios with multiple valid collision-avoidance options (such as passing left vs. right).</li>
         </ul>
       `
+    }
   };
 
   // NAVIGATION & ROUTING
@@ -347,8 +345,6 @@
     imgEl.src = data.img;
 
     const linksEl = document.getElementById('detail-links');
-    
-    // SAFE ACCESS: Check if data.links exists before mapping
     if (data.links && data.links.length > 0) {
       linksEl.innerHTML = data.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label} →</a>`).join('');
       linksEl.style.display = 'flex';
@@ -360,15 +356,13 @@
     showSection('project-detail');
   }
 
-  // EVENT DELEGATION FOR CLICK HANDLERS
+  // EVENT DELEGATION
   document.addEventListener('click', (e) => {
-    // Nav branding click
     if (e.target.closest('.nav-name')) {
       showSection('home');
       return;
     }
 
-    // Nav bar links
     const navLink = e.target.closest('.nav-links a');
     if (navLink) {
       e.preventDefault();
@@ -377,7 +371,6 @@
       return;
     }
 
-    // Project Cards (handles original and carousel clones)
     const card = e.target.closest('.project-card');
     if (card) {
       const projectId = card.getAttribute('data-project');
@@ -385,7 +378,6 @@
       return;
     }
 
-    // Back to Projects button
     if (e.target.closest('#back-to-projects')) {
       showSection('projects');
     }
@@ -403,6 +395,7 @@
   function updateAboutPhoto() {
     const photo = aboutPhotos[currentAboutPhotoIndex];
     const imgEl = document.getElementById('aboutSlideImg');
+    if (!imgEl) return;
     const frameEl = imgEl.parentElement;
     const placeholderEl = document.getElementById('aboutSlidePlaceholder');
     const counterEl = document.getElementById('aboutSlideCounter');
@@ -419,23 +412,9 @@
     updateAboutPhoto();
   }
 
-  
-
   function startAboutPhotoAutoSlide() {
     aboutPhotoTimer = setInterval(() => changeAboutPhoto(1), 4000);
   }
-
-  document.getElementById('about-prev').addEventListener('click', () => {
-    changeAboutPhoto(-1);
-    clearInterval(aboutPhotoTimer);
-    startAboutPhotoAutoSlide();
-  });
-
-  document.getElementById('about-next').addEventListener('click', () => {
-    changeAboutPhoto(1);
-    clearInterval(aboutPhotoTimer);
-    startAboutPhotoAutoSlide();
-  });
 
   // INFINITE FEATURED CAROUSEL LOGIC
   let scrollRAF;
@@ -447,8 +426,6 @@
     if (!carousel || originalCards.length === 0) return;
 
     carousel.innerHTML = '';
-
-    // Clone twice for smooth looping
     originalCards.forEach(card => carousel.appendChild(card.cloneNode(true)));
     originalCards.forEach(card => carousel.appendChild(card.cloneNode(true)));
 
@@ -473,50 +450,38 @@
     });
   }
 
-  document.getElementById('scroll-left').addEventListener('click', () => {
-    const carousel = document.getElementById('carousel');
-    isHoveredOrTouched = true;
-    carousel.scrollBy({ left: -336, behavior: 'smooth' });
-    setTimeout(() => { isHoveredOrTouched = false; }, 2000);
-  });
-
-  document.getElementById('scroll-right').addEventListener('click', () => {
-    const carousel = document.getElementById('carousel');
-    isHoveredOrTouched = true;
-    carousel.scrollBy({ left: 336, behavior: 'smooth' });
-    setTimeout(() => { isHoveredOrTouched = false; }, 2000);
-  });
-
-  // INITIAL LOAD
+  // INITIAL LOAD & BINDINGS
   window.addEventListener('DOMContentLoaded', () => {
     initCarousel();
     updateAboutPhoto();
     startAboutPhotoAutoSlide();
+
+    document.getElementById('about-prev')?.addEventListener('click', () => {
+      changeAboutPhoto(-1);
+      clearInterval(aboutPhotoTimer);
+      startAboutPhotoAutoSlide();
+    });
+
+    document.getElementById('about-next')?.addEventListener('click', () => {
+      changeAboutPhoto(1);
+      clearInterval(aboutPhotoTimer);
+      startAboutPhotoAutoSlide();
+    });
+
+    document.getElementById('scroll-left')?.addEventListener('click', () => {
+      const carousel = document.getElementById('carousel');
+      isHoveredOrTouched = true;
+      carousel.scrollBy({ left: -336, behavior: 'smooth' });
+      setTimeout(() => { isHoveredOrTouched = false; }, 2000);
+    });
+
+    document.getElementById('scroll-right')?.addEventListener('click', () => {
+      const carousel = document.getElementById('carousel');
+      isHoveredOrTouched = true;
+      carousel.scrollBy({ left: 336, behavior: 'smooth' });
+      setTimeout(() => { isHoveredOrTouched = false; }, 2000);
+    });
   });
-  const carousel = document.querySelector('.project-carousel');
-  let autoScrollTimer = null;
-
-  function startAutoScroll() {
-    autoScrollTimer = setInterval(() => {
-      // If reached the end, loop back to the start
-      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1) {
-        carousel.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        carousel.scrollBy({ left: 320, behavior: 'smooth' });
-      }
-    }, 3000);
-  }
-
-  function stopAutoScroll() {
-    clearInterval(autoScrollTimer);
-  }
-
-  // Event Listeners for Pause-on-Hover
-  carousel.addEventListener('mouseenter', stopAutoScroll);
-  carousel.addEventListener('mouseleave', startAutoScroll);
-
-  // Start auto-scrolling
-  startAutoScroll();
 </script>
 </body>
 </html>
