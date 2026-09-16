@@ -129,37 +129,26 @@
     <p class="category">ARM Assembly / C / STM32 / RTOS / PID / Hardware Drivers</p>
   </div>
 
-  <div class="project-card" data-project="dl-deployment">
+  <div class="project-card" data-project="ros2-autonomous-robot">
     <div class="project-image">
-      <img src="deep-learning-deployment.jpg" alt="Deep Learning Model Deployment"
+      <img src="ros2-autonomous-robot.jpg" alt="ROS 2 Wireless Autonomous Mobile Robot"
            onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-      <div class="image-placeholder"><span>Deep Learning Model Deployment — Coming Soon! </span></div>
+      <div class="image-placeholder"><span>ROS 2 Wireless Autonomous Mobile Robot — Coming Soon!</span></div>
     </div>
-    <h3>Deep Learning Model Deployment</h3>
-    <p class="desc">Prototyped, benchmarked, and validated deep learning models using PyTorch, with full production deployment and monitoring for safety and performance drift.</p>
-    <p class="category">PyTorch / MLOps / Model Validation</p>
+    <h3>ROS 2 Wireless Autonomous Mobile Robot</h3>
+    <p class="desc">4WD autonomous mobile platform integrating ESP32 and micro-ROS over Wi-Fi for real-time velocity parsing, FreeRTOS task separation, and IMU telemetry.</p>
+    <p class="category">ROS 2 / micro-ROS / ESP32 / FreeRTOS</p>
   </div>
-
-  <div class="project-card" data-project="microros-teleop">
+  
+  <div class="project-card" data-project="diffusion-trajectory-planner">
     <div class="project-image">
-      <img src="microros-teleop.jpg" alt="Micro-ROS Teleoperation Glove"
+      <img src="diffusion-trajectory-planner.jpg" alt="Diffusion-Based Trajectory Planner"
            onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-      <div class="image-placeholder"><span>Micro-ROS Teleoperation Glove  — Coming Soon!</span></div>
+      <div class="image-placeholder"><span>Diffusion Trajectory Planner — Coming Soon!</span></div>
     </div>
-    <h3>Micro-ROS Teleoperation Glove</h3>
-    <p class="desc">Embedded micro-ROS C firmware on RP2350 (Pico 2W) for real-time robotic glove teleoperation over Wi-Fi and XR serial.</p>
-    <p class="category">C / micro-ROS / RP2350 / ROS</p>
-  </div>
-
-  <div class="project-card" data-project="my-new-project">
-    <div class="project-image">
-      <img src="my-project-photo.jpg" alt="My New Project"
-           onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-      <div class="image-placeholder"><span>My New Project — Coming Soon! </span></div>
-    </div>
-    <h3>My New Project Title</h3>
-    <p class="desc"> Coming Soon! </p>
-    <p class="category">Technology / Framework / </p>
+    <h3>Diffusion-Based Trajectory Planner</h3>
+    <p class="desc">1D Temporal Convolutional Diffusion model trained to generate collision-free, multi-modal 2D paths for autonomous navigation using Classifier-Free Guidance.</p>
+    <p class="category">PyTorch / Diffusion / Robotics / D4RL</p>
   </div>
 </section>
 
@@ -292,51 +281,40 @@
         </ul>
       `
     },
-    'dl-deployment': {
-      title: 'Deep Learning Model Deployment',
-      tags: 'PyTorch / MLOps / Model Validation',
-      img: 'deep-learning-deployment.jpg',
-      placeholder: 'Deep Learning Deployment — add deep-learning-deployment.jpg',
+    'ros2-autonomous-robot': {
+      title: 'ROS 2 Wireless Autonomous Mobile Robot',
+      tags: 'ROS 2 / micro-ROS / ESP32 / FreeRTOS / C++ / C / Hardware Drivers',
+      img: 'ros2-autonomous-robot.jpg',
+      placeholder: 'ROS 2 Wireless Autonomous Mobile Robot — add ros2-autonomous-robot.jpg',
       body: `
-        <p>A full-stack machine learning pipeline for deploying, monitoring, and validating deep learning models targeted for real-world computer vision tasks.</p>
+        <p>A 4WD autonomous mobile robot platform integrating an ESP32 microcontroller into a ROS 2 ecosystem via micro-ROS over Wi-Fi. The architecture bridges high-level ROS 2 velocity commands with low-level hardware actuation and real-time sensor feedback for wireless mobile navigation.</p>
+        
         <h4>Key Technical Highlights</h4>
         <ul>
-          <li><strong>Model Architecture:</strong> Custom PyTorch CNNs benchmarked against lightweight backbones for low-latency edge deployment.</li>
-          <li><strong>Validation & Drift Monitoring:</strong> Automated testing routines to evaluate model safety, edge case degradation, and performance drift under environmental noise.</li>
+          <li><strong>Embedded micro-ROS & Velocity Parsing:</strong> Formulated real-time subscriber nodes to parse incoming ROS 2 velocity payloads, translating kinematic motion commands directly into motor driver PWM signals.</li>
+          <li><strong>IMU Telemetry Engine:</strong> Integrated an MPU6050 IMU over I2C to capture and publish raw linear acceleration and angular velocity metrics at 50Hz for downstream odometry estimation.</li>
+          <li><strong>Asynchronous FreeRTOS Core Separation:</strong> Designed a dual-core FreeRTOS task architecture to decouple timing-critical motor control loops from high-latency wireless network packet handling.</li>
+          <li><strong>Hardware Motor Drive Interface:</strong> Engineered memory-mapped hardware drivers for a dual H-bridge motor controller, establishing smooth directional control and accurate speed modulation.</li>
         </ul>
-      `,
-      links: [{ label: 'github repository', url: 'https://github.com/katherine-e-jackson' }]
+      `
     },
-    'microros-teleop': {
-      title: 'Micro-ROS Teleoperation Glove',
-      tags: 'C / micro-ROS / RP2350 (Pico 2W) / RTOS / ROS 2',
-      img: 'microros-teleop.jpg',
-      placeholder: 'Micro-ROS Teleop — add microros-teleop.jpg',
+    
+    'diffusion-trajectory-planner': {
+      title: 'Diffusion-Based Trajectory Planner',
+      tags: 'PyTorch / Diffusion Models / D4RL / DPM-Solver / Robotics / Trajectory Optimization',
+      img: 'diffusion-trajectory-planner.jpg',
+      placeholder: 'Diffusion Trajectory Planner — add diffusion-trajectory-planner.jpg',
       body: `
-        <p>Embedded C micro-ROS firmware for the Raspberry Pi Pico 2W (RP2350 microcontroller) that streams real-time sensor joint data to ROS 2 nodes over Wi-Fi and USB CDC for teleoperating robotic hardware.</p>
+        <p>A generative trajectory planning framework that models continuous path generation as an iterative reverse diffusion process. Designed to solve complex robotic navigation tasks, the system effectively captures multi-modal trajectory distributions to generate smooth, collision-free paths around obstacles.</p>
+        
         <h4>Key Technical Highlights</h4>
         <ul>
-          <li><strong>Pure C Firmware:</strong> Custom micro-ROS publisher setup running on bare-metal / FreeRTOS stack for minimal transmission latency.</li>
-          <li><strong>Cross-Compilation:</strong> Built using official Arm GNU Embedded Toolchain with customized Pico SDK CMake configuration.</li>
+          <li><strong>1D Temporal Diffusion Architecture:</strong> Developed a 1D Temporal Convolutional U-Net from scratch to iteratively denoise random Gaussian vectors into mathematically valid, continuous 2D coordinate paths for autonomous navigation.</li>
+          <li><strong>Conditioning & Constraint Handling:</strong> Implemented Classifier-Free Guidance (CFG) to explicitly condition the reverse diffusion process on target destination goals and real-time environment safety constraints.</li>
+          <li><strong>Fast Inference Optimization:</strong> Integrated a DPM-Solver sampling scheduler to reduce reverse-diffusion steps from 100 down to 20, cutting path generation latency by 75% without compromising path validity.</li>
+          <li><strong>Multi-Modal Path Generation:</strong> Leveraged generative probability distributions over classic pathfinders to seamlessly resolve complex navigation scenarios with multiple valid collision-avoidance options (such as passing left vs. right).</li>
         </ul>
-      `,
-      links: [{ label: 'github repository', url: 'https://github.com/katherine-e-jackson' }]
-    },
-    'my-new-project': {
-      title: 'My New Project Title',
-      tags: 'Python / C++ / Microcontrollers / RTOS',
-      img: 'my-project-photo.jpg',
-      placeholder: 'My New Project Title — add my-project-photo.jpg',
-      body: `
-        <p>A detailed narrative description of the project goes here.</p>
-        <h4>Key Technical Highlights</h4>
-        <ul>
-          <li><strong>Architecture:</strong> Description of design choices and technical execution.</li>
-          <li><strong>Implementation:</strong> Key tools, algorithms, or hardware interfaces used.</li>
-        </ul>
-      `,
-      links: [{ label: 'github repository', url: 'https://github.com/katherine-e-jackson' }]
-    }
+      `
   };
 
   // NAVIGATION & ROUTING
