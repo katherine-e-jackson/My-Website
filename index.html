@@ -276,18 +276,18 @@
       img: 'rtos-motor-control.jpg',
       placeholder: 'RTOS Motor Control — add rtos-motor-control.jpg',
       body: `
-        <p>A multi-threaded real-time system executing Rate-Monotonic Scheduling (RMS) on an STM32 ARM Cortex-M4 microcontroller without vendor HAL overhead[cite: 11]. The custom RTOS concurrently manages high-frequency closed-loop motor control, real-time UART telemetry, and interactive user displays under strict deadlines[cite: 11].</p>
+        <p>A multi-threaded real-time system executing Rate-Monotonic Scheduling (RMS) on an STM32 ARM Cortex-M4 microcontroller without vendor HAL overhead. The custom RTOS concurrently manages high-frequency closed-loop motor control, real-time UART telemetry, and user displays under strict deadlines.</p>
         
         <h4>Key Technical Highlights</h4>
         <ul>
-          <li><strong>RMS Task Scheduling:</strong> Architected periodic threads using Rate-Monotonic Scheduling with harmonic periods to maximize CPU utilization up to 100%[cite: 11]. Configured execution budgets and deadlines across the PID controller, string-processing UART service (2-second deadline), and LCD task[cite: 11].</li>
-          <li><strong>Hardware-Driven PWM & Closed-Loop PID:</strong> Developed timer hardware PWM drivers driving an H-bridge motor driver[cite: 11]. Integrated closed-loop PID control with speed saturation bounds to ensure rapid deviation recovery under variable load[cite: 11].</li>
-          <li><strong>Quadrature Encoder & EXTI Callbacks:</strong> Implemented external interrupt drivers reading dual-channel encoder signals[cite: 11]. Decoded state machine transitions through non-blocking interrupt callbacks to compute real-time wheel velocity feedback[cite: 11].</li>
+          <li><strong>RMS Task Scheduling:</strong> Architected periodic threads using Rate-Monotonic Scheduling with harmonic periods to maximize CPU utilization. Configured execution budgets and deadlines across the PID controller, string-processing UART service (2-second deadline), and LCD task.</li>
+          <li><strong>Hardware-Driven PWM & Closed-Loop PID:</strong> Developed timer hardware PWM drivers driving an H-bridge motor driver. Integrated closed-loop PID control with duty-cycle limits that allow the controller to correct speed drops while preventing motor overload. </li>
+          <li><strong>Quadrature Encoder & EXTI Callbacks:</strong> Implemented external interrupt drivers reading dual-channel encoder signals. Decoded state machine transitions through non-blocking interrupt callbacks to compute real-time wheel velocity feedback.</li>
           <li><strong>System Subsystems & Telemetry:</strong>
             <ul>
-              <li><strong>Real-Time UART & Visualizer:</strong> Transmitted motor performance metrics over serial communication to a custom Python plotting script rendering a 500-sample sliding window[cite: 11].</li>
-              <li><strong>Interactive LCD & Buttons:</strong> Mapped push-button interrupts to dynamically adjust target motor speeds and implemented an LCD thread displaying active speed errors alongside real-time P, I, and D parameters[cite: 11].</li>
-              <li><strong>System Call Architecture:</strong> Extended system calls and low-level assembly stubs to expose hardware PWM, motor control, and encoder callbacks securely to user space[cite: 11].</li>
+              <li><strong>Real-Time UART & Visualizer:</strong> Transmitted motor performance metrics over serial communication to a custom Python plotting script rendering a 500-sample sliding window.</li>
+              <li><strong>Interactive LCD & Buttons:</strong> Mapped push-button interrupts to dynamically adjust target motor speeds and implemented an LCD thread displaying active speed errors alongside real-time P, I, and D parameters.</li>
+              <li><strong>System Call Architecture:</strong> Extended system calls and low-level assembly stubs to show hardware PWM, motor control, and encoder callbacks.</li>
             </ul>
           </li>
         </ul>
