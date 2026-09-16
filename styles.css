@@ -233,6 +233,53 @@ section.active {
   margin-bottom: 0;
 }
 
+/* MATERIALS GRID SIDE-BY-SIDE LAYOUT */
+.materials-grid {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.material-card {
+  flex: 1; /* Makes both cards equal width */
+  background: var(--accent-dim); /* Soft light blue container background */
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+}
+
+.material-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.material-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.material-list li {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.material-list li strong {
+  color: var(--ink);
+}
+
+/* RESPONSIVE: Stack vertically on small mobile screens */
+@media (max-width: 640px) {
+  .materials-grid {
+    flex-direction: column;
+  }
+}
+
 .step-num {
   background: rgba(56, 189, 248, 0.15);
   color: #38bdf8;
