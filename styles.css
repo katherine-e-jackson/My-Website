@@ -241,9 +241,9 @@ section.active {
 }
 
 .material-card {
-  flex: 1; /* Makes both cards equal width */
-  background: var(--accent-dim); /* Soft light blue container background */
-  border: 1px solid var(--line);
+  flex: 1;
+  background: var(--accent-dim); /* Soft light blue tint */
+  border: 1px solid var(--line); /* Soft off-white/gray border */
   border-radius: 8px;
   padding: 1.25rem 1.5rem;
 }
@@ -252,7 +252,7 @@ section.active {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
   font-size: 1rem;
-  color: var(--ink);
+  color: var(--accent); /* Soft blue accent color */
   margin-bottom: 0.75rem;
 }
 
@@ -264,16 +264,17 @@ section.active {
 
 .material-list li {
   font-size: 0.9rem;
-  color: var(--muted);
+  color: var(--muted-2); /* Lighter gray description text */
   margin-bottom: 0.5rem;
   line-height: 1.4;
 }
 
 .material-list li strong {
-  color: var(--ink);
+  color: var(--muted); /* Medium gray for labels instead of black */
+  font-weight: 600;
 }
 
-/* RESPONSIVE: Stack vertically on small mobile screens */
+/* RESPONSIVE STACK FOR MOBILE */
 @media (max-width: 640px) {
   .materials-grid {
     flex-direction: column;
