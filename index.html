@@ -124,7 +124,7 @@
            onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
       <div class="image-placeholder"><span>RTOS Motor Control — add rtos-motor-control.jpg</span></div>
     </div>
-    <h3>RTOS &amp; PID Motor Control System</h3>
+    <h3>Custom RTOS &amp; PID Motor Control System</h3>
     <p class="desc">Multi-threaded RTOS executing Rate-Monotonic Scheduling on Cortex-M4 for hardware PWM motor control, UART telemetry, and LCD management.</p>
     <p class="category">ARM Assembly / Embedded C / STM32 / RTOS</p>
   </div>
@@ -219,26 +219,15 @@
           </div>
         </div>
     
-        <h4>System in Action</h4>
-        <div class="demo-section-container">
-          <div class="demo-media-col">
-            <img src="asl-demo.jpg" alt="Demonstrating ASL Glove" onerror="this.parentElement.classList.add('no-image');">
-          </div>
-    
-          <div class="demo-steps-col">
-            <div class="pipeline-step">
-              <div class="step-num">1</div>
-              <p><strong>Gesture Capture:</strong> Flex sensors record finger bending while the 9-DOF IMU captures wrist spatial orientation, and the touch sensors capture whether the fingers are touching.</p>
-            </div>
-            <div class="pipeline-step">
-              <div class="step-num">2</div>
-              <p><strong>Edge Processing:</strong> Raspberry Pi Pico 2W filters noise and normalizes sensor values in MicroPython.</p>
-            </div>
-            <div class="pipeline-step">
-              <div class="step-num">3</div>
-              <p><strong>Wireless Transmission:</strong> Cleaned feature vectors stream over Bluetooth to the k-NN to be classified and sent to the web interface.</p>
-            </div>
-          </div>
+        <h4>System Demonstration Video</h4>
+        <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-bottom: 2rem; border-radius: 8px;">
+          <iframe 
+            src="https://www.youtube.com/embed/LLdTKgTLjFc?start=108" 
+            title="ASL Reader Glove Demo Video" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
         </div>
     
         <h4>Design Motivation & Scope</h4>
@@ -252,8 +241,7 @@
         <p>Future iterations will include constructing a second glove for dual-hand signs and expanding our dataset collection directly on hardware.</p>
       `,
       links: [
-        { label: 'github repository', url: 'https://github.com/katherine-e-jackson/ASL-Reader' },
-        { label: 'demo video', url: 'https://youtu.be/LLdTKgTLjFc?si=j6oMebxqVyac8myL&t=108' }
+        { label: 'github repository', url: 'https://github.com/katherine-e-jackson/ASL-Reader' }
       ]
     },
     'rtos-motor-control': {
