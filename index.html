@@ -116,7 +116,7 @@
     </div>
     <h3>ASL Reader Glove</h3>
     <p class="desc">End-to-end pipeline for ingesting and transforming raw sensor data into a predicted American Sign Language character.</p>
-    <p class="category">Python / ML / I2C / Raspberry Pi</p>
+    <p class="category">Python / k-NN / I2C / Raspberry Pi</p>
   </div>
 
   <div class="project-card" data-project="rtos-motor-control">
@@ -196,7 +196,7 @@
   const projectData = {
     'asl-glove': {
       title: 'ASL Reader Glove',
-      tags: 'Python / ML / I2C / Raspberry Pi',
+      tags: 'Python / k-NN / I2C / Raspberry Pi',
       img: 'asl-reader-glove.jpg',
       placeholder: 'ASL Reader Glove — add asl-reader-glove.jpg',
       body: `
@@ -206,7 +206,7 @@
         <ul>
           <li><strong>Hardware Integration:</strong> Embedded 9-DOF IMU sensor and 5 analog flex sensors calibrated across fingers to capture spatial rotation and bending moments.</li>
           <li><strong>Signal Processing Pipeline:</strong> Designed digital low-pass filtering and normalization pipelines in Python to clean noisy sensor readings and transmit data to a web application via Bluetooth.</li>
-          <li><strong>ML Classification:</strong> Convolutional Neural Network (CNN) and K-Nearest Neighbors (KNN) classifiers achieving >92% accuracy across the ASL alphabet.</li>
+          <li><strong>ML Classification:</strong> Convolutional Neural Network (CNN) and k-Nearest Neighbors (k-NN) classifiers achieving >92% accuracy across the ASL alphabet. We found the k-NN performed better overall compared to the CNN, so during our final protype use the k-NN model.</li>
         </ul>
         <h4>Software & Hardware Materials</h4>
         <div class="materials-grid">
@@ -241,7 +241,7 @@
           <div class="demo-steps-col">
             <div class="pipeline-step">
               <div class="step-num">1</div>
-              <p><strong>Gesture Capture:</strong> Flex sensors record finger deflection while the 9-DOF IMU captures wrist spatial orientation.</p>
+              <p><strong>Gesture Capture:</strong> Flex sensors record finger bending while the 9-DOF IMU captures wrist spatial orientation, and the touch sensors capture whether the fingers are touching.</p>
             </div>
             <div class="pipeline-step">
               <div class="step-num">2</div>
@@ -249,7 +249,7 @@
             </div>
             <div class="pipeline-step">
               <div class="step-num">3</div>
-              <p><strong>Wireless Transmission:</strong> Cleaned feature vectors stream over Bluetooth to the web interface for instant translation.</p>
+              <p><strong>Wireless Transmission:</strong> Cleaned feature vectors stream over Bluetooth to the k-NN to be classified and sent to the web interface. </p>
             </div>
           </div>
         </div>
