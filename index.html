@@ -434,6 +434,8 @@
     updateAboutPhoto();
   }
 
+  
+
   function startAboutPhotoAutoSlide() {
     aboutPhotoTimer = setInterval(() => changeAboutPhoto(1), 4000);
   }
@@ -506,6 +508,30 @@
     updateAboutPhoto();
     startAboutPhotoAutoSlide();
   });
+  const carousel = document.querySelector('.project-carousel');
+  let autoScrollTimer = null;
+
+  function startAutoScroll() {
+    autoScrollTimer = setInterval(() => {
+      // If reached the end, loop back to the start
+      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1) {
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        carousel.scrollBy({ left: 320, behavior: 'smooth' });
+      }
+    }, 3000);
+  }
+
+  function stopAutoScroll() {
+    clearInterval(autoScrollTimer);
+  }
+
+  // Event Listeners for Pause-on-Hover
+  carousel.addEventListener('mouseenter', stopAutoScroll);
+  carousel.addEventListener('mouseleave', startAutoScroll);
+
+  // Start auto-scrolling
+  startAutoScroll();
 </script>
 </body>
 </html>
