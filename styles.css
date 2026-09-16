@@ -221,6 +221,41 @@ section.active {
   color: #a1a1aa;
 }
 
+/* LEFT COLUMN: ENLARGED / TALLER PICTURE */
+.demo-media-col {
+  flex: 1.5;
+  min-width: 0;
+  height: 100%; /* Ensures full height alignment */
+}
+
+.demo-media-col img {
+  width: 100%;
+  height: 480px; /* Adjust this value (e.g. 400px - 550px) to make it taller */
+  min-height: 400px;
+  object-fit: cover; /* Crops cleanly to fill height without stretching */
+  object-position: center; /* Keeps the subject centered in frame */
+  display: block;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+/* Ensure step column expands to match vertical rhythm */
+.demo-steps-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Spacing auto-adjusts to the taller image */
+  gap: 1.25rem;
+}
+
+/* RESPONSIVE: Fall back on mobile */
+@media (max-width: 768px) {
+  .demo-media-col img {
+    height: 300px; /* Reduced fixed height for small screens */
+    min-height: auto;
+  }
+}
+
 /* Pipeline Step Styling */
 .pipeline-step {
   display: flex;
