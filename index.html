@@ -115,7 +115,7 @@
       <div class="image-placeholder"><span>ASL Reader Glove — add asl-reader-glove.jpg</span></div>
     </div>
     <h3>ASL Reader Glove</h3>
-    <p class="desc">End-to-end pipeline for ingesting and transforming raw sensor data into a predicted American Sign Language character.</p>
+    <p class="desc">End-to-end pipeline for ingesting and transforming raw sensor data into a predicted American Sign Language characters.</p>
     <p class="category">Python / k-NN / I2C / Raspberry Pi</p>
   </div>
 
@@ -200,7 +200,7 @@
       img: 'asl-reader-glove.jpg',
       placeholder: 'ASL Reader Glove — add asl-reader-glove.jpg',
       body: `
-        <p>This project features a wearable smart glove system engineered to translate American Sign Language (ASL) flex and spatial movement gestures into text and speech outputs in real-time.</p>
+        <p>This project features a wearable smart glove system engineered to translate American Sign Language (ASL) flex and spatial movement gestures into character outputs in real-time.</p>
         
         <h4>Key Technical Highlights</h4>
         <ul>
@@ -209,7 +209,7 @@
           <li><strong>ML Classification:</strong> Convolutional Neural Network (CNN) and k-Nearest Neighbors (k-NN) classifiers achieving >92% accuracy across the ASL alphabet. We found the k-NN performed better overall compared to the CNN, so during our final prototype use the k-NN model.</li>
         </ul>
     
-        <h4>Software & Hardware Materials</h4>
+        <h4>Software & Hardware Materials</h4> 
         <div class="materials-grid">
           <div class="material-card">
             <div class="material-title">Hardware & Electronics</div>
@@ -271,17 +271,25 @@
       ]
     },
     'rtos-motor-control': {
-      title: 'RTOS Motor Control',
-      tags: 'C / RTOS / UART / PID / STM32',
+      title: 'RTOS & PID Motor Control',
+      tags: 'ARM Assembly / C / STM32 / RTOS / PID / Hardware Drivers',
       img: 'rtos-motor-control.jpg',
       placeholder: 'RTOS Motor Control — add rtos-motor-control.jpg',
       body: `
-        <p>A multi-threaded real-time system built on an STM32 ARM Cortex-M4 microcontroller running RTOS to handle high-frequency motor control, asynchronous communication, and live user feedback simultaneously.</p>
+        <p>A real-time operating system kernel and hardware abstraction layer written from scratch in ARM Assembly and C for the ARM Cortex-M4 (STM32) architecture. The system provides hardware context switching, memory-mapped peripheral initialization, interrupt-driven encoder tracking, closed-loop PID motor control, and user interface driver support.</p>
+        
         <h4>Key Technical Highlights</h4>
         <ul>
-          <li><strong>Real-Time Execution:</strong> Architected RTOS tasks with strict priority scheduling to guarantee execution of PID feedback loop.</li>
-          <li><strong>Closed-Loop Control:</strong> Implemented PID algorithms with anti-windup protection for precise motor speed and position tracking.</li>
-          <li><strong>Peripheral Communication:</strong> Utilized UART for transmission and real-time LCD updates.</li>
+          <li><strong>Low-Level Kernel & Context Switching:</strong> Configured process stack isolation using PSP and MSP registers. Handled context switches via ARM assembly exception routines that push/pop core registers and yield CPU time.</li>
+          <li><strong>Hardware Bootloader & Vector Table:</strong> Implemented a complete 84-entry Interrupt Vector Table and assembly startup routines in <code>boot.S</code> to manually initialize <code>.data</code> and <code>.bss</code> SRAM segments from flash memory before jumping to <code>kernel_main</code>[cite: 2, 8].</li>
+          <li><strong>Encoder Tracking & Closed-Loop Control:</strong> Configured edge-triggered EXTI interrupts for dual-channel optical encoders. Used ISR callbacks reading GPIO input data registers to compute motor speed feedback and dynamically adjust dual-channel PWM output timers (TIM2/TIM3).</li>
+          <li><strong>Custom Peripheral Drivers:</strong> Built memory-mapped drivers directly targeting physical base registers:
+            <ul>
+              <li><strong>GPIO & EXTI:</strong> Low-level pin setup routines and button interrupt routines with debouncing logic.</li>
+              <li><strong>I2C & UART:</strong> Master-mode I2C engine using status register handshakes for peripheral communications, alongside UART output initialized at 115200 baud.</li>
+              <li><strong>UI Subsystems:</strong> Multiplexed column/row scanning driver for matrix keypads and an LCD display driver.</li>
+            </ul>
+          </li>
         </ul>
       `
     },
