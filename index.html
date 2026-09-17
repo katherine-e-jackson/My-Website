@@ -10,9 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-
 <nav>
   <span class="nav-name" data-target="home">katherine jackson</span>
   <ul class="nav-links">
@@ -245,12 +243,12 @@
       ]
     },
     'rtos-motor-control': {
-      title: 'RTOS & PID Motor Control System',
+      title: 'Custom RTOS & PID Motor Control System',
       tags: 'ARM Assembly / Embedded C / Cortex-M4 / STM32 / RTOS / PID / Hardware Drivers',
       img: 'rtos-motor-control.jpg',
       placeholder: 'RTOS Motor Control — add rtos-motor-control.jpg',
       body: `
-        <p>A multi-threaded real-time system executing Rate-Monotonic Scheduling (RMS) on an STM32 ARM Cortex-M4 microcontroller without vendor HAL overhead. The RTOS concurrently manages high-frequency closed-loop motor control, real-time UART telemetry, and interactive user displays under strict deadlines.</p>
+        <p>A multi-threaded real-time system executing Rate-Monotonic Scheduling (RMS) on an STM32 ARM Cortex-M4 microcontroller without vendor HAL overhead. The custom RTOS concurrently manages high-frequency closed-loop motor control, real-time UART telemetry, and interactive user displays under strict deadlines.</p>
         
         <h4>Key Technical Highlights</h4>
         <ul>
@@ -317,7 +315,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function openProject(projectId) {
+  function openProject(projectId, updateHash = true) {
     const data = projectData[projectId];
     if (!data) return;
 
@@ -341,12 +339,28 @@
       linksEl.style.display = 'none';
     }
 
+    if (updateHash) {
+      history.pushState(null, '', '#' + projectId);
+    }
+
     showSection('project-detail');
+  }
+
+  function handleHashRoute() {
+    const hash = window.location.hash.replace('#', '');
+    if (projectData[hash]) {
+      openProject(hash, false);
+    } else if (hash === 'home' || hash === 'about' || hash === 'projects') {
+      showSection(hash);
+    } else {
+      showSection('home');
+    }
   }
 
   // EVENT DELEGATION
   document.addEventListener('click', (e) => {
     if (e.target.closest('.nav-name')) {
+      history.pushState(null, '', '#home');
       showSection('home');
       return;
     }
@@ -355,6 +369,7 @@
     if (navLink) {
       e.preventDefault();
       const targetId = navLink.getAttribute('href').replace('#', '');
+      history.pushState(null, '', '#' + targetId);
       showSection(targetId);
       return;
     }
@@ -362,11 +377,12 @@
     const card = e.target.closest('.project-card');
     if (card) {
       const projectId = card.getAttribute('data-project');
-      if (projectId) openProject(projectId);
+      if (projectId) openProject(projectId, true);
       return;
     }
 
     if (e.target.closest('#back-to-projects')) {
+      history.pushState(null, '', '#projects');
       showSection('projects');
     }
   });
@@ -443,6 +459,9 @@
     initCarousel();
     updateAboutPhoto();
     startAboutPhotoAutoSlide();
+
+    handleHashRoute();
+    window.addEventListener('hashchange', handleHashRoute);
 
     document.getElementById('about-prev')?.addEventListener('click', () => {
       changeAboutPhoto(-1);
