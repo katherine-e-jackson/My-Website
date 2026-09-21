@@ -289,7 +289,7 @@
             <div class="material-title">Hardware & Electronics</div>
             <ul class="material-list">
               <li><strong>Controller:</strong> Hosyond ESP32-WROOM-32 (Dual-Core, CP2102)</li>
-              <li><strong>Actuation:</strong> 4x TT Gear Motors (1:48) driven by 2x TB6612FNG drivers (wired in parallel)</li>
+              <li><strong>Actuation:</strong> 4x TT Gear Motors (1:48) driven by 2x TB6612FNG drivers, one independent PWM + direction channel per wheel</li>
               <li><strong>Sensors:</strong> HUAREW GY521 MPU6050 6-DOF IMU (I2C)</li>
               <li><strong>Power:</strong> VICMILE 7.4V 2S 1200mAh 35C LiPo + LM2596 Buck Converter (5V Logic)</li>
               <li><strong>Chassis:</strong> YonPhsy 4WD 2-Layer Acrylic Chassis Kit</li>
@@ -307,7 +307,7 @@
           </div>
         </div>
     
-        <h4>Mapping </h4>
+        <h4>Mapping</h4>
         <table style="width:100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem;">
           <thead>
             <tr style="border-bottom: 2px solid #ccc; text-align: left;">
@@ -322,19 +322,25 @@
               <td style="padding: 8px;"><strong>MPU6050 IMU</strong></td>
               <td style="padding: 8px;">SCL / SDA</td>
               <td style="padding: 8px;">D22 / D21</td>
-              <td style="padding: 8px;">I2C Bus </td>
+              <td style="padding: 8px;">I2C Bus</td>
             </tr>
             <tr style="border-bottom: 1px solid #eee;">
-              <td style="padding: 8px;"><strong>TB6612FNG Driver #1 (Left)</strong></td>
-              <td style="padding: 8px;">PWMA, AIN1, AIN2, STBY, BIN1, BIN2, PWMB</td>
-              <td style="padding: 8px;">D32, D33, D25, D26, D27, D14, D12</td>
+              <td style="padding: 8px;"><strong>TB6612FNG Driver A (Front)</strong></td>
+              <td style="padding: 8px;">PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td>
+              <td style="padding: 8px;">D32, D33, D25, D26, D27, D14</td>
               <td style="padding: 8px;">PWM Speed Control & Direction GPIOs</td>
             </tr>
             <tr style="border-bottom: 1px solid #eee;">
-              <td style="padding: 8px;"><strong>TB6612FNG Driver #2 (Right)</strong></td>
-              <td style="padding: 8px;">PWMA, AIN1, AIN2, STBY, BIN1, BIN2, PWMB</td>
-              <td style="padding: 8px;">D13, D2, D4, D5, D18, D19, D23</td>
+              <td style="padding: 8px;"><strong>TB6612FNG Driver B (Rear)</strong></td>
+              <td style="padding: 8px;">PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td>
+              <td style="padding: 8px;">D4, D16, D17, D18, D19, D23</td>
               <td style="padding: 8px;">PWM Speed Control & Direction GPIOs</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 8px;"><strong>Shared STBY (both drivers)</strong></td>
+              <td style="padding: 8px;">STBY</td>
+              <td style="padding: 8px;">D13</td>
+              <td style="padding: 8px;">Hardware-level motor enable / e-stop</td>
             </tr>
             <tr>
               <td style="padding: 8px;"><strong>LM2596 Buck Converter</strong></td>
@@ -369,15 +375,15 @@
           </div>
     
           <div class="material-card">
-          <div class="material-title" style="color: #ff9800;">In Progress / Next Steps</div>
+            <div class="material-title" style="color: #ff9800;">In Progress / Next Steps</div>
             <ul class="material-list">
               <li><strong>Hardware Test:</strong> Verify motor PWM control and 50Hz IMU communication over micro-ROS.</li>
               <li><strong>Integration:</strong> Test communication between FreeRTOS cores and measure latency.</li>
+            </ul>
           </div>
         </div>
       `
     },
-    
     'diffusion-trajectory-planner': {
       title: 'Diffusion-Based Trajectory Planner',
       tags: 'PyTorch / Diffusion Models / D4RL / DPM-Solver / Robotics / Trajectory Optimization',
