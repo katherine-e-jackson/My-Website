@@ -272,26 +272,19 @@
       placeholder: '4WD ROS 2 Mobile Robot — Hardware Integration Phase',
       body: `
         <div style="display: inline-block; background: rgba(255, 193, 7, 0.15); border: 1px solid #ffc107; color: #ffc107; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;">
-          In Active Development — Bench Testing & Firmware Integration
+          In Active Development — Testing & Firmware Integration
         </div>
     
         <p>A 4-wheel-drive autonomous mobile robot that bridges high-level ROS 2 velocity commands with embedded hardware over Wi-Fi using micro-ROS. By converting the ESP32 into a ROS 2 node, the platform executes wireless teleoperation and streams real-time IMU telemetry without needing a computer to bridge the connection.</p>
-    
-        <!-- Hardware Schematic Image -->
-        <h4>Hardware Wiring & Pin Layout Schematic</h4>
-        <div style="margin: 1rem 0; text-align: center;">
-          <img src="ros2-pin-layout.jpg" alt="ESP32 ROS 2 Hardware Pin Layout Diagram" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #333;" onerror="this.parentElement.innerHTML='<p style=\\'color:#aaa;\\'>[ Wiring Diagram: ros2-pin-layout.jpg ]</p>';">
-        </div>
-
         <h4>Hardware & Components</h4>
         <div class="materials-grid">
           <div class="material-card">
             <div class="material-title">Hardware & Electronics</div>
             <ul class="material-list">
-              <li><strong>Controller:</strong> Hosyond ESP32-WROOM-32 (Dual-Core, CP2102)</li>
-              <li><strong>Actuation:</strong> 4x TT Gear Motors (1:48) driven by 2x TB6612FNG drivers, one independent PWM + direction channel per wheel</li>
+              <li><strong>Controller:</strong> Hosyond ESP32-WROOM-32 (Dual-Core)</li>
+              <li><strong>Actuation:</strong> 4x TT Gear Motors driven by 2x TB6612FNG drivers, one independent PWM + direction channel per wheel</li>
               <li><strong>Sensors:</strong> HUAREW GY521 MPU6050 6-DOF IMU (I2C)</li>
-              <li><strong>Power:</strong> VICMILE 7.4V 2S 1200mAh 35C LiPo + LM2596 Buck Converter (5V Logic)</li>
+              <li><strong>Power:</strong> VICMILE 7.4V 1200mAh LiPo + LM2596 Buck Converter (5V Logic)</li>
               <li><strong>Chassis:</strong> YonPhsy 4WD 2-Layer Acrylic Chassis Kit</li>
             </ul>
           </div>
@@ -299,14 +292,19 @@
           <div class="material-card">
             <div class="material-title">Software & Firmware Stack</div>
             <ul class="material-list">
-              <li><strong>Middleware:</strong> ROS 2, micro-ROS (UDP over Wi-Fi)</li>
-              <li><strong>Firmware RTOS:</strong> ESP-IDF, FreeRTOS (Dual-Core pinned tasks)</li>
-              <li><strong>Inter-Task Comms:</strong> FreeRTOS Queues (Zero shared globals)</li>
+              <li><strong>Middleware:</strong> ROS 2, micro-ROS</li>
+              <li><strong>Firmware RTOS:</strong> ESP-IDF, FreeRTOS (Dual-Core tasks)</li>
               <li><strong>Tools & Languages:</strong> C++, C, Python, teleop_twist_keyboard</li>
             </ul>
           </div>
         </div>
-    
+        
+        <!-- Hardware Schematic Image -->
+        <h4>Wiring & Pin Layout Schematic</h4>
+        <div style="margin: 1rem 0; text-align: center;">
+          <img src="ros2-pin-layout.jpg" alt="ESP32 ROS 2 Hardware Pin Layout Diagram" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #333;" onerror="this.parentElement.innerHTML='<p style=\\'color:#aaa;\\'>[ Wiring Diagram: ros2-pin-layout.jpg ]</p>';">
+        </div>
+  
         <h4>Mapping</h4>
         <table style="width:100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem;">
           <thead>
@@ -351,7 +349,7 @@
           </tbody>
         </table>
     
-        <h4>System Architecture & Multi-Core Strategy</h4>
+        <h4>System Architecture </h4>
         <ul>
           <li><strong>Dual-Core:</strong> To prevent network jitter from delaying motor timing, tasks are used across dual cores:
             <ul>
