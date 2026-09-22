@@ -407,14 +407,30 @@
       img: 'diffusion-trajectory-planner.jpg',
       placeholder: 'Diffusion Trajectory Planner — add diffusion-trajectory-planner.jpg',
       body: `
-        <p>A generative trajectory planning framework that models continuous path generation as an iterative reverse diffusion process. Designed to solve complex robotic navigation tasks, the system effectively captures multi-modal trajectory distributions to generate smooth, collision-free paths around obstacles.</p>
-        
-        <h4>Key Technical Highlights</h4>
+        <div style="display: inline-block; background: rgba(158, 158, 158, 0.15); border: 1px solid #9e9e9e; color: #9e9e9e; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;">
+          Roadmap — Not Yet Started
+        </div>
+
+        <p>A scoped-out plan for a generative trajectory planner that models robot path planning as an iterative reverse diffusion process, rather than classical graph search (A*) or tree sampling (RRT). Starting from random Gaussian noise, the model would iteratively denoise it into a smooth, collision-free path conditioned on a goal and the environment's obstacles. The approach is grounded in <em>Diffusion Policy: Visuomotor Policy Learning via Action Diffusion</em> (Chi et al., 2023), which demonstrated diffusion-based policies outperforming prior state-of-the-art robot learning methods by an average of 46.9% across 12 manipulation tasks on 4 benchmarks.</p>
+
+        <h4>Planned Technical Approach</h4>
         <ul>
-          <li><strong>1D Temporal Diffusion Architecture:</strong> Developed a 1D Temporal Convolutional U-Net from scratch to iteratively denoise random Gaussian vectors into mathematically valid, continuous 2D coordinate paths for autonomous navigation.</li>
-          <li><strong>Conditioning & Constraint Handling:</strong> Implemented Classifier-Free Guidance (CFG) to explicitly condition the reverse diffusion process on target destination goals and real-time environment safety constraints.</li>
-          <li><strong>Fast Inference Optimization:</strong> Integrated a DPM-Solver sampling scheduler to reduce reverse-diffusion steps from 100 down to 20, cutting path generation latency by 75% without compromising path validity.</li>
-          <li><strong>Multi-Modal Path Generation:</strong> Leveraged generative probability distributions over classic pathfinders to seamlessly resolve complex navigation scenarios with multiple valid collision-avoidance options (such as passing left vs. right).</li>
+          <li><strong>1D Temporal Diffusion Architecture:</strong> A 1D Temporal Convolutional U-Net to iteratively denoise random Gaussian vectors into continuous 2D coordinate paths.</li>
+          <li><strong>Conditioning & Constraint Handling:</strong> Classifier-Free Guidance (CFG) to condition the reverse diffusion process on target destination goals and environment safety constraints.</li>
+          <li><strong>Fast Inference:</strong> A DPM-Solver sampling schedule to reduce reverse-diffusion steps (targeting ~100 down to ~20) for lower path-generation latency.</li>
+          <li><strong>Multi-Modal Path Generation:</strong> Leveraging diffusion's ability to represent multiple valid solutions as distinct modes of a learned distribution (e.g. passing left vs. right of an obstacle).</li>
+        </ul>
+
+        <h4>Planned Evaluation</h4>
+        <p>Train and evaluate on D4RL's <code>maze2d</code> environments, benchmarked against classical planners (A*, RRT) and against un-optimized diffusion sampling — measuring success rate, path optimality, and planning latency.</p>
+
+        <h4>Status</h4>
+        <p>This project is fully scoped (architecture, data source, evaluation plan) but implementation has not yet begun — prioritized after the current <a href="#ros2-autonomous-robot">4WD ROS 2 robot</a> build reaches completion.</p>
+
+        <h4>References</h4>
+        <ul>
+          <li>Chi, C. et al. <em>Diffusion Policy: Visuomotor Policy Learning via Action Diffusion.</em> <a href="https://arxiv.org/abs/2303.04137" target="_blank" rel="noopener">arXiv:2303.04137</a></li>
+          <li><a href="https://www.youtube.com/watch?v=ViBkYHg4rPI" target="_blank" rel="noopener">Supporting video reference</a></li>
         </ul>
       `
     }
