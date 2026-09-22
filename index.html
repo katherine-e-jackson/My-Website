@@ -16,6 +16,7 @@
   <ul class="nav-links">
     <li><a href="#home" id="nav-home" class="active">home</a></li>
     <li><a href="#about" id="nav-about">about</a></li>
+    <li><a href="#experience" id="nav-experience">experience</a></li>
     <li><a href="#projects" id="nav-projects">projects</a></li>
   </ul>
 </nav>
@@ -73,7 +74,26 @@
   </div>
   <div class="project-carousel" id="carousel"></div>
 </section>
-
+ <!-- EXPERIENCE SECTION -->
+<section id="experience">
+  <h2 class="section-title">experience</h2>
+  <div class="stat-list">
+    <div class="stat-row">
+      <div class="stat-label">
+        <strong>Company Name</strong><br>
+        <span style="font-weight: 400; opacity: 0.8;">Electrical Engineering Intern</span><br>
+        <span style="font-weight: 400; font-size: 0.85rem; opacity: 0.6;">Month Year – Month Year</span>
+      </div>
+      <div class="stat-values">
+        <ul style="margin: 0; padding-left: 1.2rem;">
+          <li>Designed and tested low-power PCB layouts and micro-controller drivers for embedded telemetry hardware.</li>
+          <li>Collaborated with cross-functional teams to integrate real-time sensor pipelines and optimize firmware latency.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+ 
 <!-- ABOUT SECTION -->
 <section id="about">
   <h2 class="section-title">about</h2>
@@ -485,7 +505,7 @@
     const hash = window.location.hash.replace('#', '');
     if (projectData[hash]) {
       openProject(hash, false);
-    } else if (hash === 'home' || hash === 'about' || hash === 'projects') {
+    } else if (hash === 'home' || hash === 'about' || hash === 'experience' || hash === 'projects') {
       showSection(hash);
     } else {
       showSection('home');
