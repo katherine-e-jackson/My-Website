@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -75,6 +75,7 @@
   <div class="project-carousel" id="carousel"></div>
 </section>
 
+<!-- EXPERIENCE SECTION -->
 <section id="experience">
   <h2 class="section-title">experience</h2>
   
@@ -137,7 +138,7 @@
     </div>
     <div class="stat-row">
       <div class="stat-label">Hardware &amp; Embedded</div>
-      <div class="stat-values">RTOS, STM32 (ARM Cortex-M4), I2C, UART, ADC Sampling, FSMs, PID Controls</div>
+      <div class="stat-values">Siemens PADS, Schematic Review, RTOS, STM32, I2C, UART, ADC, PID Controls</div>
     </div>
     <div class="stat-row">
       <div class="stat-label">Machine Learning &amp; Vision</div>
@@ -353,7 +354,7 @@
         <div style="margin: 1rem 0; text-align: center;">
           <img src="ros2-pin-layout.jpg" alt="ESP32 ROS 2 Hardware Pin Layout Diagram" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #333;" onerror="this.parentElement.innerHTML='<p style=\\'color:#aaa;\\'>[ Wiring Diagram: ros2-pin-layout.jpg ]</p>';">
         </div>
-  
+    
         <h4>Mapping</h4>
         <table style="width:100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem;">
           <thead>
@@ -614,46 +615,39 @@
     carousel.addEventListener('mouseenter', () => { isHoveredOrTouched = true; });
     carousel.addEventListener('mouseleave', () => { isHoveredOrTouched = false; });
     carousel.addEventListener('touchstart', () => { isHoveredOrTouched = true; }, { passive: true });
-    carousel.addEventListener('touchend', () => {
-      setTimeout(() => { isHoveredOrTouched = false; }, 2000);
+    carousel.addEventListener('touchend', () => { isHoveredOrTouched = false; });
+
+    document.getElementById('scroll-left')?.addEventListener('click', () => {
+      carousel.scrollBy({ left: -320, behavior: 'smooth' });
+    });
+
+    document.getElementById('scroll-right')?.addEventListener('click', () => {
+      carousel.scrollBy({ left: 320, behavior: 'smooth' });
     });
   }
 
-  // INITIAL LOAD & BINDINGS
+  // INITIALIZATION ON DOM LOAD
   window.addEventListener('DOMContentLoaded', () => {
     initCarousel();
-    updateAboutPhoto();
-    startAboutPhotoAutoSlide();
-
     handleHashRoute();
-    window.addEventListener('hashchange', handleHashRoute);
 
+    // Attach listeners for About photo controls
     document.getElementById('about-prev')?.addEventListener('click', () => {
-      changeAboutPhoto(-1);
       clearInterval(aboutPhotoTimer);
+      changeAboutPhoto(-1);
       startAboutPhotoAutoSlide();
     });
 
     document.getElementById('about-next')?.addEventListener('click', () => {
-      changeAboutPhoto(1);
       clearInterval(aboutPhotoTimer);
+      changeAboutPhoto(1);
       startAboutPhotoAutoSlide();
     });
 
-    document.getElementById('scroll-left')?.addEventListener('click', () => {
-      const carousel = document.getElementById('carousel');
-      isHoveredOrTouched = true;
-      carousel.scrollBy({ left: -336, behavior: 'smooth' });
-      setTimeout(() => { isHoveredOrTouched = false; }, 2000);
-    });
-
-    document.getElementById('scroll-right')?.addEventListener('click', () => {
-      const carousel = document.getElementById('carousel');
-      isHoveredOrTouched = true;
-      carousel.scrollBy({ left: 336, behavior: 'smooth' });
-      setTimeout(() => { isHoveredOrTouched = false; }, 2000);
-    });
+    startAboutPhotoAutoSlide();
   });
+
+  window.addEventListener('popstate', handleHashRoute);
 </script>
 </body>
 </html>
