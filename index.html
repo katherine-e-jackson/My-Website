@@ -24,29 +24,38 @@
 <section id="home" class="active">
 
   <div class="hero-top">
-    <div class="hero-intro">
-      <h1 class="home-title">Hi, I'm <span>Katherine</span></h1>
-      <p class="home-role">Electrical &amp; Computer Engineer!</p>
-    </div>
-    <div class="hero-photo">
-      <div class="photo-frame">
-        <img src="katherine-photo.jpg" alt="Katherine Jackson"
-             onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-        <div class="photo-placeholder"><span>Add katherine-photo.jpg</span></div>
+  <div class="hero-intro">
+    <h1 class="home-title">Hi, I'm <span>Katherine</span></h1>
+    <p class="home-role">Electrical &amp; Computer Engineer!</p>
+
+    <!-- COMPACT TERMINAL WINDOW -->
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="terminal-title">katherine@cmu-ece:~</span>
+      </div>
+      <div class="terminal-body">
+        <p><span class="prompt">$</span> systemctl status engineer.service</p>
+        <p class="status-line">
+          <span class="status-active">● ACTIVE</span> Carnegie Mellon ECE Graduate
+        </p>
+        <p class="terminal-sub">
+          <span class="prompt">&gt;</span> Specializing in <b>Embedded Systems</b> &amp; <b>Machine Learning</b>
+        </p>
       </div>
     </div>
-    <p class="home-bio">
-      I am a Carnegie Mellon Electrical and Computer Engineer graduate, specializing in machine learning and embedded systems.
-    </p>
   </div>
-  
-    <div class="hero-photo">
-      <div class="photo-frame">
-        <img src="katherine-photo.jpg" alt="Katherine Jackson" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-        <div class="photo-placeholder"><span>Add katherine-photo.jpg</span></div>
-      </div>
+
+  <div class="hero-photo">
+    <div class="photo-frame">
+      <img src="katherine-photo.jpg" alt="Katherine Jackson"
+           onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+      <div class="photo-placeholder"><span>Add katherine-photo.jpg</span></div>
     </div>
   </div>
+</div>
   
   <div class="contact-row">
     <a href="mailto:kejackso@alumni.cmu.edu">kejackso@alumni.cmu.edu</a>
