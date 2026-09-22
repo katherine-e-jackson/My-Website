@@ -23,28 +23,22 @@
 <!-- HOME SECTION -->
 <section id="home" class="active">
 
-  <div class="hero-top terminal-layout">
-    <div class="terminal-window">
-      <div class="terminal-header">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-        <span class="terminal-title">katherine@cmu-ece:~</span>
-      </div>
-      <div class="terminal-body">
-        <p><span class="prompt">$</span> systemctl status engineer.service</p>
-        <p class="status-line"><span class="status-active">● ACTIVE</span> Carnegie Mellon ECE Graduate</p>
-        <p><span class="prompt">$</span> cat about_me.json</p>
-        <div class="json-block">
-          <p>{</p>
-          <p>&nbsp;&nbsp;<span class="key">"name"</span>: <span class="string">"Katherine Jackson"</span>,</p>
-          <p>&nbsp;&nbsp;<span class="key">"focus"</span>: [<span class="string">"Embedded Systems"</span>, <span class="string">"Machine Learning"</span>],</p>
-          <p>&nbsp;&nbsp;<span class="key">"status"</span>: <span class="string">"Building autonomous robotics & ML hardware"</span></p>
-          <p>}</p>
-        </div>
-        <p><span class="prompt">$</span> <span class="cursor">_</span></p>
+  <div class="hero-top">
+    <div class="hero-intro">
+      <h1 class="home-title">Hi, I'm <span>Katherine</span></h1>
+      <p class="home-role">Electrical &amp; Computer Engineer!</p>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <img src="katherine-photo.jpg" alt="Katherine Jackson"
+             onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+        <div class="photo-placeholder"><span>Add katherine-photo.jpg</span></div>
       </div>
     </div>
+    <p class="home-bio">
+      I am a Carnegie Mellon Electrical and Computer Engineer graduate, specializing in machine learning and embedded systems.
+    </p>
+  </div>
   
     <div class="hero-photo">
       <div class="photo-frame">
