@@ -236,16 +236,16 @@ const projectData = {
     img: 'asl-reader-glove.jpg',
     placeholder: 'ASL Reader Glove — add asl-reader-glove.jpg',
     body: `
-      <p>I built a glove that reads American Sign Language. Flex sensors and an IMU track how the hand bends and moves, and a machine learning model turns those readings into letters and numbers in real time.</p>
+      <p>A glove that reads ASL through live sensor data from your hand movements. Data collected by a Pico 2W from flex sensors, an IMU, and touch sensors is classified by a k-NN model into letters and numbers.</p>
 
       <h4>Design Motivation & Scope</h4>
       <p>My team and I wanted to work on something in medical and assistive technology. Once we settled on an ASL reader, I took ownership of the embedded systems and the machine learning pipeline. We had a fixed deadline, so we scoped the first build to the ASL alphabet and the digits 0–9.</p>
 
       <h4>How It Works</h4>
       <ul>
-        <li><strong>Sensing:</strong> A 9-DOF IMU and five analog flex sensors, one per finger, capture hand rotation and finger bending.</li>
-        <li><strong>Cleaning up the data:</strong> The raw readings are noisy, so I wrote a low-pass filter and normalization step in Python before anything reaches the model. The cleaned data goes to a web app over Bluetooth.</li>
-        <li><strong>Classification:</strong> I trained both a CNN and a k-NN classifier, and both scored above 92% across the alphabet. k-NN did better overall, so we used it in the final prototype. [Add one line on why you think it won, e.g. small dataset, fast to run on the device.]</li>
+        <li><strong>Sensing:</strong> A 9-DOF IMU, five analog flex sensors, one per finger, and three touch sensors capture hand rotation, finger bending and finger contact.</li>
+        <li><strong>Cleaning up the data:</strong> The raw readings are noisy, so I wrote a low-pass filter and normalization step in Python before anything reaches the model. The cleaned data goes to the machine learning model over Bluetooth.</li>
+        <li><strong>Classification:</strong> I trained both a CNN and a k-NN classifier, and both scored above 80% across the alphabet. However, k-NN did better overall, reaching a 92% validation accuracy, so we used it in the final prototype. This is most likely due to the fact we were using a dataset of around 100 data points per character.</li>
       </ul>
 
       <h4>Software & Hardware Materials</h4>
@@ -262,7 +262,7 @@ const projectData = {
         <div class="material-card">
           <div class="material-title">Software & Protocols</div>
           <ul class="material-list">
-            <li><strong>Firmware & languages:</strong> MicroPython, Python 3</li>
+            <li><strong>Firmware & languages:</strong> MicroPython, Python</li>
             <li><strong>ML & math:</strong> PyTorch, Scikit-Learn, NumPy</li>
             <li><strong>Protocols:</strong> I2C, ADC, Bluetooth</li>
           </ul>
@@ -281,14 +281,14 @@ const projectData = {
       </div>
 
       <h4>The Glove Up Close</h4>
-      <p>Here's the pin layout and the finished board. [One sentence on something you'd want a reader to notice, e.g. how the flex sensors are wired.]</p>
+      <p>Here's the pin layout and our confusion matrix using 20% of our dataset as testing data.</p>
       <div class="gallery-grid">
         <img src="asl-reader-1.jpg" alt="Pin Layout" onerror="this.parentElement.classList.add('no-image');">
-        <img src="asl-reader-2.jpg" alt="Project Board" onerror="this.parentElement.classList.add('no-image');">
+        <img src="asl-reader-2.jpg" alt="Confusion Matrix" onerror="this.parentElement.classList.add('no-image');">
       </div>
 
       <h4>What's Next</h4>
-      <p>I'd like to build a second glove so it can read two-handed signs, and collect more training data directly from the hardware instead of relying on what we recorded earlier.</p>
+      <p>As the confusion matrix above shows, the classifier's main problem areas are 'U' and 'T', so I'd like to develop the touch sensors between those two fingers to help the model differentiate the signs. I'd also like to build a second glove so it can read two-handed signs, and collect more training data directly from the hardware instead of relying on what we recorded earlier.</p>
     `,
     links: [
       { label: 'github repository', url: 'https://github.com/katherine-e-jackson/ASL-Reader' }
