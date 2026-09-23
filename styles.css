@@ -169,89 +169,6 @@ section.active {
   margin-bottom: 2rem;
 }
 
-/* TERMINAL CONTAINER STYLES */
-.terminal-window {
-  /* Soft dark background with a subtle blue-grey tint */
-  background-color: #0f141a; 
-  /* Subtle accent border with glow */
-  border: 1px solid rgba(111, 168, 214, 0.25);
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 
-              0 0 15px rgba(111, 168, 214, 0.08);
-  font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
-  overflow: hidden;
-  max-width: 520px;
-  margin: 1.5rem 0;
-}
-
-.terminal-header {
-  /* Slightly darker header bar for depth */
-  background-color: #090c10;
-  padding: 8px 14px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(111, 168, 214, 0.15);
-}
-
-.terminal-header .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-right: 6px;
-  display: inline-block;
-  opacity: 0.85;
-}
-
-/* Control dots matched to soft theme tones */
-.terminal-header .dot.red { background-color: #e06c75; }
-.terminal-header .dot.yellow { background-color: #e5c07b; }
-.terminal-header .dot.green { background-color: #6FA8D6; } /* Matched to site accent */
-
-.terminal-title {
-  color: #828a9f;
-  font-size: 0.78rem;
-  margin-left: auto;
-  font-weight: 500;
-}
-
-.terminal-body {
-  padding: 16px;
-  color: #d1e0ec; /* Soft text color */
-  font-size: 0.88rem;
-  line-height: 1.6;
-}
-
-.terminal-body p {
-  margin: 0 0 8px 0;
-}
-
-.terminal-body .prompt {
-  color: #6FA8D6; /* Signature accent color */
-  font-weight: 700;
-  margin-right: 6px;
-}
-
-.status-line {
-  margin-top: 10px !important;
-}
-
-.status-active {
-  color: #6FA8D6; /* Active indicator uses site blue */
-  font-weight: 700;
-  margin-right: 6px;
-  text-shadow: 0 0 8px rgba(111, 168, 214, 0.4);
-}
-
-.terminal-sub {
-  color: #8da4b8;
-  font-size: 0.84rem;
-  margin-bottom: 0 !important;
-}
-
-.terminal-sub b {
-  color: #ffffff;
-}
-
 .contact-row {
   display: flex;
   flex-wrap: wrap;
@@ -316,8 +233,90 @@ section.active {
 }
 
 .scroll-btn:hover { border-color: var(--accent); color: var(--accent); }
-/* EXPERIENCE SECTION STYLES */
-/* EXPERIENCE SECTION STYLES - LEGIBILITY OPTIMIZED */
+
+/* ==========================================
+   TERMINAL WINDOW STYLES (LIGHT BLUE THEME)
+   ========================================== */
+.terminal-window {
+  background-color: var(--accent-dim); /* Soft light blue tint (#EAF3FA) */
+  border: 1px solid var(--line);       /* Soft neutral border (#E7E5DF) */
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(111, 168, 214, 0.12);
+  font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+  overflow: hidden;
+  max-width: 520px;
+  margin: 1.5rem 0;
+}
+
+.terminal-header {
+  background-color: #E0ECF7; /* Slightly deeper blue header for contrast */
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+
+.terminal-header .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  display: inline-block;
+  opacity: 0.85;
+}
+
+/* Control dots matched to soft theme tones */
+.terminal-header .dot.red { background-color: #E06C75; }
+.terminal-header .dot.yellow { background-color: #E5C07B; }
+.terminal-header .dot.green { background-color: var(--accent); }
+
+.terminal-title {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-left: auto;
+  font-weight: 500;
+}
+
+.terminal-body {
+  padding: 16px;
+  color: var(--ink); /* Dark text for high contrast on light bg */
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.terminal-body p {
+  margin: 0 0 8px 0;
+}
+
+.terminal-body .prompt {
+  color: var(--accent); /* Signature accent blue */
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+.status-line {
+  margin-top: 10px !important;
+}
+
+.status-active {
+  color: #2B6CB0; /* Crisp blue tone for active status on light bg */
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+.terminal-sub {
+  color: var(--muted);
+  font-size: 0.84rem;
+  margin-bottom: 0 !important;
+}
+
+.terminal-sub b {
+  color: var(--ink);
+}
+
+/* ==========================================
+   EXPERIENCE SECTION STYLES (LIGHT BLUE THEME)
+   ========================================== */
 #experience {
   max-width: 800px;
   margin: 0 auto;
@@ -332,12 +331,19 @@ section.active {
 }
 
 .experience-card {
-  background: #181825; /* Dark solid background for sharp contrast */
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-left: 4px solid #6FA8D6; /* Visual accent indicator */
+  background: #FFFFFF; /* Crisp white card against light blue background */
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent); /* Left border accent */
   border-radius: 8px;
   padding: 1.75rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgba(21, 21, 21, 0.04);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(111, 168, 214, 0.15);
 }
 
 .exp-header {
@@ -347,36 +353,36 @@ section.active {
   margin-bottom: 0.75rem;
   flex-wrap: wrap;
   gap: 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--line);
   padding-bottom: 0.75rem;
 }
 
 .exp-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--ink);
 }
 
 .exp-company {
-  color: #6FA8D6;
+  color: var(--accent);
   font-weight: 700;
 }
 
 .exp-date {
-  font-size: 0.9rem;
-  color: #f5e0dc;
+  font-size: 0.85rem;
+  color: var(--muted);
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--accent-dim);
   padding: 4px 12px;
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--line);
 }
 
 .exp-details {
   margin: 1rem 0 0 0;
   padding-left: 1.25rem;
-  color: #e0e0e0; /* High legibility light grey */
-  font-size: 1rem; /* Slightly larger text size */
+  color: var(--muted);
+  font-size: 0.98rem;
   line-height: 1.65;
 }
 
@@ -385,7 +391,7 @@ section.active {
 }
 
 .exp-details li::marker {
-  color: #6FA8D6; /* Crisp accent bullet points */
+  color: var(--accent);
 }
 
 .exp-tags {
@@ -398,11 +404,17 @@ section.active {
 .exp-tag {
   font-size: 0.82rem;
   font-weight: 600;
-  color: #ffffff;
-  background: rgba(111, 168, 214, 0.2);
-  border: 1px solid rgba(111, 168, 214, 0.5);
+  color: #2B6CB0;
+  background: var(--accent-dim);
+  border: 1px solid var(--line);
   padding: 4px 10px;
   border-radius: 4px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.exp-tag:hover {
+  background: #E0ECF7;
+  border-color: var(--accent);
 }
 
 /* FEATURED CAROUSEL */
