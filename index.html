@@ -109,7 +109,7 @@
 <section id="about">
   <h2 class="section-title">about</h2>
   <p class="about-text">
-    I studied Electrical and Computer Engineering at Carnegie Mellon University, focusing on embedded systems and machine learning. I love building innovative technology that bridges the gap between intelligent algorithms and real-world physical systems.
+    I studied Electrical and Computer Engineering at Carnegie Mellon University, focusing on embedded systems and machine learning. I love building innovative technology that connects intelligent algorithms to real-world physical systems.
   </p>
   <p class="about-text">
     Outside of engineering, I served as a four-year student-athlete and captain on Carnegie Mellon’s Varsity Volleyball Team, a sport I continue to play and coach today. I'm also currently training for the Pittsburgh Marathon, and when I'm not running, I love to travel and read!
@@ -142,7 +142,7 @@
     </div>
     <div class="stat-row">
       <div class="stat-label">Machine Learning &amp; Vision</div>
-      <div class="stat-values">PyTorch, Scikit-learn, Computer Vision, Neural Networks, KNN, Random Forest, Diffusion Models, D4RL</div>
+      <div class="stat-values">PyTorch, Scikit-learn, Computer Vision, Neural Networks, KNN, Random Forest</div>
     </div>
     <div class="stat-row">
       <div class="stat-label">Engineering Frameworks</div>
@@ -161,7 +161,7 @@
       <div class="image-placeholder"><span>ASL Reader Glove — add asl-reader-glove.jpg</span></div>
     </div>
     <h3>ASL Reader Glove</h3>
-    <p class="desc">End-to-end pipeline for ingesting and transforming raw sensor data into predicted American Sign Language characters.</p>
+    <p class="desc">A glove that reads ASL through live sensor data from your hand movements. Data collected by a Pico 2W from flex sensors, an IMU, and touch sensors is classified by a k-NN model into letters and numbers.</p>
     <p class="category">Python / k-NN / I2C / Raspberry Pi</p>
   </div>
 
@@ -172,7 +172,7 @@
       <div class="image-placeholder"><span>RTOS Motor Control — add rtos-motor-control.jpg</span></div>
     </div>
     <h3>RTOS &amp; PID Motor Control System</h3>
-    <p class="desc">Multi-threaded RTOS executing Rate-Monotonic Scheduling on Cortex-M4 for hardware PWM motor control, UART telemetry, and LCD management.</p>
+    <p class="desc">A multi-threaded RTOS on an STM32 that runs PID motor control, UART telemetry, and an LCD, all on Rate-Monotonic Scheduling.</p>
     <p class="category">ARM Assembly / Embedded C / STM32 / RTOS</p>
   </div>
 
@@ -183,7 +183,7 @@
       <div class="image-placeholder"><span>ROS 2 Wireless Autonomous Mobile Robot — Coming Soon!</span></div>
     </div>
     <h3>ROS 2 Wireless Autonomous Mobile Robot</h3>
-    <p class="desc">4WD autonomous mobile platform integrating ESP32 and micro-ROS over Wi-Fi for real-time velocity parsing, FreeRTOS task separation, and IMU telemetry.</p>
+    <p class="desc">In progress: a 4-wheel robot I can drive over Wi-Fi from a laptop. The ESP32 runs micro-ROS, so it shows up as a normal ROS 2 node and streams IMU data back.</p>
     <p class="category">ROS 2 / micro-ROS / ESP32 / FreeRTOS</p>
   </div>
   
@@ -194,7 +194,7 @@
       <div class="image-placeholder"><span>Diffusion Trajectory Planner — Coming Soon!</span></div>
     </div>
     <h3>Diffusion-Based Trajectory Planner</h3>
-    <p class="desc">1D Temporal Convolutional Diffusion model trained to generate collision-free, multi-modal 2D paths for autonomous navigation using Classifier-Free Guidance.</p>
+    <p class="desc">Planned: A 1D Diffusion model trained to generate collision-free paths through mazes.</p>
     <p class="category">PyTorch / Diffusion / Robotics / D4RL</p>
   </div>
 </section>
@@ -228,247 +228,216 @@
 </footer>
 
 <script>
-  const projectData = {
-    'asl-glove': {
-      title: 'ASL Reader Glove',
-      tags: 'Python / k-NN / I2C / Raspberry Pi',
-      img: 'asl-reader-glove.jpg',
-      placeholder: 'ASL Reader Glove — add asl-reader-glove.jpg',
-      body: `
-        <p>This project features a wearable smart glove system engineered to translate American Sign Language (ASL) flex and spatial movement gestures into character outputs in real-time.</p>
-        
-        <h4>Key Technical Highlights</h4>
-        <ul>
-          <li><strong>Hardware Integration:</strong> Embedded 9-DOF IMU sensor and 5 analog flex sensors calibrated across fingers to capture spatial rotation and bending moments.</li>
-          <li><strong>Signal Processing Pipeline:</strong> Designed digital low-pass filtering and normalization pipelines in Python to clean noisy sensor readings and transmit data to a web application via Bluetooth.</li>
-          <li><strong>ML Classification:</strong> Convolutional Neural Network (CNN) and k-Nearest Neighbors (k-NN) classifiers achieving >92% accuracy across the ASL alphabet. We found the k-NN performed better overall compared to the CNN, so during our final prototype use the k-NN model.</li>
-        </ul>
-    
-        <h4>Software & Hardware Materials</h4> 
-        <div class="materials-grid">
-          <div class="material-card">
-            <div class="material-title">Hardware & Electronics</div>
-            <ul class="material-list">
-              <li><strong>Microcontroller:</strong> Raspberry Pi Pico 2W</li>
-              <li><strong>Sensors:</strong> 9-DOF IMU, 5x Analog Flex Sensors, Capacitive Touch Sensors / Tape</li>
-              <li><strong>Circuitry:</strong> Custom PCB, ADS, Voltage Dividers</li>
-              <li><strong>Power:</strong> LiPo Battery Pack</li>
-            </ul>
-          </div>
-    
-          <div class="material-card">
-            <div class="material-title">Software & Protocols</div>
-            <ul class="material-list">
-              <li><strong>Firmware & Langs:</strong> MicroPython, Python 3</li>
-              <li><strong>ML & Math:</strong> PyTorch, Scikit-Learn, NumPy</li>
-              <li><strong>Protocols:</strong> I2C, ADC, Wireless / Bluetooth</li>
-            </ul>
-          </div>
-        </div>
-    
-        <h4>System Demonstration Video</h4>
-        <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-bottom: 2rem; border-radius: 8px;">
-          <iframe 
-            src="https://www.youtube.com/embed/LLdTKgTLjFc?start=108" 
-            title="ASL Reader Glove Demo Video" 
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
-        </div>
-    
-        <h4>Design Motivation & Scope</h4>
-        <p>During the initial design phase, my team and I aimed to build a system focused on medical innovation and assistive technology. After landing on the ASL Reader, I took ownership of the embedded systems and machine learning pipelines. To meet our fixed project deadline, we scoped the initial build to classify the core ASL alphabet and numerical digits (0–9).</p> 
-        <h4>Glove Operation & Gestures</h4>
-        <div class="gallery-grid">
-          <img src="asl-reader-1.jpg" alt="Pin Layout" onerror="this.parentElement.classList.add('no-image');">
-          <img src="asl-reader-2.jpg" alt="Project Board" onerror="this.parentElement.classList.add('no-image');">
-        </div>
-        <h4>Future Work</h4>
-        <p>Future iterations will include constructing a second glove for dual-hand signs and expanding our dataset collection directly on hardware.</p>
-      `,
-      links: [
-        { label: 'github repository', url: 'https://github.com/katherine-e-jackson/ASL-Reader' }
-      ]
-    },
-     'rtos-motor-control': {
-      title: 'RTOS & PID Motor Control System',
-      tags: 'ARM Assembly / Embedded C / Cortex-M4 / STM32 / RTOS / PID / Hardware Drivers',
-      img: 'rtos-motor-control.jpg',
-      placeholder: 'RTOS Motor Control — add rtos-motor-control.jpg',
-      body: `
-        <p>A multi-threaded real-time system executing Rate-Monotonic Scheduling (RMS) on an STM32 ARM Cortex-M4 microcontroller without vendor HAL overhead. The RTOS concurrently manages high-frequency closed-loop motor control, real-time UART telemetry, and interactive user displays under strict deadlines.</p>
-        
-        <h4>Key Technical Highlights</h4>
-        <ul>
-          <li><strong>RMS Task Scheduling:</strong> Architected periodic threads using Rate-Monotonic Scheduling with harmonic periods to maximize CPU utilization up to 100%. Configured execution budgets and deadlines across the PID controller, string-processing UART service (2-second deadline), and LCD task.</li>
-          <li><strong>Hardware-Driven PWM & Closed-Loop PID:</strong> Developed timer hardware PWM drivers driving an H-bridge motor driver. Integrated closed-loop PID control with speed saturation bounds to ensure rapid deviation recovery under variable load.</li>
-          <li><strong>Quadrature Encoder & EXTI Callbacks:</strong> Implemented external interrupt drivers reading dual-channel encoder signals. Decoded state machine transitions through non-blocking interrupt callbacks to compute real-time wheel velocity feedback.</li>
-          <li><strong>System Subsystems & Telemetry:</strong>
-            <ul>
-              <li><strong>Real-Time UART & Visualizer:</strong> Transmitted motor performance metrics over serial communication to a custom Python plotting script rendering a 500-sample sliding window.</li>
-              <li><strong>Interactive LCD & Buttons:</strong> Mapped push-button interrupts to dynamically adjust target motor speeds and implemented an LCD thread displaying active speed errors alongside real-time P, I, and D parameters.</li>
-              <li><strong>System Call Architecture:</strong> Extended system calls and low-level assembly stubs to expose hardware PWM, motor control, and encoder callbacks securely to user space.</li>
-            </ul>
-          </li>
-        </ul>
-      `
-    },
-    'ros2-autonomous-robot': {
-      title: '4WD Wireless Autonomous Mobile Robot',
-      tags: 'ROS 2 / micro-ROS / ESP32 / FreeRTOS / C++',
-      img: 'ros2-autonomous-robot.jpg',
-      placeholder: '4WD ROS 2 Mobile Robot — Hardware Integration Phase',
-      body: `
-        <div style="display: inline-block; background: rgba(255, 193, 7, 0.15); border: 1px solid #ffc107; color: #ffc107; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;">
-          In Active Development — Testing & Firmware Integration
-        </div>
-    
-        <p>A 4-wheel-drive autonomous mobile robot that bridges high-level ROS 2 velocity commands with embedded hardware over Wi-Fi using micro-ROS. By converting the ESP32 into a ROS 2 node, the platform executes wireless teleoperation and streams real-time IMU telemetry without needing a computer to bridge the connection.</p>
-        <h4>Hardware & Components</h4>
-        <div class="materials-grid">
-          <div class="material-card">
-            <div class="material-title">Hardware & Electronics</div>
-            <ul class="material-list">
-              <li><strong>Controller:</strong> Hosyond ESP32-WROOM-32 (Dual-Core)</li>
-              <li><strong>Actuation:</strong> 4x TT Gear Motors driven by 2x TB6612FNG drivers, one independent PWM + direction channel per wheel</li>
-              <li><strong>Sensors:</strong> HUAREW GY521 MPU6050 6-DOF IMU (I2C)</li>
-              <li><strong>Power:</strong> VICMILE 7.4V 1200mAh LiPo + LM2596 Buck Converter (5V out)</li>
-              <li><strong>Chassis:</strong> YonPhsy 4WD 2-Layer Acrylic Chassis Kit</li>
-            </ul>
-          </div>
-    
-          <div class="material-card">
-            <div class="material-title">Software & Firmware Stack</div>
-            <ul class="material-list">
-              <li><strong>Middleware:</strong> ROS 2, micro-ROS</li>
-              <li><strong>Firmware RTOS:</strong> ESP-IDF, FreeRTOS (Dual-Core tasks)</li>
-              <li><strong>Tools & Languages:</strong> C++, C, Python, teleop_twist_keyboard</li>
-            </ul>
-          </div>
-        </div>
-        
-        <!-- Hardware Schematic Image -->
-        <h4>Wiring & Pin Layout Schematic</h4>
-        <div style="margin: 1rem 0; text-align: center;">
-          <img src="ros2-pin-layout.jpg" alt="ESP32 ROS 2 Hardware Pin Layout Diagram" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #333;" onerror="this.parentElement.innerHTML='<p style=\\'color:#aaa;\\'>[ Wiring Diagram: ros2-pin-layout.jpg ]</p>';">
-        </div>
-    
-        <h4>Mapping</h4>
-        <table style="width:100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem;">
-          <thead>
-            <tr style="border-bottom: 2px solid #ccc; text-align: left;">
-              <th style="padding: 8px;">Component</th>
-              <th style="padding: 8px;">Device Pin</th>
-              <th style="padding: 8px;">ESP32 GPIO Pin</th>
-              <th style="padding: 8px;">Signal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom: 1px solid #eee;">
-              <td style="padding: 8px;"><strong>MPU6050 IMU</strong></td>
-              <td style="padding: 8px;">SCL / SDA</td>
-              <td style="padding: 8px;">D22 / D21</td>
-              <td style="padding: 8px;">I2C Bus</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #eee;">
-              <td style="padding: 8px;"><strong>TB6612FNG Driver A (Front)</strong></td>
-              <td style="padding: 8px;">PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td>
-              <td style="padding: 8px;">D32, D33, D25, D26, D27, D14</td>
-              <td style="padding: 8px;">PWM Speed Control & Direction GPIOs</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #eee;">
-              <td style="padding: 8px;"><strong>TB6612FNG Driver B (Rear)</strong></td>
-              <td style="padding: 8px;">PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td>
-              <td style="padding: 8px;">D4, D16, D17, D18, D19, D23</td>
-              <td style="padding: 8px;">PWM Speed Control & Direction GPIOs</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #eee;">
-              <td style="padding: 8px;"><strong>Shared STBY (both drivers)</strong></td>
-              <td style="padding: 8px;">STBY</td>
-              <td style="padding: 8px;">D13</td>
-              <td style="padding: 8px;">Hardware-level motor enable / e-stop</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px;"><strong>LM2596 Buck Converter</strong></td>
-              <td style="padding: 8px;">5V Output / GND</td>
-              <td style="padding: 8px;">VIN / GND</td>
-              <td style="padding: 8px;">Regulated 5V Logic Power Rail</td>
-            </tr>
-          </tbody>
-        </table>
-    
-        <h4>System Architecture </h4>
-        <ul>
-          <li><strong>Dual-Core:</strong> To prevent network jitter from delaying motor timing, tasks are used across dual cores:
-            <ul>
-              <li><strong>Core 0:</strong> Runs <code>microros_task</code> to handle Wi-Fi network, keeping the session alive.</li>
-              <li><strong>Core 1:</strong> Control and sensing tasks -<code>motor_control_task</code> (computes PWM duty cycles) and <code>imu_task</code> (receives IMU information).</li>
-            </ul>
-          </li>
-          <li><strong>Kinematics:</strong> Translates geometry payloads from velocity into per-wheel PWM output across dual dual-channel drivers.</li>
-          <li><strong>Safety:</strong> Implemented a command timeout watchdog to halt motors on Wi-Fi dropouts, alongside firmware PWM duty cycle limits to protect TT gear motors running off a 7.4V rail.</li>
-        </ul>
-    
-        <h4>Implementation Roadmap & Milestones</h4>
-        <div class="materials-grid">
-          <div class="material-card">
-            <div class="material-title" style="color: #4caf50;">Completed Milestones</div>
-            <ul class="material-list">
-              <li><strong>Hardware Selection:</strong> Hosyond ESP32-WROOM-32, HUAREW MPU6050, YonPhsy 2-layer 4WD chassis, and dual TB6612FNG drivers.</li>
-              <li><strong>Power Distribution:</strong> Configured 7.4V 2S LiPo pouch pack powering motor rails and a dedicated 5V buck converter logic rail.</li>
-              <li><strong>Bench Test Setup:</strong> Configured ESP-IDF toolchain with <code>micro_ros_espidf_component</code>.</li>
-            </ul>
-          </div>
-    
-          <div class="material-card">
-            <div class="material-title" style="color: #ff9800;">In Progress / Next Steps</div>
-            <ul class="material-list">
-              <li><strong>Hardware Test:</strong> Verify motor PWM control and 50Hz IMU communication over micro-ROS.</li>
-              <li><strong>Integration:</strong> Test communication between FreeRTOS cores and measure latency.</li>
-            </ul>
-          </div>
-        </div>
-      `,
-      links: [
-        { label: 'github repository', url: 'https://github.com/katherine-e-jackson/ROS-4WD-Robot' }
-      ]
-    },
-    'diffusion-trajectory-planner': {
-      title: 'Diffusion-Based Trajectory Planner',
-      tags: 'PyTorch / Diffusion Models / D4RL / DPM-Solver / Robotics / Trajectory Optimization',
-      img: 'diffusion-trajectory-planner.jpg',
-      placeholder: 'Diffusion Trajectory Planner — add diffusion-trajectory-planner.jpg',
-      body: `
-        <div style="display: inline-block; background: rgba(158, 158, 158, 0.15); border: 1px solid #9e9e9e; color: #9e9e9e; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;">
-          Roadmap — Not Yet Started
-        </div>
 
-        <p>A scoped-out plan for a generative trajectory planner that models robot path planning as an iterative reverse diffusion process, rather than classical graph search (A*) or tree sampling (RRT). Starting from random Gaussian noise, the model would iteratively denoise it into a smooth, collision-free path conditioned on a goal and the environment's obstacles. The approach is grounded in <em>Diffusion Policy: Visuomotor Policy Learning via Action Diffusion</em> (Chi et al., 2023), which demonstrated diffusion-based policies outperforming prior state-of-the-art robot learning methods by an average of 46.9% across 12 manipulation tasks on 4 benchmarks.</p>
+const projectData = {
+  'asl-glove': {
+    title: 'ASL Reader Glove',
+    tags: 'Python / k-NN / I2C / Raspberry Pi',
+    img: 'asl-reader-glove.jpg',
+    placeholder: 'ASL Reader Glove — add asl-reader-glove.jpg',
+    body: `
+      <p>I built a glove that reads American Sign Language. Flex sensors and an IMU track how the hand bends and moves, and a machine learning model turns those readings into letters and numbers in real time.</p>
 
-        <h4>Planned Technical Approach</h4>
-        <ul>
-          <li><strong>1D Temporal Diffusion Architecture:</strong> A 1D Temporal Convolutional U-Net to iteratively denoise random Gaussian vectors into continuous 2D coordinate paths.</li>
-          <li><strong>Conditioning & Constraint Handling:</strong> Classifier-Free Guidance (CFG) to condition the reverse diffusion process on target destination goals and environment safety constraints.</li>
-          <li><strong>Fast Inference:</strong> A DPM-Solver sampling schedule to reduce reverse-diffusion steps (targeting ~100 down to ~20) for lower path-generation latency.</li>
-          <li><strong>Multi-Modal Path Generation:</strong> Leveraging diffusion's ability to represent multiple valid solutions as distinct modes of a learned distribution (e.g. passing left vs. right of an obstacle).</li>
-        </ul>
+      <h4>Design Motivation & Scope</h4>
+      <p>My team and I wanted to work on something in medical and assistive technology. Once we settled on an ASL reader, I took ownership of the embedded systems and the machine learning pipeline. We had a fixed deadline, so we scoped the first build to the ASL alphabet and the digits 0–9.</p>
 
-        <h4>Planned Evaluation</h4>
-        <p>Train and evaluate on D4RL's <code>maze2d</code> environments, benchmarked against classical planners (A*, RRT) and against un-optimized diffusion sampling — measuring success rate, path optimality, and planning latency.</p>
+      <h4>How It Works</h4>
+      <ul>
+        <li><strong>Sensing:</strong> A 9-DOF IMU and five analog flex sensors, one per finger, capture hand rotation and finger bending.</li>
+        <li><strong>Cleaning up the data:</strong> The raw readings are noisy, so I wrote a low-pass filter and normalization step in Python before anything reaches the model. The cleaned data goes to a web app over Bluetooth.</li>
+        <li><strong>Classification:</strong> I trained both a CNN and a k-NN classifier, and both scored above 92% across the alphabet. k-NN did better overall, so we used it in the final prototype. [Add one line on why you think it won, e.g. small dataset, fast to run on the device.]</li>
+      </ul>
 
-        <h4>Status</h4>
-        <p>This project is fully scoped (architecture, data source, evaluation plan) but implementation has not yet begun — prioritized after the current <a href="#ros2-autonomous-robot">4WD ROS 2 robot</a> build reaches completion.</p>
+      <h4>Software & Hardware Materials</h4>
+      <div class="materials-grid">
+        <div class="material-card">
+          <div class="material-title">Hardware & Electronics</div>
+          <ul class="material-list">
+            <li><strong>Microcontroller:</strong> Raspberry Pi Pico 2W</li>
+            <li><strong>Sensors:</strong> 9-DOF IMU, 5x analog flex sensors, capacitive touch sensors / tape</li>
+            <li><strong>Circuitry:</strong> Custom PCB, ADS, voltage dividers</li>
+            <li><strong>Power:</strong> LiPo battery pack</li>
+          </ul>
+        </div>
+        <div class="material-card">
+          <div class="material-title">Software & Protocols</div>
+          <ul class="material-list">
+            <li><strong>Firmware & languages:</strong> MicroPython, Python 3</li>
+            <li><strong>ML & math:</strong> PyTorch, Scikit-Learn, NumPy</li>
+            <li><strong>Protocols:</strong> I2C, ADC, Bluetooth</li>
+          </ul>
+        </div>
+      </div>
 
-        <h4>References</h4>
-        <ul>
-          <li>Chi, C. et al. <em>Diffusion Policy: Visuomotor Policy Learning via Action Diffusion.</em> <a href="https://arxiv.org/abs/2303.04137" target="_blank" rel="noopener">arXiv:2303.04137</a></li>
-          <li><a href="https://www.youtube.com/watch?v=ViBkYHg4rPI" target="_blank" rel="noopener">Supporting video reference</a></li>
-        </ul>
-      `
-    }
-  };
+      <h4>System Demonstration Video</h4>
+      <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-bottom: 2rem; border-radius: 8px;">
+        <iframe
+          src="https://www.youtube.com/embed/LLdTKgTLjFc?start=108"
+          title="ASL Reader Glove Demo Video"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
 
+      <h4>The Glove Up Close</h4>
+      <p>Here's the pin layout and the finished board. [One sentence on something you'd want a reader to notice, e.g. how the flex sensors are wired.]</p>
+      <div class="gallery-grid">
+        <img src="asl-reader-1.jpg" alt="Pin Layout" onerror="this.parentElement.classList.add('no-image');">
+        <img src="asl-reader-2.jpg" alt="Project Board" onerror="this.parentElement.classList.add('no-image');">
+      </div>
+
+      <h4>What's Next</h4>
+      <p>I'd like to build a second glove so it can read two-handed signs, and collect more training data directly from the hardware instead of relying on what we recorded earlier.</p>
+    `,
+    links: [
+      { label: 'github repository', url: 'https://github.com/katherine-e-jackson/ASL-Reader' }
+    ]
+  },
+
+  'rtos-motor-control': {
+    title: 'RTOS & PID Motor Control System',
+    tags: 'ARM Assembly / Embedded C / Cortex-M4 / STM32 / RTOS / PID / Hardware Drivers',
+    img: 'rtos-motor-control.jpg',
+    placeholder: 'RTOS Motor Control — add rtos-motor-control.jpg',
+    body: `
+      <p>This is a small real-time operating system running on an STM32 (ARM Cortex-M4), written without the vendor HAL. On top of it, I run closed-loop motor control, live UART telemetry, and an LCD, all with hard deadlines. [Add: "I built this for my ___ course" and what was provided vs. what you wrote.]</p>
+
+      <h4>What I Built</h4>
+      <ul>
+        <li><strong>Scheduling:</strong> I used Rate-Monotonic Scheduling with harmonic periods, which lets the CPU run fully loaded and still meet every deadline. I set an execution budget and deadline for each task: the PID controller, the UART string-processing service (2-second deadline), and the LCD.</li>
+        <li><strong>Motor control:</strong> I wrote the timer-based PWM drivers that run an H-bridge, then added a closed-loop PID controller with speed limits so the motor recovers quickly when the load changes.</li>
+        <li><strong>Encoder feedback:</strong> The two encoder channels trigger external interrupts. A small state machine decodes each transition in a non-blocking callback, which gives me live wheel velocity for the PID loop.</li>
+        <li><strong>System calls:</strong> I added system calls and low-level assembly stubs so user code can control the PWM, the motor, and the encoder callbacks.</li>
+      </ul>
+
+      <h4>Telemetry & Interface</h4>
+      <ul>
+        <li><strong>Live plot:</strong> Motor performance streams over UART to a Python script that plots a rolling 500-sample window.</li>
+        <li><strong>LCD & buttons:</strong> Push-button interrupts change the target speed, and the LCD shows the current speed error along with the P, I, and D values.</li>
+      </ul>
+    `
+  },
+
+  'ros2-autonomous-robot': {
+    title: '4WD Wireless Autonomous Mobile Robot',
+    tags: 'ROS 2 / micro-ROS / ESP32 / FreeRTOS / C++',
+    img: 'ros2-autonomous-robot.jpg',
+    placeholder: '4WD ROS 2 Mobile Robot — Hardware Integration Phase',
+    body: `
+      <div style="display: inline-block; background: rgba(255, 193, 7, 0.15); border: 1px solid #ffc107; color: #ffc107; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;">
+        In Active Development — Testing & Firmware Integration
+      </div>
+
+      <p>I'm building a four-wheel-drive robot that talks to a ROS 2 network over Wi-Fi. The ESP32 runs micro-ROS, so it shows up as a regular ROS 2 node. I can drive it with <code>teleop_twist_keyboard</code> from my laptop and get live IMU data back, with no serial cable tying the two together. (A micro-ROS agent on my computer handles the connection, but the robot itself is fully wireless.)</p>
+
+      <h4>Hardware & Components</h4>
+      <div class="materials-grid">
+        <div class="material-card">
+          <div class="material-title">Hardware & Electronics</div>
+          <ul class="material-list">
+            <li><strong>Controller:</strong> Hosyond ESP32-WROOM-32 (dual-core)</li>
+            <li><strong>Motors:</strong> 4x TT gear motors on two TB6612FNG drivers, with an independent PWM and direction channel for each wheel</li>
+            <li><strong>IMU:</strong> HUAREW GY521 (MPU6050, 6-DOF) over I2C</li>
+            <li><strong>Power:</strong> VICMILE 7.4V 1200mAh LiPo, plus an LM2596 buck converter for a 5V logic rail</li>
+            <li><strong>Chassis:</strong> YonPhsy 4WD 2-layer acrylic kit</li>
+          </ul>
+        </div>
+        <div class="material-card">
+          <div class="material-title">Software & Firmware Stack</div>
+          <ul class="material-list">
+            <li><strong>Middleware:</strong> ROS 2, micro-ROS</li>
+            <li><strong>Firmware:</strong> ESP-IDF and FreeRTOS, with tasks split across both cores</li>
+            <li><strong>Languages & tools:</strong> C++, C, Python, teleop_twist_keyboard</li>
+          </ul>
+        </div>
+      </div>
+
+      <h4>Wiring & Pin Layout Schematic</h4>
+      <div style="margin: 1rem 0; text-align: center;">
+        <img src="ros2-pin-layout.jpg" alt="ESP32 ROS 2 Hardware Pin Layout Diagram" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #333;" onerror="this.parentElement.innerHTML='<p style=\\'color:#aaa;\\'>[ Wiring Diagram: ros2-pin-layout.jpg ]</p>';">
+      </div>
+
+      <h4>Pin Mapping</h4>
+      <style>.pin-table td,.pin-table th{padding:8px;text-align:left;border-bottom:1px solid #eee}.pin-table th{border-bottom:2px solid #ccc}</style>
+      <table class="pin-table" style="width:100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem;">
+        <thead>
+          <tr><th>Component</th><th>Device Pin</th><th>ESP32 GPIO</th><th>Signal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>MPU6050 IMU</strong></td><td>SCL / SDA</td><td>22 / 21</td><td>I2C</td></tr>
+          <tr><td><strong>TB6612FNG A (front)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>32, 33, 25, 26, 27, 14</td><td>PWM + direction</td></tr>
+          <tr><td><strong>TB6612FNG B (rear)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>4, 16, 17, 18, 19, 23</td><td>PWM + direction</td></tr>
+          <tr><td><strong>Shared STBY</strong></td><td>STBY</td><td>13</td><td>Motor enable / e-stop</td></tr>
+          <tr><td><strong>LM2596 buck</strong></td><td>5V out / GND</td><td>VIN / GND</td><td>5V logic rail</td></tr>
+        </tbody>
+      </table>
+
+      <h4>How It Works</h4>
+      <ul>
+        <li><strong>Two cores, two jobs:</strong> I didn't want Wi-Fi hiccups messing with motor timing, so I split the work. Core 0 runs <code>microros_task</code>, which handles the network and keeps the session alive. Core 1 runs <code>motor_control_task</code> (calculates PWM duty cycles) and <code>imu_task</code> (reads the MPU6050 and publishes the data).</li>
+        <li><strong>Kinematics:</strong> Incoming velocity commands, linear and angular, get converted into a PWM value for each wheel using standard differential-drive math.</li>
+        <li><strong>Safety:</strong> If Wi-Fi drops, a watchdog notices the commands have stopped and cuts the motors. I also cap the PWM duty cycle in firmware, since the TT motors are running off a 7.4V pack and would be happier with less [add your actual cap, e.g. ~70%]. The shared STBY pin doubles as a hardware kill switch.</li>
+      </ul>
+
+      <h4>Where Things Stand</h4>
+      <div class="materials-grid">
+        <div class="material-card">
+          <div class="material-title" style="color: #4caf50;">Done</div>
+          <ul class="material-list">
+            <li><strong>Hardware:</strong> Picked the ESP32, IMU, chassis, and both motor drivers.</li>
+            <li><strong>Power:</strong> The 7.4V 2S LiPo runs the motors, and a dedicated buck converter feeds a 5V logic rail.</li>
+            <li><strong>Firmware setup:</strong> Got the ESP-IDF toolchain building with <code>micro_ros_espidf_component</code>.</li>
+          </ul>
+        </div>
+        <div class="material-card">
+          <div class="material-title" style="color: #ff9800;">Next Up</div>
+          <ul class="material-list">
+            <li><strong>Hardware test:</strong> Verify motor PWM control and 50 Hz IMU publishing over micro-ROS.</li>
+            <li><strong>Integration:</strong> Test how the two FreeRTOS cores work together and measure end-to-end latency.</li>
+          </ul>
+        </div>
+      </div>
+    `,
+    links: [
+      { label: 'github repository', url: 'https://github.com/katherine-e-jackson/ROS-4WD-Robot' }
+    ]
+  },
+
+  'diffusion-trajectory-planner': {
+    title: 'Diffusion-Based Trajectory Planner',
+    tags: 'PyTorch / Diffusion Models / D4RL / DPM-Solver / Robotics / Trajectory Optimization',
+    img: 'diffusion-trajectory-planner.jpg',
+    placeholder: 'Diffusion Trajectory Planner — add diffusion-trajectory-planner.jpg',
+    body: `
+      <div style="display: inline-block; background: rgba(158, 158, 158, 0.15); border: 1px solid #9e9e9e; color: #9e9e9e; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;">
+        Roadmap — Not Yet Started
+      </div>
+
+      <p>I'm planning to try diffusion models for robot path planning instead of classic methods like A* or RRT. The idea is to start from random noise and denoise it step by step into a smooth, collision-free path that reaches a goal and avoids obstacles. It's inspired by <em>Diffusion Policy</em> (Chi et al., 2023), which beat earlier robot learning methods by an average of 46.9% across 12 manipulation tasks on 4 benchmarks.</p>
+
+      <h4>The Plan</h4>
+      <ul>
+        <li><strong>Model:</strong> A 1D temporal convolutional U-Net that turns noise into a sequence of 2D coordinates.</li>
+        <li><strong>Steering it:</strong> Classifier-free guidance to point the model at a goal and keep it away from obstacles.</li>
+        <li><strong>Speed:</strong> A DPM-Solver schedule to cut the denoising steps from about 100 to about 20, so paths generate faster.</li>
+        <li><strong>Multiple answers:</strong> Diffusion can learn several valid paths at once, like going left or right of an obstacle, which is something A* can't do.</li>
+      </ul>
+
+      <h4>How I'll Test It</h4>
+      <p>I'll train on D4RL's <code>maze2d</code> environments and compare against A*, RRT, and plain diffusion sampling. I'll measure success rate, path quality, and planning time.</p>
+
+      <h4>Status</h4>
+      <p>The architecture, data, and evaluation are all planned, but I haven't started building. I'm finishing the <a href="#ros2-autonomous-robot">4WD ROS 2 robot</a> first.</p>
+
+      <h4>References</h4>
+      <ul>
+        <li>Chi, C. et al. <em>Diffusion Policy: Visuomotor Policy Learning via Action Diffusion.</em> <a href="https://arxiv.org/abs/2303.04137" target="_blank" rel="noopener">arXiv:2303.04137</a></li>
+        <li><a href="https://www.youtube.com/watch?v=ViBkYHg4rPI" target="_blank" rel="noopener">Supporting video reference</a></li>
+      </ul>
+    `
+  }
+};
   // NAVIGATION & ROUTING
   function showSection(id) {
     document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
