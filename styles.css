@@ -171,74 +171,85 @@ section.active {
 
 /* TERMINAL CONTAINER STYLES */
 .terminal-window {
-  background: #1e1e2e;
+  /* Soft dark background with a subtle blue-grey tint */
+  background-color: #0f141a; 
+  /* Subtle accent border with glow */
+  border: 1px solid rgba(111, 168, 214, 0.25);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 
+              0 0 15px rgba(111, 168, 214, 0.08);
+  font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
   overflow: hidden;
-  font-family: 'Fira Code', 'Courier New', monospace;
-  text-align: left;
-  margin-top: 1.25rem;
   max-width: 520px;
+  margin: 1.5rem 0;
 }
 
 .terminal-header {
-  background: #181825;
-  padding: 8px 12px;
+  /* Slightly darker header bar for depth */
+  background-color: #090c10;
+  padding: 8px 14px;
   display: flex;
   align-items: center;
-  gap: 6px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(111, 168, 214, 0.15);
 }
 
-.dot {
+.terminal-header .dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
+  margin-right: 6px;
   display: inline-block;
+  opacity: 0.85;
 }
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
+
+/* Control dots matched to soft theme tones */
+.terminal-header .dot.red { background-color: #e06c75; }
+.terminal-header .dot.yellow { background-color: #e5c07b; }
+.terminal-header .dot.green { background-color: #6FA8D6; } /* Matched to site accent */
 
 .terminal-title {
-  color: #a6adc8;
-  font-size: 0.75rem;
-  margin-left: 6px;
-  letter-spacing: 0.5px;
+  color: #828a9f;
+  font-size: 0.78rem;
+  margin-left: auto;
+  font-weight: 500;
 }
 
 .terminal-body {
-  padding: 1rem;
-  color: #cdd6f4;
+  padding: 16px;
+  color: #d1e0ec; /* Soft text color */
   font-size: 0.88rem;
   line-height: 1.6;
 }
 
 .terminal-body p {
-  margin: 0 0 0.35rem 0;
-}
-.terminal-body p:last-child {
-  margin-bottom: 0;
+  margin: 0 0 8px 0;
 }
 
-.prompt {
-  color: #f38ba8;
-  font-weight: bold;
+.terminal-body .prompt {
+  color: #6FA8D6; /* Signature accent color */
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+.status-line {
+  margin-top: 10px !important;
 }
 
 .status-active {
-  color: #a6e3a1;
-  font-weight: bold;
+  color: #6FA8D6; /* Active indicator uses site blue */
+  font-weight: 700;
+  margin-right: 6px;
+  text-shadow: 0 0 8px rgba(111, 168, 214, 0.4);
 }
 
 .terminal-sub {
-  color: #bac2de;
+  color: #8da4b8;
+  font-size: 0.84rem;
+  margin-bottom: 0 !important;
 }
 
 .terminal-sub b {
-  color: #89b4fa;
-  font-weight: 600;
+  color: #ffffff;
 }
 
 .contact-row {
