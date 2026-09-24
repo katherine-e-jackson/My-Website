@@ -301,11 +301,11 @@ const projectData = {
     img: 'rtos-motor-control.jpg',
     placeholder: 'RTOS Motor Control — add rtos-motor-control.jpg',
     body: `
-      <p>This is a small real-time operating system running on an STM32 (ARM Cortex-M4), written without the vendor HAL. On top of it, I run closed-loop motor control, live UART telemetry, and an LCD, all with hard deadlines. [Add: "I built this for my ___ course" and what was provided vs. what you wrote.]</p>
+      <p>A small real-time operating system running on an STM32 (ARM Cortex-M4), written without the vendor HAL. It runs closed-loop motor control, live UART telemetry, and an LCD, all with hard deadlines. This was a project done as an assignment for my Embedded Systems class.</p>
 
       <h4>What I Built</h4>
       <ul>
-        <li><strong>Scheduling:</strong> I used Rate-Monotonic Scheduling with harmonic periods, which lets the CPU run fully loaded and still meet every deadline. I set an execution budget and deadline for each task: the PID controller, the UART string-processing service (2-second deadline), and the LCD.</li>
+        <li><strong>Scheduling:</strong>Using Rate-Monotonic Scheduling with harmonic periods, the CPU can run fully loaded and still meet every deadline. I set an execution budget and deadline for each task: the PID controller, the UART string-processing service (2-second deadline), and the LCD.</li>
         <li><strong>Motor control:</strong> I wrote the timer-based PWM drivers that run an H-bridge, then added a closed-loop PID controller with speed limits so the motor recovers quickly when the load changes.</li>
         <li><strong>Encoder feedback:</strong> The two encoder channels trigger external interrupts. A small state machine decodes each transition in a non-blocking callback, which gives me live wheel velocity for the PID loop.</li>
         <li><strong>System calls:</strong> I added system calls and low-level assembly stubs so user code can control the PWM, the motor, and the encoder callbacks.</li>
@@ -329,7 +329,7 @@ const projectData = {
         In Active Development — Testing & Firmware Integration
       </div>
 
-      <p>I'm building a four-wheel-drive robot that talks to a ROS 2 network over Wi-Fi. The ESP32 runs micro-ROS, so it shows up as a regular ROS 2 node. I can drive it with <code>teleop_twist_keyboard</code> from my laptop and get live IMU data back, with no serial cable tying the two together. (A micro-ROS agent on my computer handles the connection, but the robot itself is fully wireless.)</p>
+      <p>A four-wheel-drive robot that talks to a ROS 2 network over Wi-Fi. The ESP32 runs micro-ROS, so it shows up as a regular ROS 2 node. I will drive it with <code>teleop_twist_keyboard</code> from my laptop and get live IMU data back, with no serial cable tying the two together.</p>
 
       <h4>Hardware & Components</h4>
       <div class="materials-grid">
@@ -366,18 +366,18 @@ const projectData = {
         </thead>
         <tbody>
           <tr><td><strong>MPU6050 IMU</strong></td><td>SCL / SDA</td><td>22 / 21</td><td>I2C</td></tr>
-          <tr><td><strong>TB6612FNG A (front)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>32, 33, 25, 26, 27, 14</td><td>PWM + direction</td></tr>
-          <tr><td><strong>TB6612FNG B (rear)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>4, 16, 17, 18, 19, 23</td><td>PWM + direction</td></tr>
+          <tr><td><strong>TB6612FNG A (left)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>32, 33, 25, 26, 27, 14</td><td>PWM + direction</td></tr>
+          <tr><td><strong>TB6612FNG B (right)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>4, 16, 17, 18, 19, 23</td><td>PWM + direction</td></tr>
           <tr><td><strong>Shared STBY</strong></td><td>STBY</td><td>13</td><td>Motor enable / e-stop</td></tr>
           <tr><td><strong>LM2596 buck</strong></td><td>5V out / GND</td><td>VIN / GND</td><td>5V logic rail</td></tr>
         </tbody>
       </table>
 
-      <h4>How It Works</h4>
+      <h4>How It Will Work:</h4>
       <ul>
-        <li><strong>Two cores, two jobs:</strong> I didn't want Wi-Fi hiccups messing with motor timing, so I split the work. Core 0 runs <code>microros_task</code>, which handles the network and keeps the session alive. Core 1 runs <code>motor_control_task</code> (calculates PWM duty cycles) and <code>imu_task</code> (reads the MPU6050 and publishes the data).</li>
+        <li><strong>Two cores, two jobs:</strong> I didn't want Wi-Fi hiccups messing with motor timing, so I wanted a dual-core device. Core 0 runs <code>microros_task</code>, which handles the network and keeps the session alive. Core 1 runs <code>motor_control_task</code> (calculates PWM duty cycles) and <code>imu_task</code> (reads the MPU6050 and publishes the data).</li>
         <li><strong>Kinematics:</strong> Incoming velocity commands, linear and angular, get converted into a PWM value for each wheel using standard differential-drive math.</li>
-        <li><strong>Safety:</strong> If Wi-Fi drops, a watchdog notices the commands have stopped and cuts the motors. I also cap the PWM duty cycle in firmware, since the TT motors are running off a 7.4V pack and would be happier with less [add your actual cap, e.g. ~70%]. The shared STBY pin doubles as a hardware kill switch.</li>
+        <li><strong>Safety:</strong> If Wi-Fi drops, a watchdog notices the commands have stopped and cuts the motors. I will also cap the PWM duty cycle in firmware, since the TT motors are running off a 7.4V pack and would be happier with less than 80%. The shared STBY pin doubles as a hardware kill switch.</li>
       </ul>
 
       <h4>Where Things Stand</h4>
@@ -414,7 +414,7 @@ const projectData = {
         Roadmap — Not Yet Started
       </div>
 
-      <p>I'm planning to try diffusion models for robot path planning instead of classic methods like A* or RRT. The idea is to start from random noise and denoise it step by step into a smooth, collision-free path that reaches a goal and avoids obstacles. It's inspired by <em>Diffusion Policy</em> (Chi et al., 2023), which beat earlier robot learning methods by an average of 46.9% across 12 manipulation tasks on 4 benchmarks.</p>
+      <p>I'm trying out diffusion models for robot path planning instead of classic methods like A* or RRT. The idea is to start from random noise and denoise it step by step into a smooth, collision-free path that reaches a goal and avoids obstacles. It's inspired by <em>Diffusion Policy</em> (Chi et al., 2023), which beat earlier robot learning methods by an average of ~47% across 12 manipulation tasks on 4 benchmarks.</p>
 
       <h4>The Plan</h4>
       <ul>
