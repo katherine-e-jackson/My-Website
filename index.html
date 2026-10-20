@@ -375,7 +375,7 @@ const projectData = {
 
       <h4>How It Will Work:</h4>
       <ul>
-        <li><strong>Two cores, two jobs:</strong> I didn't want Wi-Fi hiccups messing with motor timing, so I wanted a dual-core device. Core 0 runs <code>microros_task</code>, which handles the network and keeps the session alive. Core 1 runs <code>motor_control_task</code> (calculates PWM duty cycles) and <code>imu_task</code> (reads the MPU6050 and publishes the data).</li>
+        <li><strong>Two cores:</strong> I didn't want Wi-Fi hiccups messing with motor timing, so I wanted a dual-core device. Core 0 runs <code>microros_task</code>, which handles the network and keeps the session alive. Core 1 runs <code>motor_control_task</code> (calculates PWM duty cycles) and <code>imu_task</code> (reads the MPU6050 and publishes the data).</li>
         <li><strong>Kinematics:</strong> Incoming velocity commands, linear and angular, get converted into a PWM value for each wheel using standard differential-drive math.</li>
         <li><strong>Safety:</strong> If Wi-Fi drops, a watchdog notices the commands have stopped and cuts the motors. I will also cap the PWM duty cycle in firmware, since the TT motors are running off a 7.4V pack and would be happier with less than 80%. The shared STBY pin doubles as a hardware kill switch.</li>
       </ul>
@@ -387,7 +387,7 @@ const projectData = {
           <ul class="material-list">
             <li><strong>Hardware:</strong> Picked the ESP32, IMU, chassis, and both motor drivers.</li>
             <li><strong>Power:</strong> The 7.4V 2S LiPo runs the motors, and a dedicated buck converter feeds a 5V logic rail.</li>
-            <li><strong>Firmware setup:</strong> Got the ESP-IDF toolchain building with <code>micro_ros_espidf_component</code>.</li>
+            <li><strong>Wireless setup:</strong> The ESP32 accepts bluetooth commands from my laptop.</li>
           </ul>
         </div>
         <div class="material-card">
