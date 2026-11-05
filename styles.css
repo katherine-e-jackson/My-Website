@@ -234,22 +234,115 @@ section.active {
 
 .scroll-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-/* COURSEWORK PAGE */
-/* Section wrapper */
+/* Main section spacing */
 #coursework {
   width: 100%;
-  padding: 4rem 0;
-  overflow: hidden;
+  padding: 4rem 1rem;
+  box-sizing: border-box;
 }
 
 #coursework .section-title {
+  font-size: 2rem;
   margin-bottom: 0.5rem;
+  text-transform: lowercase;
 }
 
 #coursework .about-text {
-  margin-bottom: 2rem;
   color: #666;
+  margin-bottom: 2.5rem;
 }
+
+/* Each category row grouping */
+.course-category {
+  margin-bottom: 2.5rem;
+}
+
+.category-heading {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+  letter-spacing: -0.01em;
+}
+
+/* Individual horizontal scrolling track for each section */
+.class-scroll-track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0.25rem 1.25rem 0.25rem;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  /* Hide standard scrollbars for a clean modern UI look */
+  scrollbar-width: none; 
+}
+
+.class-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual Class Card Styling */
+.class-card {
+  flex: 0 0 300px; /* Fixed card width so it triggers horizontal scrolling */
+  scroll-snap-align: start;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.class-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Course Code Badge */
+.class-code {
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  align-self: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+/* Course Title */
+.class-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+/* Description Text */
+.class-desc {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.class-desc a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Responsive breakpoint for smaller mobile screens */
+@media (max-width: 600px) {
+  .class-card {
+    flex: 0 0 80vw; /* Scales cards nicely to screen width on mobile */
+  }
+}
+
 
 /* Horizontal scrolling viewport track */
 .materials-grid {
