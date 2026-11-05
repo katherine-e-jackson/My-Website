@@ -235,51 +235,79 @@ section.active {
 .scroll-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 /* COURSEWORK PAGE */
-/* Container section layout */
+/* Section wrapper */
 #coursework {
-  padding: 2rem 0;
-  max-width: 100%;
+  width: 100%;
+  padding: 4rem 0;
+  overflow: hidden;
 }
 
-/* Horizontal scroll track */
+#coursework .section-title {
+  margin-bottom: 0.5rem;
+}
+
+#coursework .about-text {
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+/* Horizontal scrolling viewport track */
 .materials-grid {
   display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
+  gap: 2rem;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 1rem 0 1.5rem 0;
+  padding: 1rem 1rem 2rem 1rem;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  /* Hide scrollbar for a cleaner modern look */
+  scrollbar-width: none; /* Firefox */
 }
 
-/* Custom scrollbar styling */
 .materials-grid::-webkit-scrollbar {
-  height: 8px;
+  display: none; /* Chrome, Safari, Opera */
 }
 
-.materials-grid::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-}
-
-.materials-grid::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-}
-
-.materials-grid::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-/* Card layout inside the horizontal track */
+/* Individual card styling tuned for horizontal flow */
 .material-card {
-  flex: 0 0 320px; /* Fixed width: prevents shrinking */
+  flex: 0 0 380px;
   scroll-snap-align: start;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.material-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.material-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.material-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.material-list li {
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Responsive breakpoint */
+@media (max-width: 768px) {
+  .material-card {
+    flex: 0 0 85vw;
+  }
 }
 
 /* Mobile responsive adjustment */
