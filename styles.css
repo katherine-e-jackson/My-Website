@@ -234,9 +234,36 @@ section.active {
 
 .scroll-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-/* ==========================================
-   TERMINAL WINDOW STYLES (LIGHT BLUE THEME)
-   ========================================== */
+/* COURSEWORK PAGE */
+#coursework .materials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+#coursework .material-card {
+  width: auto;
+  min-width: 0;
+}
+
+/* the short Biomedical card spans the full width so it doesn't sit alone */
+#coursework .material-card:last-child {
+  grid-column: 1 / -1;
+}
+
+/* links were showing in default visited purple */
+#coursework a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  #coursework .materials-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .terminal-window {
   background-color: var(--accent-dim); /* Soft light blue tint (#EAF3FA) */
   border: 1px solid var(--line);       /* Soft neutral border (#E7E5DF) */
