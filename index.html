@@ -30,6 +30,38 @@
     <h1 class="home-title">Hi, I'm <span>Katherine</span></h1>
     <p class="home-role">Electrical &amp; Computer Engineer!</p>
 
+    <!-- COMPACT TERMINAL WINDOW --><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Katherine Jackson</title>
+  <!-- FAVICON -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='16' y='23' font-family='system-ui, sans-serif' font-weight='800' font-size='18' fill='%236FA8D6' text-anchor='middle'%3EKJ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<nav>
+  <span class="nav-name" data-target="home">katherine jackson</span>
+  <ul class="nav-links">
+    <li><a href="#home" id="nav-home" class="active">home</a></li>
+    <li><a href="#about" id="nav-about">about</a></li>
+    <li><a href="#experience" id="nav-experience">experience</a></li>
+    <li><a href="#coursework" id="nav-coursework">coursework</a></li>
+    <li><a href="#projects" id="nav-projects">projects</a></li>
+  </ul>
+</nav>
+
+<!-- HOME SECTION -->
+<section id="home" class="active">
+
+  <div class="hero-top">
+  <div class="hero-intro">
+    <h1 class="home-title">Hi, I'm <span>Katherine</span></h1>
+    <p class="home-role">Electrical &amp; Computer Engineer!</p>
+
     <!-- COMPACT TERMINAL WINDOW -->
     <div class="terminal-window">
       <div class="terminal-header">
@@ -151,6 +183,7 @@
   </div>
 </section>
 
+<!-- COURSEWORK SECTION -->
 <section id="coursework">
   <h2 class="section-title">coursework</h2>
   <p class="about-text">
@@ -158,8 +191,14 @@
   </p>
 
   <div class="course-category">
-    <h3 class="category-heading">Embedded Systems &amp; Hardware</h3>
-    <div class="class-scroll-track">
+    <div class="carousel-header">
+      <h3 class="carousel-title category-heading">Embedded Systems &amp; Hardware</h3>
+      <div class="carousel-controls">
+        <button class="scroll-btn coursework-scroll-left" data-target="track-hardware" aria-label="Scroll left">&lt;</button>
+        <button class="scroll-btn coursework-scroll-right" data-target="track-hardware" aria-label="Scroll right">&gt;</button>
+      </div>
+    </div>
+    <div class="class-scroll-track" id="track-hardware">
       <div class="class-card">
         <span class="class-code">18-349</span>
         <h4 class="class-title">Introduction to Embedded Systems</h4>
@@ -189,8 +228,14 @@
   </div>
 
   <div class="course-category">
-    <h3 class="category-heading">Machine Learning &amp; Vision</h3>
-    <div class="class-scroll-track">
+    <div class="carousel-header">
+      <h3 class="carousel-title category-heading">Machine Learning &amp; Vision</h3>
+      <div class="carousel-controls">
+        <button class="scroll-btn coursework-scroll-left" data-target="track-ml" aria-label="Scroll left">&lt;</button>
+        <button class="scroll-btn coursework-scroll-right" data-target="track-ml" aria-label="Scroll right">&gt;</button>
+      </div>
+    </div>
+    <div class="class-scroll-track" id="track-ml">
       <div class="class-card">
         <span class="class-code">10-301</span>
         <h4 class="class-title">Introduction to Machine Learning</h4>
@@ -205,8 +250,14 @@
   </div>
 
   <div class="course-category">
-    <h3 class="category-heading">Signals, Controls &amp; Math</h3>
-    <div class="class-scroll-track">
+    <div class="carousel-header">
+      <h3 class="carousel-title category-heading">Signals, Controls &amp; Math</h3>
+      <div class="carousel-controls">
+        <button class="scroll-btn coursework-scroll-left" data-target="track-signals" aria-label="Scroll left">&lt;</button>
+        <button class="scroll-btn coursework-scroll-right" data-target="track-signals" aria-label="Scroll right">&gt;</button>
+      </div>
+    </div>
+    <div class="class-scroll-track" id="track-signals">
       <div class="class-card">
         <span class="class-code">18-290</span>
         <h4 class="class-title">Signals and Systems</h4>
@@ -236,8 +287,14 @@
   </div>
 
   <div class="course-category">
-    <h3 class="category-heading">Software &amp; Systems</h3>
-    <div class="class-scroll-track">
+    <div class="carousel-header">
+      <h3 class="carousel-title category-heading">Software &amp; Systems</h3>
+      <div class="carousel-controls">
+        <button class="scroll-btn coursework-scroll-left" data-target="track-software" aria-label="Scroll left">&lt;</button>
+        <button class="scroll-btn coursework-scroll-right" data-target="track-software" aria-label="Scroll right">&gt;</button>
+      </div>
+    </div>
+    <div class="class-scroll-track" id="track-software">
       <div class="class-card">
         <span class="class-code">18-213</span>
         <h4 class="class-title">Introduction to Computer Systems</h4>
@@ -262,8 +319,14 @@
   </div>
 
   <div class="course-category">
-    <h3 class="category-heading">Biomedical Engineering</h3>
-    <div class="class-scroll-track">
+    <div class="carousel-header">
+      <h3 class="carousel-title category-heading">Biomedical Engineering</h3>
+      <div class="carousel-controls">
+        <button class="scroll-btn coursework-scroll-left" data-target="track-bio" aria-label="Scroll left">&lt;</button>
+        <button class="scroll-btn coursework-scroll-right" data-target="track-bio" aria-label="Scroll right">&gt;</button>
+      </div>
+    </div>
+    <div class="class-scroll-track" id="track-bio">
       <div class="class-card">
         <span class="class-code">42-101</span>
         <h4 class="class-title">Intro to Biomedical Engineering</h4>
@@ -282,6 +345,7 @@
     </div>
   </div>
 </section>
+
 <!-- PROJECTS LIST SECTION -->
 <section id="projects">
   <h2 class="section-title">projects</h2>
@@ -653,6 +717,21 @@ const projectData = {
     if (e.target.closest('#back-to-projects')) {
       history.pushState(null, '', '#projects');
       showSection('projects');
+    }
+
+    // Coursework arrow button controls
+    const courseLeftBtn = e.target.closest('.coursework-scroll-left');
+    if (courseLeftBtn) {
+      const trackId = courseLeftBtn.getAttribute('data-target');
+      const track = document.getElementById(trackId);
+      if (track) track.scrollBy({ left: -320, behavior: 'smooth' });
+    }
+
+    const courseRightBtn = e.target.closest('.coursework-scroll-right');
+    if (courseRightBtn) {
+      const trackId = courseRightBtn.getAttribute('data-target');
+      const track = document.getElementById(trackId);
+      if (track) track.scrollBy({ left: 320, behavior: 'smooth' });
     }
   });
 
