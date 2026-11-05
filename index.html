@@ -162,11 +162,11 @@
     <div class="carousel-header">
       <h3 class="carousel-title category-heading">Embedded Systems &amp; Hardware</h3>
       <div class="carousel-controls">
-        <button class="scroll-btn coursework-scroll-left" data-target="track-hardware" aria-label="Scroll left">&lt;</button>
-        <button class="scroll-btn coursework-scroll-right" data-target="track-hardware" aria-label="Scroll right">&gt;</button>
+        <button class="scroll-btn coursework-scroll-left" aria-label="Scroll left">&lt;</button>
+        <button class="scroll-btn coursework-scroll-right" aria-label="Scroll right">&gt;</button>
       </div>
     </div>
-    <div class="class-scroll-track" id="track-hardware">
+    <div class="class-scroll-track">
       <div class="class-card">
         <span class="class-code">18-349</span>
         <h4 class="class-title">Introduction to Embedded Systems</h4>
@@ -199,11 +199,11 @@
     <div class="carousel-header">
       <h3 class="carousel-title category-heading">Machine Learning &amp; Vision</h3>
       <div class="carousel-controls">
-        <button class="scroll-btn coursework-scroll-left" data-target="track-ml" aria-label="Scroll left">&lt;</button>
-        <button class="scroll-btn coursework-scroll-right" data-target="track-ml" aria-label="Scroll right">&gt;</button>
+        <button class="scroll-btn coursework-scroll-left" aria-label="Scroll left">&lt;</button>
+        <button class="scroll-btn coursework-scroll-right" aria-label="Scroll right">&gt;</button>
       </div>
     </div>
-    <div class="class-scroll-track" id="track-ml">
+    <div class="class-scroll-track">
       <div class="class-card">
         <span class="class-code">10-301</span>
         <h4 class="class-title">Introduction to Machine Learning</h4>
@@ -221,11 +221,11 @@
     <div class="carousel-header">
       <h3 class="carousel-title category-heading">Signals, Controls &amp; Math</h3>
       <div class="carousel-controls">
-        <button class="scroll-btn coursework-scroll-left" data-target="track-signals" aria-label="Scroll left">&lt;</button>
-        <button class="scroll-btn coursework-scroll-right" data-target="track-signals" aria-label="Scroll right">&gt;</button>
+        <button class="scroll-btn coursework-scroll-left" aria-label="Scroll left">&lt;</button>
+        <button class="scroll-btn coursework-scroll-right" aria-label="Scroll right">&gt;</button>
       </div>
     </div>
-    <div class="class-scroll-track" id="track-signals">
+    <div class="class-scroll-track">
       <div class="class-card">
         <span class="class-code">18-290</span>
         <h4 class="class-title">Signals and Systems</h4>
@@ -258,11 +258,11 @@
     <div class="carousel-header">
       <h3 class="carousel-title category-heading">Software &amp; Systems</h3>
       <div class="carousel-controls">
-        <button class="scroll-btn coursework-scroll-left" data-target="track-software" aria-label="Scroll left">&lt;</button>
-        <button class="scroll-btn coursework-scroll-right" data-target="track-software" aria-label="Scroll right">&gt;</button>
+        <button class="scroll-btn coursework-scroll-left" aria-label="Scroll left">&lt;</button>
+        <button class="scroll-btn coursework-scroll-right" aria-label="Scroll right">&gt;</button>
       </div>
     </div>
-    <div class="class-scroll-track" id="track-software">
+    <div class="class-scroll-track">
       <div class="class-card">
         <span class="class-code">18-213</span>
         <h4 class="class-title">Introduction to Computer Systems</h4>
@@ -290,11 +290,11 @@
     <div class="carousel-header">
       <h3 class="carousel-title category-heading">Biomedical Engineering</h3>
       <div class="carousel-controls">
-        <button class="scroll-btn coursework-scroll-left" data-target="track-bio" aria-label="Scroll left">&lt;</button>
-        <button class="scroll-btn coursework-scroll-right" data-target="track-bio" aria-label="Scroll right">&gt;</button>
+        <button class="scroll-btn coursework-scroll-left" aria-label="Scroll left">&lt;</button>
+        <button class="scroll-btn coursework-scroll-right" aria-label="Scroll right">&gt;</button>
       </div>
     </div>
-    <div class="class-scroll-track" id="track-bio">
+    <div class="class-scroll-track">
       <div class="class-card">
         <span class="class-code">42-101</span>
         <h4 class="class-title">Intro to Biomedical Engineering</h4>
@@ -687,18 +687,18 @@ const projectData = {
       showSection('projects');
     }
 
-    // Coursework arrow button controls
+    // Coursework arrow button controls (finds the adjacent class-scroll-track)
     const courseLeftBtn = e.target.closest('.coursework-scroll-left');
     if (courseLeftBtn) {
-      const trackId = courseLeftBtn.getAttribute('data-target');
-      const track = document.getElementById(trackId);
+      const category = courseLeftBtn.closest('.course-category');
+      const track = category ? category.querySelector('.class-scroll-track') : null;
       if (track) track.scrollBy({ left: -320, behavior: 'smooth' });
     }
 
     const courseRightBtn = e.target.closest('.coursework-scroll-right');
     if (courseRightBtn) {
-      const trackId = courseRightBtn.getAttribute('data-target');
-      const track = document.getElementById(trackId);
+      const category = courseRightBtn.closest('.course-category');
+      const track = category ? category.querySelector('.class-scroll-track') : null;
       if (track) track.scrollBy({ left: 320, behavior: 'smooth' });
     }
   });
