@@ -235,30 +235,60 @@ section.active {
 .scroll-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 /* COURSEWORK PAGE */
-/* COURSEWORK PAGE */
-#coursework .materials-grid {
+/* Container section layout */
+#coursework {
+  padding: 2rem 0;
+  max-width: 100%;
+}
+
+/* Horizontal scroll track */
+.materials-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem 0 1.5rem 0;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom scrollbar styling */
+.materials-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.materials-grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.materials-grid::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.materials-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Card layout inside the horizontal track */
+.material-card {
+  flex: 0 0 320px; /* Fixed width: prevents shrinking */
+  scroll-snap-align: start;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  margin-top: 1.5rem;
 }
 
-#coursework .material-card {
-  width: 100%;
-  min-width: 0;
-}
-
-#coursework a {
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-@media (max-width: 700px) {
-  #coursework .materials-grid {
-    grid-template-columns: 1fr;
+/* Mobile responsive adjustment */
+@media (max-width: 600px) {
+  .material-card {
+    flex: 0 0 85vw; /* Takes up most of the screen width on smaller viewports */
   }
 }
+
 .terminal-window {
   background-color: var(--accent-dim); /* Soft light blue tint (#EAF3FA) */
   border: 1px solid var(--line);       /* Soft neutral border (#E7E5DF) */
