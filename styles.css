@@ -272,8 +272,8 @@ section.active {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.5rem 0.25rem 1.25rem 0.25rem;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  /* No scroll-snap or smooth scrolling here: both fight the JS auto-scroll
+     (snap pulls each tiny step back, smooth restarts an animation every frame). */
   /* Hide standard scrollbars for a clean modern UI look */
   scrollbar-width: none; 
 }
@@ -285,7 +285,6 @@ section.active {
 /* Individual Class Card Styling */
 .class-card {
   flex: 0 0 300px; /* Fixed card width so it triggers horizontal scrolling */
-  scroll-snap-align: start;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 10px;
