@@ -223,6 +223,21 @@
     </div>
     <div class="class-scroll-track">
       <div class="class-card">
+        <span class="class-code">36-225</span>
+        <h4 class="class-title">Introduction to Probability Theory</h4>
+        <p class="class-desc">Probability distributions, random variables, and stochastic analysis—the base for machine learning.</p>
+      </div>
+      <div class="class-card">
+        <span class="class-code">18-202</span>
+        <h4 class="class-title">Mathematical Foundations of ECE</h4>
+        <p class="class-desc">Linear algebra, vector spaces, and the math behind later ECE classes.</p>
+      </div>
+       <div class="class-card">
+        <span class="class-code">21-127</span>
+        <h4 class="class-title">Concepts of Mathematics</h4>
+        <p class="class-desc">Proof-based math: logic, sets, relations, and rigorous arguments.</p>
+      </div>
+      <div class="class-card">
         <span class="class-code">18-290</span>
         <h4 class="class-title">Signals and Systems</h4>
         <p class="class-desc">Filtering, like the low-pass filter on the glove's sensor data, continuous- and discrete-time signal processing, and transform analysis.</p>
@@ -231,21 +246,6 @@
         <span class="class-code">18-370</span>
         <h4 class="class-title">Fundamentals of Control</h4>
         <p class="class-desc">Feedback control, stability criteria, root locus design, and PID tuning.</p>
-      </div>
-      <div class="class-card">
-        <span class="class-code">18-202</span>
-        <h4 class="class-title">Mathematical Foundations of ECE</h4>
-        <p class="class-desc">Linear algebra, vector spaces, and the math behind later ECE classes.</p>
-      </div>
-      <div class="class-card">
-        <span class="class-code">21-127</span>
-        <h4 class="class-title">Concepts of Mathematics</h4>
-        <p class="class-desc">Proof-based math: logic, sets, relations, and rigorous arguments.</p>
-      </div>
-      <div class="class-card">
-        <span class="class-code">36-225</span>
-        <h4 class="class-title">Introduction to Probability Theory</h4>
-        <p class="class-desc">Probability distributions, random variables, and stochastic analysis—the base for machine learning.</p>
       </div>
     </div>
   </div>
@@ -259,25 +259,25 @@
       </div>
     </div>
     <div class="class-scroll-track">
+       <div class="class-card">
+        <span class="class-code">15-112</span>
+        <h4 class="class-title">Fundamentals of Programming</h4>
+        <p class="class-desc">Programming fundamentals and problem-solving principles in Python.</p>
+      </div>
+       <div class="class-card">
+        <span class="class-code">15-122</span>
+        <h4 class="class-title">Principles of Imperative Computation</h4>
+        <p class="class-desc">Data structures, algorithmic complexity, contracts, and writing correct code.</p>
+      </div>
       <div class="class-card">
         <span class="class-code">18-213</span>
         <h4 class="class-title">Introduction to Computer Systems</h4>
         <p class="class-desc">C, memory hierarchy, caching, and how programs run on hardware.</p>
       </div>
       <div class="class-card">
-        <span class="class-code">15-122</span>
-        <h4 class="class-title">Principles of Imperative Computation</h4>
-        <p class="class-desc">Data structures, algorithmic complexity, contracts, and writing correct code.</p>
-      </div>
-      <div class="class-card">
         <span class="class-code">17-437</span>
         <h4 class="class-title">Web Application Development</h4>
         <p class="class-desc">Full web apps with HTML, CSS, JavaScript, server architecture, and RESTful APIs.</p>
-      </div>
-      <div class="class-card">
-        <span class="class-code">15-112</span>
-        <h4 class="class-title">Fundamentals of Programming</h4>
-        <p class="class-desc">Programming fundamentals and problem-solving principles in Python.</p>
       </div>
     </div>
   </div>
@@ -478,12 +478,11 @@ const projectData = {
       </ul>
     `
   },
-
   'ros2-autonomous-robot': {
     title: '4WD Wireless Autonomous Mobile Robot',
     tags: 'ROS 2 / micro-ROS / ESP32 / FreeRTOS / C++',
     img: 'ros2-autonomous-robot.jpg',
-    placeholder: '4WD ROS 2 Mobile Robot — Hardware Integration Phase',
+    placeholder: '4WD ROS 2 Mobile Robot — Controls and Tuning',
     body: `
       <div style="display: inline-block; background: rgba(255, 193, 7, 0.15); border: 1px solid #ffc107; color: #ffc107; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;">
         In Active Development — Controls and Tuning
@@ -525,11 +524,13 @@ const projectData = {
           <tr><th>Component</th><th>Device Pin</th><th>ESP32 GPIO</th><th>Signal</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>MPU6050 IMU</strong></td><td>SCL / SDA</td><td>22 / 21</td><td>I2C</td></tr>
-          <tr><td><strong>TB6612FNG A (left)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>32, 33, 25, 26, 27, 14</td><td>PWM + direction</td></tr>
-          <tr><td><strong>TB6612FNG B (right)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>4, 16, 17, 18, 19, 23</td><td>PWM + direction</td></tr>
+          <tr><td><strong> IMU </strong></td><td>SCL / SDA</td><td>22 / 21</td><td>I2C</td></tr>
+          <tr><td><strong> IMU </strong></td><td>ESP-32 3.3V</td><td>22 / 21</td><td>Power</td></tr>
+          <tr><td><strong>Driver A (left)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>32, 33, 25, 26, 27, 14</td><td>PWM + direction</td></tr>
+          <tr><td><strong>Driver B (right)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>23, 19, 18, 17, 16, 4</td><td>PWM + direction</td></tr>
           <tr><td><strong>Shared STBY</strong></td><td>STBY</td><td>13</td><td>Motor enable / e-stop</td></tr>
-          <tr><td><strong>LM2596 buck</strong></td><td>5V out / GND</td><td>VIN / GND</td><td>5V logic rail</td></tr>
+          <tr><td><strong>Buck Converter</strong></td><td>5V out / GND</td><td>VIN / GND</td><td>5V logic rail</td></tr>
+          <tr><td><strong></strong></td><td>5V out / GND</td><td>VIN / GND</td><td>5V logic rail</td></tr>
         </tbody>
       </table>
 
