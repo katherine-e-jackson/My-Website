@@ -685,18 +685,10 @@ const projectData = {
 
     // Coursework arrow button controls (finds the adjacent class-scroll-track)
     const courseLeftBtn = e.target.closest('.coursework-scroll-left');
-    if (courseLeftBtn) {
-      const category = courseLeftBtn.closest('.course-category');
-      const track = category ? category.querySelector('.class-scroll-track') : null;
-      if (track) track.scrollBy({ left: -320, behavior: 'smooth' });
-    }
+    if (courseLeftBtn) courseNudge(courseLeftBtn, -1);
 
     const courseRightBtn = e.target.closest('.coursework-scroll-right');
-    if (courseRightBtn) {
-      const category = courseRightBtn.closest('.course-category');
-      const track = category ? category.querySelector('.class-scroll-track') : null;
-      if (track) track.scrollBy({ left: 320, behavior: 'smooth' });
-    }
+    if (courseRightBtn) courseNudge(courseRightBtn, 1);
   });
 
   // ABOUT CAROUSEL LOGIC
@@ -745,12 +737,28 @@ const projectData = {
     originalCards.forEach(card => carousel.appendChild(card.cloneNode(true)));
     originalCards.forEach(card => carousel.appendChild(card.cloneNode(true)));
 
+    const originalCount = originalCards.length;
+    let pausedUntil = 0;   // auto-scroll stays off until this time (set when an arrow is clicked)
+    let period = 0;        // exact loop length: distance from a card to its clone
+
+    function getPeriod() {
+      if (!period) {
+        const p = carousel.children[originalCount].offsetLeft - carousel.children[0].offsetLeft;
+        period = p > 0 ? p : 0;   // 0 while the home tab is hidden; measured once it's visible
+      }
+      return period;
+    }
+    window.addEventListener('resize', () => { period = 0; });
+
     function autoScroll() {
-      if (!isHoveredOrTouched && carousel) {
-        if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-          carousel.scrollLeft -= carousel.scrollWidth / 2;
-        } else {
-          carousel.scrollLeft += 0.8;
+      if (!isHoveredOrTouched && performance.now() > pausedUntil && carousel.clientWidth > 0) {
+        const p = getPeriod();
+        if (p) {
+          if (carousel.scrollLeft >= p) {
+            carousel.scrollLeft -= p;
+          } else {
+            carousel.scrollLeft += 0.8;
+          }
         }
       }
       scrollRAF = requestAnimationFrame(autoScroll);
@@ -763,45 +771,93 @@ const projectData = {
     carousel.addEventListener('touchstart', () => { isHoveredOrTouched = true; }, { passive: true });
     carousel.addEventListener('touchend', () => { isHoveredOrTouched = false; });
 
-    document.getElementById('scroll-left')?.addEventListener('click', () => {
-      carousel.scrollBy({ left: -320, behavior: 'smooth' });
-    });
+    // Arrow buttons. The auto-scroll nudges scrollLeft every frame, which cancels a smooth
+    // scroll, so pause it for a moment after each click and let the arrow's scroll finish.
+    function nudge(direction) {
+      pausedUntil = performance.now() + 1000;
+      const p = getPeriod();
+      // Nothing exists to the left of the first card, so hop forward one full loop first.
+      // The cards repeat exactly, so the jump isn't visible.
+      if (direction < 0 && p && carousel.scrollLeft < 320) {
+        carousel.scrollLeft += p;
+      }
+      carousel.scrollBy({ left: direction * 320, behavior: 'smooth' });
+    }
 
-    document.getElementById('scroll-right')?.addEventListener('click', () => {
-      carousel.scrollBy({ left: 320, behavior: 'smooth' });
-    });
+    document.getElementById('scroll-left')?.addEventListener('click', () => nudge(-1));
+    document.getElementById('scroll-right')?.addEventListener('click', () => nudge(1));
   }
 
   // COURSEWORK TRACKS AUTO-SCROLL LOGIC
+  let courseArrowPausedUntil = 0;   // set by the arrow buttons so auto-scroll doesn't fight them
+
+  function courseNudge(btn, direction) {
+    courseArrowPausedUntil = performance.now() + 1000;
+    const category = btn.closest('.course-category');
+    const track = category ? category.querySelector('.class-scroll-track') : null;
+    if (!track) return;
+    // Nothing exists to the left of the first card, so hop forward one full loop first.
+    // The cards repeat exactly, so the jump isn't visible.
+    const period = parseFloat(track.dataset.period || '0');
+    if (direction < 0 && period && track.scrollLeft < 320) {
+      track.scrollLeft += period;
+    }
+    track.scrollBy({ left: direction * 320, behavior: 'smooth' });
+  }
+
   function initCourseworkAutoScroll() {
-    const tracks = document.querySelectorAll('.class-scroll-track');
-    
-    tracks.forEach(track => {
-      const originalCards = Array.from(track.children);
-      if (originalCards.length === 0) return;
+    document.querySelectorAll('.course-category').forEach(category => {
+      const track = category.querySelector('.class-scroll-track');
+      const controls = category.querySelector('.carousel-controls');
+      if (!track || track.children.length === 0) return;
 
-      originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
-      originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
-
+      const originalCount = track.children.length;
       let isPaused = false;
+      let ready = false;   // set up lazily, the first time the section is actually visible
+      let period = 0;      // distance (px) between a card and its clone: the loop length
+
+      function setup() {
+        // Section is display:none until you open the coursework tab, so we can't measure at load.
+        const first = track.children[0];
+        const last = track.children[originalCount - 1];
+        const rowWidth = (last.offsetLeft + last.offsetWidth) - first.offsetLeft;
+
+        if (rowWidth <= track.clientWidth) {
+          // Everything already fits on screen: nothing to scroll, so hide the arrows.
+          if (controls) controls.style.visibility = 'hidden';
+          ready = 'static';
+          return;
+        }
+
+        // Clone the cards once, then keep adding sets only if needed so the loop can always wrap
+        // (and so the left arrow always has room to hop forward one loop).
+        const originals = Array.from(track.children);
+        originals.forEach(card => track.appendChild(card.cloneNode(true)));
+        period = track.children[originalCount].offsetLeft - track.children[0].offsetLeft;
+        while (track.scrollWidth - track.clientWidth < period + 320) {
+          originals.forEach(card => track.appendChild(card.cloneNode(true)));
+        }
+        track.dataset.period = period;
+        ready = true;
+      }
 
       function step() {
-        if (!isPaused && track) {
-          if (track.scrollLeft >= track.scrollWidth / 2) {
-            track.scrollLeft -= track.scrollWidth / 2;
-          } else {
+        if (track.clientWidth > 0) {           // visible
+          if (!ready) setup();
+          if (ready === true && !isPaused && performance.now() > courseArrowPausedUntil) {
             track.scrollLeft += 0.6;
+            if (track.scrollLeft >= period) track.scrollLeft -= period;
           }
         }
         requestAnimationFrame(step);
       }
-
       requestAnimationFrame(step);
 
-      track.addEventListener('mouseenter', () => { isPaused = true; });
-      track.addEventListener('mouseleave', () => { isPaused = false; });
-      track.addEventListener('touchstart', () => { isPaused = true; }, { passive: true });
-      track.addEventListener('touchend', () => { isPaused = false; });
+      // Pause while the pointer is anywhere over the category (track AND arrows).
+      category.addEventListener('mouseenter', () => { isPaused = true; });
+      category.addEventListener('mouseleave', () => { isPaused = false; });
+      category.addEventListener('touchstart', () => { isPaused = true; }, { passive: true });
+      category.addEventListener('touchend', () => { isPaused = false; });
     });
   }
 
