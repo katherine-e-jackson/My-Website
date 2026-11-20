@@ -171,7 +171,7 @@
       <div class="class-card">
         <span class="class-code">18-500</span>
         <h4 class="class-title">ECE Design Experience</h4>
-        <p class="class-desc">The senior capstone, a team design project focusing on practical engineering design, open-ended problem solving, teamwork, and interdisiplinary integration.</p>
+        <p class="class-desc">The senior capstone, a team design project focusing on practical engineering design, open-ended problem solving, teamwork, and interdisciplinary integration.</p>
       </div>
       <div class="class-card">
         <span class="class-code">18-240</span>
@@ -465,7 +465,7 @@ const projectData = {
 
       <h4>What I Built</h4>
       <ul>
-        <li><strong>Scheduling:</strong>Using Rate-Monotonic Scheduling with harmonic periods, the CPU can run fully loaded and still meet every deadline. I set an execution budget and deadline for each task: the PID controller, the UART string-processing service (2-second deadline), and the LCD.</li>
+        <li><strong>Scheduling: </strong>Using Rate-Monotonic Scheduling with harmonic periods, the CPU can run fully loaded and still meet every deadline. I set an execution budget and deadline for each task: the PID controller, the UART string-processing service (2-second deadline), and the LCD.</li>
         <li><strong>Motor control:</strong> I wrote the timer-based PWM drivers that run an H-bridge, then added a closed-loop PID controller with speed limits so the motor recovers quickly when the load changes.</li>
         <li><strong>Encoder feedback:</strong> The two encoder channels trigger external interrupts. A small state machine decodes each transition in a non-blocking callback, which gives me live wheel velocity for the PID loop.</li>
         <li><strong>System calls:</strong> I added system calls and low-level assembly stubs so user code can control the PWM, the motor, and the encoder callbacks.</li>
@@ -525,8 +525,8 @@ const projectData = {
         </thead>
         <tbody>
           <tr><td><strong> IMU </strong></td><td>SCL / SDA</td><td>22 / 21</td><td>I2C</td></tr>
-          <tr><td><strong> IMU </strong></td><td>ESP-32 3.3V</td><td>22 / 21</td><td>Power</td></tr>
-          <tr><td><strong>Driver A (left)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>32, 33, 25, 26, 27, 14</td><td>PWM + direction</td></tr>
+          <tr><td><strong> IMU </strong></td><td>ESP-32 3.3V</td><td>N/A</td><td>Power</td></tr>
+          <tr><td><strong>Driver A (left)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>14, 27, 26, 25, 33, 32</td><td>PWM + direction</td></tr>
           <tr><td><strong>Driver B (right)</strong></td><td>PWMA, AIN2, AIN1, BIN1, BIN2, PWMB</td><td>23, 19, 18, 17, 16, 4</td><td>PWM + direction</td></tr>
           <tr><td><strong>Shared STBY</strong></td><td>STBY</td><td>13</td><td>Motor enable / e-stop</td></tr>
           <tr><td><strong>Buck Converter</strong></td><td>5V out / GND</td><td>VIN / GND</td><td>5V logic rail</td></tr>
